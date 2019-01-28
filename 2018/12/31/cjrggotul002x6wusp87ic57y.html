@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.    UNIX操作系统中的两大基本概念是什么？ 文件和进程    2.    UNIX操作系统最基本的功能特征是什么? 交互式分时多用户  3.    UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？ $ 命令名 [-命令任选项][命令参数] 命令任选项前有’-‘    4.    文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？">
+<meta name="keywords" content="UNIX,期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNIX期末复习题">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/cjrggotul002x6wusp87ic57y.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="1.    UNIX操作系统中的两大基本概念是什么？ 文件和进程    2.    UNIX操作系统最基本的功能特征是什么? 交互式分时多用户  3.    UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？ $ 命令名 [-命令任选项][命令参数] 命令任选项前有’-‘    4.    文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-20T05:00:23.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UNIX期末复习题">
+<meta name="twitter:description" content="1.    UNIX操作系统中的两大基本概念是什么？ 文件和进程    2.    UNIX操作系统最基本的功能特征是什么? 交互式分时多用户  3.    UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？ $ 命令名 [-命令任选项][命令参数] 命令任选项前有’-‘    4.    文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/31/cjrggotul002x6wusp87ic57y.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UNIX期末复习题 | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/cjrggotul002x6wusp87ic57y.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UNIX期末复习题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-31 19:08:08" itemprop="dateCreated datePublished" datetime="2018-12-31T19:08:08+08:00">2018-12-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-20 13:00:23" itemprop="dateModified" datetime="2019-01-20T13:00:23+08:00">2019-01-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h3 id="1-UNIX操作系统中的两大基本概念是什么？"><a href="#1-UNIX操作系统中的两大基本概念是什么？" class="headerlink" title="1.    UNIX操作系统中的两大基本概念是什么？"></a>1.    UNIX操作系统中的两大基本概念是什么？</h3><ul>
+<li>文件和进程  </li>
+</ul>
+<h3 id="2-UNIX操作系统最基本的功能特征是什么"><a href="#2-UNIX操作系统最基本的功能特征是什么" class="headerlink" title="2.    UNIX操作系统最基本的功能特征是什么?"></a>2.    UNIX操作系统最基本的功能特征是什么?</h3><ul>
+<li>交互式分时多用户</li>
+</ul>
+<h3 id="3-UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？"><a href="#3-UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？" class="headerlink" title="3.    UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？"></a>3.    UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？</h3><ul>
+<li>$ 命令名 [-命令任选项][命令参数]</li>
+<li>命令任选项前有’-‘  </li>
+</ul>
+<h3 id="4-文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？"><a href="#4-文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？" class="headerlink" title="4.    文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？"></a>4.    文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？</h3><ul>
+<li>可以包含<ul>
+<li>普通文件</li>
+<li>目录文件</li>
+<li>设备特殊文件</li>
+</ul>
+</li>
+<li>可以用的方法：<ul>
+<li>ls -F 区别文件类型:<ul>
+<li>目录名加/</li>
+<li>可执行文件后加*</li>
+</ul>
+</li>
+<li>ls -l 列出详细信息  </li>
+</ul>
+</li>
+</ul>
+<h3 id="5-什么是用户的主目录？什么是当前工作目录？什么是相对路径名？什么是绝对路径名？"><a href="#5-什么是用户的主目录？什么是当前工作目录？什么是相对路径名？什么是绝对路径名？" class="headerlink" title="5.    什么是用户的主目录？什么是当前工作目录？什么是相对路径名？什么是绝对路径名？"></a>5.    什么是用户的主目录？什么是当前工作目录？什么是相对路径名？什么是绝对路径名？</h3><ul>
+<li>主目录<ul>
+<li>用户登录进入系统时的初始工作目录, 由/etc/passwd文件指定</li>
+</ul>
+</li>
+<li>当前工作目录<ul>
+<li>用户当前所处在的目录</li>
+</ul>
+</li>
+<li>相对路径<ul>
+<li>起始点是当前工作目录的路径名</li>
+</ul>
+</li>
+<li>绝对路径<ul>
+<li>起始点是根目录( / )的路径名  </li>
+</ul>
+</li>
+</ul>
+<h3 id="6-什么是通配符？UNIX系统中包括哪些常用的通配符？"><a href="#6-什么是通配符？UNIX系统中包括哪些常用的通配符？" class="headerlink" title="6.    什么是通配符？UNIX系统中包括哪些常用的通配符？"></a>6.    什么是通配符？UNIX系统中包括哪些常用的通配符？</h3><ul>
+<li>通配符是<ul>
+<li>用来代替文件名中某一类或某一种字符串的符号</li>
+<li>使用户在表达多个文件名时, 只需使用一个带通配符的文件名, 来代表若干个文件名</li>
+</ul>
+</li>
+<li>通配符　　　　功能<ul>
+<li>?　　　　匹配任何单个字符</li>
+<li>*　　　　匹配任意多个字符</li>
+<li>[list]　　 匹配list中的任意单个字符</li>
+<li>[ !list ]　 匹配不在list中的任意单个字符  </li>
+</ul>
+</li>
+</ul>
+<h3 id="7-什么是文件的索引节点？索引节点中包含了哪些信息？"><a href="#7-什么是文件的索引节点？索引节点中包含了哪些信息？" class="headerlink" title="7.    什么是文件的索引节点？索引节点中包含了哪些信息？"></a>7.    什么是文件的索引节点？索引节点中包含了哪些信息？</h3><ul>
+<li>索引节点<ul>
+<li>即i节点</li>
+<li>是磁盘 i 节点表中的一个表项, 存放文件的静态信息</li>
+<li>包含了<ul>
+<li>文件大小</li>
+<li>创建及修改时间</li>
+<li>权限</li>
+<li>所属关系磁盘中的位置</li>
+<li>等信息  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-一个文件通常包括哪些属性？如何获取文件的属性信息？"><a href="#8-一个文件通常包括哪些属性？如何获取文件的属性信息？" class="headerlink" title="8.    一个文件通常包括哪些属性？如何获取文件的属性信息？"></a>8.    一个文件通常包括哪些属性？如何获取文件的属性信息？</h3><ul>
+<li>包括了<ul>
+<li>文件类型(-:普通 d:目录 c:字符设备 b:块设备 p:管道)</li>
+<li>文件保护模式</li>
+<li>文件链接数</li>
+<li>文件属主(所有者)</li>
+<li>文件所属用户组</li>
+<li>文件大小(字节数)</li>
+<li>最后修改时间</li>
+<li>文件名</li>
+</ul>
+</li>
+<li>获取文件的属性信息：<ul>
+<li>ls -l</li>
+<li>stat</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-文件的读写访问权限是如何标定的？怎样改变一个（些）文件的特定权限？文件权限的字符表示方法和数字表示方法。"><a href="#9-文件的读写访问权限是如何标定的？怎样改变一个（些）文件的特定权限？文件权限的字符表示方法和数字表示方法。" class="headerlink" title="9.    文件的读写访问权限是如何标定的？怎样改变一个（些）文件的特定权限？文件权限的字符表示方法和数字表示方法。"></a>9.    文件的读写访问权限是如何标定的？怎样改变一个（些）文件的特定权限？文件权限的字符表示方法和数字表示方法。</h3><ul>
+<li>标定<ul>
+<li>读(r)权限</li>
+<li>写(w)权限</li>
+<li>执行(x)权限</li>
+<li>保留正文(t)权限</li>
+<li>调整用户标识(s)权限</li>
+</ul>
+</li>
+<li>改变<ul>
+<li>chmod [ugoa…][[+-][rwxX]…][,…]</li>
+</ul>
+</li>
+<li>把九位字母形式的权限划分为三组(本用户、同组用户、和其他用户),  每组三位(读、写、执行), 在每一位上有对应权限则为1, 没有对应权限则为0, 由此把九位权限变成了三位八进制数  </li>
+</ul>
+<h3 id="10-进程的标准输入文件、标准输出文件和标准错误输出文件分别是什么？"><a href="#10-进程的标准输入文件、标准输出文件和标准错误输出文件分别是什么？" class="headerlink" title="10.    进程的标准输入文件、标准输出文件和标准错误输出文件分别是什么？"></a>10.    进程的标准输入文件、标准输出文件和标准错误输出文件分别是什么？</h3><ul>
+<li>标准输入：　　　STDIN  键盘</li>
+<li>标准输出：　　　STDOUT 荧光屏</li>
+<li>标准错误输出：　STDERR 荧光屏  </li>
+</ul>
+<h3 id="11-输入输出重定向包括哪些操作符号？它们的意义、作用和用法分别是什么？"><a href="#11-输入输出重定向包括哪些操作符号？它们的意义、作用和用法分别是什么？" class="headerlink" title="11.    输入输出重定向包括哪些操作符号？它们的意义、作用和用法分别是什么？"></a>11.    输入输出重定向包括哪些操作符号？它们的意义、作用和用法分别是什么？</h3><ul>
+<li>输出重定向<ul>
+<li>> <ul>
+<li>command &gt; filename 进程输出覆盖文件filename</li>
+</ul>
+</li>
+<li>>&gt;<ul>
+<li>command &gt;&gt; filename 进程输出追加到文件filename后面, 不覆盖filename</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>输入重定向<ul>
+<li>&lt;<ul>
+<li>command &lt; filename 进程的输入来自文件filename</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>错误输出重定向到文件<ul>
+<li>2 &gt;<ul>
+<li>command 2&gt; filename</li>
+</ul>
+</li>
+<li>2 &gt;&gt;</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-常用的文件操作命令有哪些？其基本功能是什么？"><a href="#12-常用的文件操作命令有哪些？其基本功能是什么？" class="headerlink" title="12.    常用的文件操作命令有哪些？其基本功能是什么？"></a>12.    常用的文件操作命令有哪些？其基本功能是什么？</h3><ul>
+<li>见第四章博客，第五大点  </li>
+</ul>
+<h3 id="13-如何进行基本的文件编辑操作？"><a href="#13-如何进行基本的文件编辑操作？" class="headerlink" title="13.    如何进行基本的文件编辑操作？"></a>13.    如何进行基本的文件编辑操作？</h3><ul>
+<li>vi编辑器</li>
+<li>详见第四章博客</li>
+</ul>
+<h3 id="14-UNIX系统中包括哪些Shell类型？各种shell的提示符是什么？各种shell的退出命令什么？"><a href="#14-UNIX系统中包括哪些Shell类型？各种shell的提示符是什么？各种shell的退出命令什么？" class="headerlink" title="14.    UNIX系统中包括哪些Shell类型？各种shell的提示符是什么？各种shell的退出命令什么？"></a>14.    UNIX系统中包括哪些Shell类型？各种shell的提示符是什么？各种shell的退出命令什么？</h3><ul>
+<li>1.Bourne shell<ul>
+<li>程序名为 sh</li>
+<li>提示符为 $</li>
+<li>退出为exit  </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>2.C shell  <ul>
+<li>程序名为 csh</li>
+<li>提示符为 %</li>
+<li>退出为logout  </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>3.Korn shell</p>
+<ul>
+<li>程序名为 ksh</li>
+<li>提示符为 $（是Bsh的超集）</li>
+<li>退出为exit</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>Bash shell<ul>
+<li>程序名为 bsh</li>
+<li>提示符为 $</li>
+<li>退出为exit</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="15-什么是shell的环境变量？常用的环境变量有哪些-其基本意义是什么？"><a href="#15-什么是shell的环境变量？常用的环境变量有哪些-其基本意义是什么？" class="headerlink" title="15.    什么是shell的环境变量？常用的环境变量有哪些?其基本意义是什么？"></a>15.    什么是shell的环境变量？常用的环境变量有哪些?其基本意义是什么？</h3><ul>
+<li>环境变量是一组设定的用来限定shell及其子程序的功能模式和取值范围的变量</li>
+<li>常见的环境变量<ul>
+<li>HOME=/usr/computer/student6　　　　用户主目录, 注册时的初始目录</li>
+<li>PATH=/bin:/usr/bin:$HOME/bin:./　　　　键盘命令的搜索路径</li>
+<li>SHELL=/bin/sh　　　　　　　　　　　　　当前运行的shell名称</li>
+<li>TERM=vt100　　　　　　　　　　　　　　　当前所用的终端类型</li>
+<li>PS1=$　　　　　　　　　　　　　　　　　　shell的主提示符  </li>
+</ul>
+</li>
+</ul>
+<h3 id="16-什么是shell的系统变量？常用的系统变量有哪些？"><a href="#16-什么是shell的系统变量？常用的系统变量有哪些？" class="headerlink" title="16.    什么是shell的系统变量？常用的系统变量有哪些？"></a>16.    什么是shell的系统变量？常用的系统变量有哪些？</h3><ul>
+<li>是一组系统预设好的，只能引用不能修改，有特定含义的变量</li>
+<li>常用的系统变量<ul>
+<li>$0　　　　　　　　　　　　　当前shell程序的名字</li>
+<li>$1 ~ $9　　　　　　　　　　 命令行上的第一到第九个参数</li>
+<li>$#　　　　　　　　　　　　　命令行上的参数个数</li>
+<li>$*　　　　　　　　　　　　　命令行上的所有参数</li>
+<li>$@　　　　　　　　　　　　　分别用双引号引用命令行上的所有参数</li>
+<li>$$　　　　　　　　　　　　　当前进程的进程标识号(PID)</li>
+<li>$?　　　　　　　　　　　　　上一条命令的退出状态</li>
+<li>$!　　　　　　　　　　　　　最后一个后台进程的进程标识号  </li>
+</ul>
+</li>
+</ul>
+<h3 id="17-如何设定和使用用户自定义的shell变量？"><a href="#17-如何设定和使用用户自定义的shell变量？" class="headerlink" title="17.    如何设定和使用用户自定义的shell变量？"></a>17.    如何设定和使用用户自定义的shell变量？</h3><ul>
+<li>设定<ul>
+<li>自定义变量名并赋值</li>
+<li>变量名通常由一个字母后跟零个到多个字母、数字或下划线组成</li>
+</ul>
+</li>
+<li>引用变量的值时，在变量名前面加上$符号  </li>
+</ul>
+<h3 id="18-单引号、双引号、反撇号、花括号的作用和用法是什么？"><a href="#18-单引号、双引号、反撇号、花括号的作用和用法是什么？" class="headerlink" title="18.    单引号、双引号、反撇号、花括号的作用和用法是什么？"></a>18.    单引号、双引号、反撇号、花括号的作用和用法是什么？</h3><ul>
+<li>单引号<ul>
+<li>单引号禁止变量替换,元字符$和*等保持其符号本身;</li>
+</ul>
+</li>
+<li>双引号<ul>
+<li>双引号允许元字符变量替换</li>
+</ul>
+</li>
+<li>反撇号<ul>
+<li>反撇号中的字符串作为命令名</li>
+</ul>
+</li>
+<li>花括号<ul>
+<li>花括号将变量名和后面的字符串区分开  </li>
+</ul>
+</li>
+</ul>
+<h3 id="19-shell可接收哪些形式的键盘命令？何时开始接收键盘命令？何时开始执行键盘命令？"><a href="#19-shell可接收哪些形式的键盘命令？何时开始接收键盘命令？何时开始执行键盘命令？" class="headerlink" title="19.    shell可接收哪些形式的键盘命令？何时开始接收键盘命令？何时开始执行键盘命令？"></a>19.    shell可接收哪些形式的键盘命令？何时开始接收键盘命令？何时开始执行键盘命令？</h3><ul>
+<li>单条命令<ul>
+<li>本命令执行完成后出现shell提示符, 再接收下一条键盘命令</li>
+</ul>
+</li>
+<li>多条命令<ul>
+<li>$ pwd; who; date<ul>
+<li>第一条命令执行完成后, (无停顿)再执行第二条命令, 如此下去. </li>
+<li>运行功能和效果与在键盘上逐条输入命令并运行是完全一样的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>复合命令<ul>
+<li>$ ps –e | grep student2<ul>
+<li>管道前后的命令任意组合、同时运行, 形成功能更强大灵活的复合命令</li>
+</ul>
+</li>
+<li>$ (ls ; cat file3 ; pwd)  &gt;  run_log<ul>
+<li>括号内的命令任意组合、顺序执行，且由一个子shell来单独控制运行, 相当于一个小的功能程序.  方便灵活, 运行效率高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>后台命令<ul>
+<li>$ ls –lR  &gt;  file_list  &amp;<ul>
+<li>多进程并发, 数量不限, 充分利用系统资源  
+　　</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="20-进程的意义是什么？进程的生命周期中有哪些状态？这些状态之间时如何转换的？"><a href="#20-进程的意义是什么？进程的生命周期中有哪些状态？这些状态之间时如何转换的？" class="headerlink" title="20.    进程的意义是什么？进程的生命周期中有哪些状态？这些状态之间时如何转换的？"></a>20.    进程的意义是什么？进程的生命周期中有哪些状态？这些状态之间时如何转换的？</h3><ul>
+<li>“进程”是可运行程序在内存中的一次运行实例<ul>
+<li>运行态<ul>
+<li>进程正占用CPU和其它资源进行运算</li>
+</ul>
+</li>
+<li>就绪态<ul>
+<li>进程已做好一切准备, 等待获得CPU投入运行</li>
+</ul>
+</li>
+<li>睡眠态<ul>
+<li>进程因等待输入输出或其它系统资源, 而让出CPU资源, 等待运行条件满足</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>睡眠态到就绪态<ul>
+<li>I/O完成</li>
+<li>或者睡眠时间到</li>
+</ul>
+</li>
+<li>就绪态到运行态<ul>
+<li>得到CPU</li>
+</ul>
+</li>
+<li>运行态到就绪态<ul>
+<li>运行时间到</li>
+</ul>
+</li>
+<li>运行态到睡眠态<ul>
+<li>等待I/O</li>
+<li>或调用Sleep  </li>
+</ul>
+</li>
+</ul>
+<h3 id="21-在UNIX系统中如何启动、查看、暂停、终止一个进程的运行？"><a href="#21-在UNIX系统中如何启动、查看、暂停、终止一个进程的运行？" class="headerlink" title="21.    在UNIX系统中如何启动、查看、暂停、终止一个进程的运行？"></a>21.    在UNIX系统中如何启动、查看、暂停、终止一个进程的运行？</h3><ul>
+<li>查看<ul>
+<li>ps命令<ul>
+<li>不带参数的ps命令运行时, 显示该用户当前活动进程的基本信息</li>
+<li>-e (或-a) 显示系统中所有活动进程的信息</li>
+<li>-f 显示该进程的所有信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>暂停<ul>
+<li>sleep命令<ul>
+<li>sleep命令使运行它的进程暂停time指定的秒数</li>
+<li>例如：<ul>
+<li>$ sleep 5<ul>
+<li>[进程暂停5秒钟, 什么也不做]</li>
+</ul>
+</li>
+<li>$ sleep 10; who<ul>
+<li>[进程暂停10秒钟后, 显示系统中登录的用户名]  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-UNIX系统内部包含的常用即时通讯、半即时通讯、非即时通讯工具有哪些？其基本用法是什么？"><a href="#22-UNIX系统内部包含的常用即时通讯、半即时通讯、非即时通讯工具有哪些？其基本用法是什么？" class="headerlink" title="22.    UNIX系统内部包含的常用即时通讯、半即时通讯、非即时通讯工具有哪些？其基本用法是什么？"></a>22.    UNIX系统内部包含的常用即时通讯、半即时通讯、非即时通讯工具有哪些？其基本用法是什么？</h3><ul>
+<li>即时通讯<ul>
+<li>write</li>
+<li>talk<ul>
+<li>与write命令不同的是, talk通信双方都必须向对方发出talk命令才能进行通信    </li>
+</ul>
+</li>
+<li>mesg<ul>
+<li>mesg命令不能拒绝wall命令（普通用户会拒绝）和root用户写的东西</li>
+</ul>
+</li>
+<li>wall<ul>
+<li>普通用户用wall发出的广播信息只能被消息接收状态为打开的用户所接收</li>
+<li>而超级用户用wall发信息时不受此限制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>半即时通讯<ul>
+<li>真的没见过，如果考到我就写write</li>
+</ul>
+</li>
+<li>非即时通信<ul>
+<li>mail</li>
+<li>基本用法见第六章博客  </li>
+</ul>
+</li>
+</ul>
+<h3 id="23-Shell语言编程的基本流程是什么？如何执行一个shell程序？"><a href="#23-Shell语言编程的基本流程是什么？如何执行一个shell程序？" class="headerlink" title="23.    Shell语言编程的基本流程是什么？如何执行一个shell程序？"></a>23.    Shell语言编程的基本流程是什么？如何执行一个shell程序？</h3><ul>
+<li>shell 编程的基本过程分为三步:<ul>
+<li>建立 shell 文件<ul>
+<li>包含任意多行操作系统命令或shell命令的文本文件</li>
+</ul>
+</li>
+<li>赋予shell文件执行权限<ul>
+<li>用chmod命令修改权限</li>
+</ul>
+</li>
+<li>执行shell文件<ul>
+<li>直接在命令行上调用shell程序　　</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-shell的语句包括哪几大类型？常用的有哪几种语句？"><a href="#24-shell的语句包括哪几大类型？常用的有哪几种语句？" class="headerlink" title="24.    shell的语句包括哪几大类型？常用的有哪几种语句？"></a>24.    shell的语句包括哪几大类型？常用的有哪几种语句？</h3><ul>
+<li>见博客第七章第二大点开始  </li>
+</ul>
+<h3 id="25-常用的调试和跟踪shell程序的方法是什么？"><a href="#25-常用的调试和跟踪shell程序的方法是什么？" class="headerlink" title="25.    常用的调试和跟踪shell程序的方法是什么？"></a>25.    常用的调试和跟踪shell程序的方法是什么？</h3><ul>
+<li>程序执行状态跟踪<ul>
+<li>利用set命令的任选项特定功能来跟踪调试shell程序<ul>
+<li>-n   读取命令,  但不执行.  主要用于跟踪程序流程是否在特定条件下执行到这里(断点设置）</li>
+<li>-v   在执行shell程序的同时, 把从shell程序中读入的行显示出来.  用于跟踪shell程序的执行流程</li>
+<li>-x   显示正在执行的语句及其变量的值.  用于动态<br>跟踪变量的值  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>运行日志文件的建立和跟踪<ul>
+<li>利用运行日志文件记录和跟踪程序的中间状态和结果,例如:<ul>
+<li>run_log=$HOME/log/prog1.log<br>echo  “[程序名] Entry Time:<code>date</code>“ &gt;&gt;  $run_log<br>…….</li>
+<li>echo “Exit Time:<code>date</code>“ &gt;&gt;  $run_log  </li>
+</ul>
+</li>
+<li>可由另一程序(进程) 定时跟踪监测日志文件,  检测到某些关键字后报警<ul>
+<li>while  true<br>do<br>　　　status=`grep  error  $run_log`  <pre><code>  　　　If [  -n  &quot;$status&quot; ]  
+  　　　Then  
+  　　　　　　　报警处理代码  
+</code></pre>　　　                fi  <pre><code>      　　　sleep  
+</code></pre>  done</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="26-在用shell语言编程时常用哪些功能性语句，这些功能性语句的基本用法是什么？"><a href="#26-在用shell语言编程时常用哪些功能性语句，这些功能性语句的基本用法是什么？" class="headerlink" title="26.    在用shell语言编程时常用哪些功能性语句，这些功能性语句的基本用法是什么？"></a>26.    在用shell语言编程时常用哪些功能性语句，这些功能性语句的基本用法是什么？</h3><ul>
+<li>见博客第七章第二大点  </li>
+</ul>
+<h3 id="27-UNIX系统中常用的系统管理命令有哪些？其主要功能是什么？"><a href="#27-UNIX系统中常用的系统管理命令有哪些？其主要功能是什么？" class="headerlink" title="27.    UNIX系统中常用的系统管理命令有哪些？其主要功能是什么？"></a>27.    UNIX系统中常用的系统管理命令有哪些？其主要功能是什么？</h3><ul>
+<li><p>系统管理命令 </p>
+<ul>
+<li>存储管理<ul>
+<li>df<ul>
+<li>df 命令显示当前系统中各个逻辑磁盘(文件系统)中空闲的磁盘块(512字节/块)数和空闲的索引节点(即可建立的新文件数).  </li>
+</ul>
+</li>
+<li>du<ul>
+<li>du 命令统计指定目录及其所有子目录的磁盘使用情况, 单位为磁盘块数</li>
+</ul>
+</li>
+<li>fsck<ul>
+<li>命令通常由具有超级用户权限的系统管理员执行, 用于检测和修复文件系统的错误</li>
+<li>显示如下信息<ul>
+<li>** Phase 1 – Check Blocks and Sizes<ul>
+<li>检查索引节点表中文件大小和所用块数</li>
+</ul>
+</li>
+<li>** Phase 2 – Check Pathnames<ul>
+<li>检查目录和文件路径的正确性</li>
+</ul>
+</li>
+<li>** Phase 3 – Check Connectivity<ul>
+<li>检查各目录之间的联结关系</li>
+</ul>
+</li>
+<li>** Phase 4 – Check Reference Counts<ul>
+<li>检查各文件的引用计数</li>
+</ul>
+</li>
+<li>** Phase 5 – Check Free List<ul>
+<li>检查文件系统的空闲块表</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tar<ul>
+<li>tar 命令可把文件系统中的一个或一组文件打成一个文件包, 存放到外存(磁带、软盘等）上或硬盘上文件系统的其它地方.  常用于多个文件(包括目录)的备份或转移. </li>
+<li>基本命令格式为:<ul>
+<li>tar  -cvf  target  file1 file2 file3 …<ul>
+<li>把file1、file2、file3等文件备份到档案文件target中</li>
+</ul>
+</li>
+<li>tar  -tvf  target<ul>
+<li>检查档案文件target中包含的文件信息</li>
+</ul>
+</li>
+<li>tar  -xvf  target  [file]<ul>
+<li>从档案文件target中提取全部或file指定的文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>系统启停</p>
+<ul>
+<li><p>init</p>
+<ul>
+<li>init 的主要功能就是根据/etc/inittab文件所描述的过程, 建立各个系统进程</li>
+<li>UNIX操作系统核心有多个运行级别, 不同的运行级别具有不同的系统功能</li>
+<li>运行级别由init命令的参数指定, 常用的命令格式和参数为:<ul>
+<li>#init  [01236]<ul>
+<li>0级:    关闭各种系统资源, 关机</li>
+<li>1级:    进入单用户状态, 拒绝普通用户登录</li>
+<li>2级:    进入普通多用户状态, 允许普通拥护登录</li>
+<li>3级:    进入带网络功能的多用户状态</li>
+<li>6级:    关闭各种系统资源, 重新启动操作系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>shutdown  </p>
+<ul>
+<li>系统关机命令</li>
+<li>UNIX系统关机时必须使用shutdown命令以完成关机前的各种善后工作, 如关闭后台系统进程,清理缓冲区和卸载文件系统等. </li>
+<li>命令语法为<ul>
+<li>shutdown  [-hr]  time  [message]<ul>
+<li>-h    　　　　  完全关机</li>
+<li>-r   　　　 　 关机并重新启动系统</li>
+<li>time  　　　 关机时间, 如17:30、+10和now等</li>
+<li>message　 关机时发向所有已登录用户的消息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>管理工具<ul>
+<li>crypt<ul>
+<li>文件加密命令</li>
+<li>crypt命令主要用于对文本文件进行加密和解密, 以防止文件内容泄密</li>
+<li>例如:<ul>
+<li>$ crypt  &lt;  file  &gt;  file.cry</li>
+<li>key:<ul>
+<li>对file加密,结果保存在file.cry中</li>
+<li>输入加密口令(不显示口令)</li>
+</ul>
+</li>
+<li>$ crypt  &lt;  aaa.cry &gt;  aaa</li>
+<li>key:<ul>
+<li>对aaa.cry解密,结果保存到aaa中</li>
+<li>输入解密口令(不显示口令)</li>
+</ul>
+</li>
+<li>$ vi  -x  file.cry</li>
+<li>key:<ul>
+<li>编辑一个加密后的文件</li>
+<li>输入解密口令.  编辑时系统中并无已解密的文本文件—-信息安全</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>compress/uncompress<ul>
+<li>compress<ul>
+<li>基本格式：compress  data_file</li>
+<li>压缩文件data_file. 文件被压缩后, compress自动在文件名后面加.Z, 即把文件名替换为data_file.Z</li>
+</ul>
+</li>
+<li>uncompress  abc.Z<ul>
+<li>对已压缩的文件abc.Z解压. 文件data_file被解压后, uncompress自动把文件名后面的.Z去掉, 即把文件名abc.Z替换为abc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>定时任务<ul>
+<li>at<ul>
+<li>用户定时执行任务<ul>
+<li>at命令在指定的时间一次性执行规定的任务</li>
+<li>规定任务的输出如果没有专门指定, 则缺省情况下作为邮件发给at命令的执行者</li>
+<li>at命令的执行者发出命令后即使退出系统, 也不影响at命令的定时执行</li>
+</ul>
+</li>
+<li>例如:<ul>
+<li>$ at 0815　　　准备在8点15分执行某任务</li>
+</ul>
+</li>
+<li>一般只有少量用户有权限使用at命令</li>
+</ul>
+</li>
+<li>cron<ul>
+<li>系统定时执行任务</li>
+<li>通常在/usr/spool/cron/crontabs目录下包含若干以用户名命名的具有相同格式的文本文件</li>
+<li>这些文件就是对应用户的定时任务描述文件.</li>
+<li>在系统启动时cron命令读取crontabs目录下的描述文件, 并在指定时间执行规定的任务. </li>
+<li>描述文件中的每一行具有如下格式：<ul>
+<li>minute  hour  monthday  month  weekday  command</li>
+<li>取值为*号时表示取所有的有效值</li>
+</ul>
+</li>
+<li>任务描述文件的管理命令: <ul>
+<li>crontab –e  [username]<ul>
+<li>编辑指定用户的任务描述文件. </li>
+<li>如果该文件已经存在就编辑该文件; </li>
+<li>如果该文件不存在, 就新建立一个描述文件. </li>
+<li>编辑过程与vi命令的用法完全相同</li>
+</ul>
+</li>
+<li>crontab –l  [username]<ul>
+<li>查看指定用户的任务描述文件</li>
+</ul>
+</li>
+<li>crontab –r  [username]<ul>
+<li>删除指定用户的任务描述文件</li>
+</ul>
+</li>
+<li>crontab命令通常只有超级用户可以执行  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="28-在UNIX系统中内含有哪些常用的开发工具？这些工具的基本功能是什么？"><a href="#28-在UNIX系统中内含有哪些常用的开发工具？这些工具的基本功能是什么？" class="headerlink" title="28.    在UNIX系统中内含有哪些常用的开发工具？这些工具的基本功能是什么？"></a>28.    在UNIX系统中内含有哪些常用的开发工具？这些工具的基本功能是什么？</h3><ul>
+<li>第九章似乎有，没带书  </li>
+</ul>
+<h3 id="29-UNIX与其他操作系统的相关优缺点比较。"><a href="#29-UNIX与其他操作系统的相关优缺点比较。" class="headerlink" title="29.    UNIX与其他操作系统的相关优缺点比较。"></a>29.    UNIX与其他操作系统的相关优缺点比较。</h3><p>如果是我我写功能特征那几点…..</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UNIX/" rel="tag"># UNIX</a>
+          
+            <a href="/tags/期末复习/" rel="tag"># 期末复习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/24/cjrggottd002j6wus6pzh37ap.html" rel="next" title="计组期末复习第三章">
+                <i class="fa fa-chevron-left"></i> 计组期末复习第三章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/19/cjrggott100246wusbi6qsywt.html" rel="prev" title="JS入门教程学习笔记（一）">
+                JS入门教程学习笔记（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-UNIX操作系统中的两大基本概念是什么？"><span class="nav-number">1.</span> <span class="nav-text">1.    UNIX操作系统中的两大基本概念是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-UNIX操作系统最基本的功能特征是什么"><span class="nav-number">2.</span> <span class="nav-text">2.    UNIX操作系统最基本的功能特征是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？"><span class="nav-number">3.</span> <span class="nav-text">3.    UNIX系统中的标准命令格式是什么？如何判断哪些是命令行任选项，哪些是命令行参数？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？"><span class="nav-number">4.</span> <span class="nav-text">4.    文件系统中可以包含哪些类型的文件？可用哪些方法来判断一个文件的类型是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-什么是用户的主目录？什么是当前工作目录？什么是相对路径名？什么是绝对路径名？"><span class="nav-number">5.</span> <span class="nav-text">5.    什么是用户的主目录？什么是当前工作目录？什么是相对路径名？什么是绝对路径名？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-什么是通配符？UNIX系统中包括哪些常用的通配符？"><span class="nav-number">6.</span> <span class="nav-text">6.    什么是通配符？UNIX系统中包括哪些常用的通配符？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-什么是文件的索引节点？索引节点中包含了哪些信息？"><span class="nav-number">7.</span> <span class="nav-text">7.    什么是文件的索引节点？索引节点中包含了哪些信息？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-一个文件通常包括哪些属性？如何获取文件的属性信息？"><span class="nav-number">8.</span> <span class="nav-text">8.    一个文件通常包括哪些属性？如何获取文件的属性信息？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-文件的读写访问权限是如何标定的？怎样改变一个（些）文件的特定权限？文件权限的字符表示方法和数字表示方法。"><span class="nav-number">9.</span> <span class="nav-text">9.    文件的读写访问权限是如何标定的？怎样改变一个（些）文件的特定权限？文件权限的字符表示方法和数字表示方法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-进程的标准输入文件、标准输出文件和标准错误输出文件分别是什么？"><span class="nav-number">10.</span> <span class="nav-text">10.    进程的标准输入文件、标准输出文件和标准错误输出文件分别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-输入输出重定向包括哪些操作符号？它们的意义、作用和用法分别是什么？"><span class="nav-number">11.</span> <span class="nav-text">11.    输入输出重定向包括哪些操作符号？它们的意义、作用和用法分别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-常用的文件操作命令有哪些？其基本功能是什么？"><span class="nav-number">12.</span> <span class="nav-text">12.    常用的文件操作命令有哪些？其基本功能是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-如何进行基本的文件编辑操作？"><span class="nav-number">13.</span> <span class="nav-text">13.    如何进行基本的文件编辑操作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-UNIX系统中包括哪些Shell类型？各种shell的提示符是什么？各种shell的退出命令什么？"><span class="nav-number">14.</span> <span class="nav-text">14.    UNIX系统中包括哪些Shell类型？各种shell的提示符是什么？各种shell的退出命令什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-什么是shell的环境变量？常用的环境变量有哪些-其基本意义是什么？"><span class="nav-number">15.</span> <span class="nav-text">15.    什么是shell的环境变量？常用的环境变量有哪些?其基本意义是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-什么是shell的系统变量？常用的系统变量有哪些？"><span class="nav-number">16.</span> <span class="nav-text">16.    什么是shell的系统变量？常用的系统变量有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-如何设定和使用用户自定义的shell变量？"><span class="nav-number">17.</span> <span class="nav-text">17.    如何设定和使用用户自定义的shell变量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-单引号、双引号、反撇号、花括号的作用和用法是什么？"><span class="nav-number">18.</span> <span class="nav-text">18.    单引号、双引号、反撇号、花括号的作用和用法是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-shell可接收哪些形式的键盘命令？何时开始接收键盘命令？何时开始执行键盘命令？"><span class="nav-number">19.</span> <span class="nav-text">19.    shell可接收哪些形式的键盘命令？何时开始接收键盘命令？何时开始执行键盘命令？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-进程的意义是什么？进程的生命周期中有哪些状态？这些状态之间时如何转换的？"><span class="nav-number">20.</span> <span class="nav-text">20.    进程的意义是什么？进程的生命周期中有哪些状态？这些状态之间时如何转换的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-在UNIX系统中如何启动、查看、暂停、终止一个进程的运行？"><span class="nav-number">21.</span> <span class="nav-text">21.    在UNIX系统中如何启动、查看、暂停、终止一个进程的运行？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-UNIX系统内部包含的常用即时通讯、半即时通讯、非即时通讯工具有哪些？其基本用法是什么？"><span class="nav-number">22.</span> <span class="nav-text">22.    UNIX系统内部包含的常用即时通讯、半即时通讯、非即时通讯工具有哪些？其基本用法是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-Shell语言编程的基本流程是什么？如何执行一个shell程序？"><span class="nav-number">23.</span> <span class="nav-text">23.    Shell语言编程的基本流程是什么？如何执行一个shell程序？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-shell的语句包括哪几大类型？常用的有哪几种语句？"><span class="nav-number">24.</span> <span class="nav-text">24.    shell的语句包括哪几大类型？常用的有哪几种语句？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-常用的调试和跟踪shell程序的方法是什么？"><span class="nav-number">25.</span> <span class="nav-text">25.    常用的调试和跟踪shell程序的方法是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-在用shell语言编程时常用哪些功能性语句，这些功能性语句的基本用法是什么？"><span class="nav-number">26.</span> <span class="nav-text">26.    在用shell语言编程时常用哪些功能性语句，这些功能性语句的基本用法是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-UNIX系统中常用的系统管理命令有哪些？其主要功能是什么？"><span class="nav-number">27.</span> <span class="nav-text">27.    UNIX系统中常用的系统管理命令有哪些？其主要功能是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-在UNIX系统中内含有哪些常用的开发工具？这些工具的基本功能是什么？"><span class="nav-number">28.</span> <span class="nav-text">28.    在UNIX系统中内含有哪些常用的开发工具？这些工具的基本功能是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-UNIX与其他操作系统的相关优缺点比较。"><span class="nav-number">29.</span> <span class="nav-text">29.    UNIX与其他操作系统的相关优缺点比较。</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
