@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="UNIX期末复习第四章UNIX文件系统一. UNIX文件系统二. UNIX目录和文件1. 文件及其分类 UNIX 系统把文件分成三类:  普通文件 它的内容是文本或代码数据 包括源程序、图表、电子邮件、可执行程序等   目录文件 它的内容是该目录中包括的文件名的列表 其中包括若干目录项, 每个目录项中存放一个文件名及其相关信息, 这个文件名可以是普通文件、下一级子目录文件或设备特殊文件的文件名。">
+<meta name="keywords" content="UNIX,期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNIX期末复习第四章">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/cjrhvjzig002c80usdhiik0bv.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="UNIX期末复习第四章UNIX文件系统一. UNIX文件系统二. UNIX目录和文件1. 文件及其分类 UNIX 系统把文件分成三类:  普通文件 它的内容是文本或代码数据 包括源程序、图表、电子邮件、可执行程序等   目录文件 它的内容是该目录中包括的文件名的列表 其中包括若干目录项, 每个目录项中存放一个文件名及其相关信息, 这个文件名可以是普通文件、下一级子目录文件或设备特殊文件的文件名。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-20T04:59:57.927Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UNIX期末复习第四章">
+<meta name="twitter:description" content="UNIX期末复习第四章UNIX文件系统一. UNIX文件系统二. UNIX目录和文件1. 文件及其分类 UNIX 系统把文件分成三类:  普通文件 它的内容是文本或代码数据 包括源程序、图表、电子邮件、可执行程序等   目录文件 它的内容是该目录中包括的文件名的列表 其中包括若干目录项, 每个目录项中存放一个文件名及其相关信息, 这个文件名可以是普通文件、下一级子目录文件或设备特殊文件的文件名。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/cjrhvjzig002c80usdhiik0bv.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UNIX期末复习第四章 | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/cjrhvjzig002c80usdhiik0bv.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UNIX期末复习第四章
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-21 11:50:57" itemprop="dateCreated datePublished" datetime="2018-12-21T11:50:57+08:00">2018-12-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-20 12:59:57" itemprop="dateModified" datetime="2019-01-20T12:59:57+08:00">2019-01-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h1 id="UNIX期末复习第四章"><a href="#UNIX期末复习第四章" class="headerlink" title="UNIX期末复习第四章"></a>UNIX期末复习第四章</h1><h2 id="UNIX文件系统"><a href="#UNIX文件系统" class="headerlink" title="UNIX文件系统"></a>UNIX文件系统</h2><h3 id="一-UNIX文件系统"><a href="#一-UNIX文件系统" class="headerlink" title="一. UNIX文件系统"></a>一. UNIX文件系统</h3><h3 id="二-UNIX目录和文件"><a href="#二-UNIX目录和文件" class="headerlink" title="二. UNIX目录和文件"></a>二. UNIX目录和文件</h3><h4 id="1-文件及其分类"><a href="#1-文件及其分类" class="headerlink" title="1. 文件及其分类"></a>1. 文件及其分类</h4><ul>
+<li>UNIX 系统把文件分成三类: <ul>
+<li>普通文件<ul>
+<li>它的内容是文本或代码数据</li>
+<li>包括源程序、图表、电子邮件、可执行程序等</li>
+</ul>
+</li>
+<li>目录文件<ul>
+<li>它的内容是该目录中包括的文件名的列表</li>
+<li>其中包括若干目录项, 每个目录项中存放一个文件名及其相关信息, 这个文件名可以是普通文件、下一级子目录文件或设备特殊文件的文件名。</li>
+</ul>
+</li>
+<li>设备特殊文件<ul>
+<li>代表了硬件或逻辑设备,一般在目录/dev中</li>
+<li>每个I/O硬件都有一个文件名与其对应, 该文件中并不存有具体信息, 而是代表该设备的驱动程序入口地址.</li>
+<li>如设备文件/dev/tty1表示的是字符终端tty1  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-路径名、绝对路径、相对路径"><a href="#2-路径名、绝对路径、相对路径" class="headerlink" title="2. 路径名、绝对路径、相对路径"></a>2. 路径名、绝对路径、相对路径</h4><ul>
+<li>路径名：到达指定节点的通路的名称, 用于定位文件. 它包括通路上经过的所有目录的名称</li>
+<li>相对路径：起始点是当前工作目录的路径名</li>
+<li>绝对路径:  起始点是根目录( / )的路径名  </li>
+</ul>
+<h4 id="3-目录操作"><a href="#3-目录操作" class="headerlink" title="3. 目录操作"></a>3. 目录操作</h4><ul>
+<li>pwd　　显示当前工作目录</li>
+<li>cd　　 改变当前工作目录</li>
+<li>mkdir　创建目录</li>
+<li>rmdir　删除目录</li>
+<li>ls　　 列表命令<ul>
+<li>-a     列出包括隐含文件在内的所有文件</li>
+<li>-F     如果是目录文件, 则在文件名后加斜杠(/); 如果是可执行文件, 则在文件名后加星号(*).  用于区别文件类型</li>
+<li>-R     递归列出子目录的内容</li>
+<li>-l      以长(long)格式显示文件的七项主要信息<ul>
+<li>文件类型(-:普通  d:目录  c:字符设备  b:块设备  p:管道)</li>
+<li>文件保护模式</li>
+<li>文件链接数</li>
+<li>文件属主(所有者)</li>
+<li>文件所属用户组</li>
+<li>文件大小(字节数)</li>
+<li>最后修改时间</li>
+<li>文件名</li>
+<li>如果ls 命令列出的文件是设备特殊文件,  则该命令的输出格式略有不同:<ul>
+<li>文件大小对应设备号（主、次）  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-文件权限与设置"><a href="#三-文件权限与设置" class="headerlink" title="三. 文件权限与设置"></a>三. 文件权限与设置</h3><h4 id="1-文件的权限的种类"><a href="#1-文件的权限的种类" class="headerlink" title="1. 文件的权限的种类"></a>1. 文件的权限的种类</h4><ul>
+<li>读(r)权限</li>
+<li>写(w)权限</li>
+<li>执行(x)权限<ul>
+<li>对普通文件: 文件内容可被装入内存直接运行或逐条解释执行</li>
+<li>对目录文件: 可在分析路径名的过程中检索该目录</li>
+</ul>
+</li>
+<li>ls -l 命令检查文件权限<ul>
+<li>本用户</li>
+<li>同组用户</li>
+<li>其他用户</li>
+<li>代表相关权限的字符的位置是固定的,</li>
+<li>指定位置有相关字符, 代表有相关权限</li>
+<li>如果是 - , 则表示没有相关权限.</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-修改文件权限"><a href="#2-修改文件权限" class="headerlink" title="2. 修改文件权限"></a>2. 修改文件权限</h4><ul>
+<li>用户<ul>
+<li>u　　本用户</li>
+<li>g　　同组用户</li>
+<li>o　　其他用户</li>
+</ul>
+</li>
+<li>操作符号<ul>
+<li>+　　增加权限</li>
+<li>-　　删除权限</li>
+</ul>
+</li>
+<li>权限<ul>
+<li>ｒ　　读</li>
+<li>ｗ　　写</li>
+<li>ｘ　　执行</li>
+<li>ｔ　　保留正文<ul>
+<li>t (sticky)    使文件正文保留在内存, 不被交换到外存</li>
+</ul>
+</li>
+<li>ｓ　　调整用户标识<ul>
+<li>s (setuid)    使文件的调用者具有文件属主(或用户组)的权限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>chmod u+x    file1</li>
+<li>chmod o-w    file2   file3</li>
+<li>chmod go+r   file4  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ugoa...][[+-=][rwxX]...][,...]</span><br></pre></td></tr></table></figure>
+<h3 id="四-文件名置换"><a href="#四-文件名置换" class="headerlink" title="四.文件名置换"></a>四.文件名置换</h3><ul>
+<li>通配符　　　　功能<ul>
+<li>?　　　　匹配任何单个字符</li>
+<li>*　　　　匹配任意多个字符</li>
+<li>[list]　　匹配list中的任意单个字符<ul>
+<li>可以配合!使用  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="五-文件管理命令"><a href="#五-文件管理命令" class="headerlink" title="五.文件管理命令"></a>五.文件管理命令</h3><ul>
+<li><ol>
+<li>显示文件内容:  cat 命令<ul>
+<li>cat   file1  [file2  file3 …]<ul>
+<li>打开文件</li>
+<li>显示内容</li>
+<li>不止一个则先显示一个再显示第二个</li>
+<li>[Ctrl s]停止滚动</li>
+<li>[Ctrl q]恢复滚动</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>逐屛显示文件:  more 命令<ul>
+<li>功能类似cat</li>
+<li>区别是不一次显完，而是逐屏显示文件的内容</li>
+<li>如果文件长度大于23行, 则more运行时首先显示前面23行的内容, 并在屏幕底部显示”more”和已显示字符的百分比</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>删除文件:  rm 命令<ul>
+<li>rm  [-i] [-r]  file1 [file2  file3 …]      </li>
+<li>永久性删除文件file1 [file2 file3 …], 不可恢复</li>
+<li>-i     删除文件前, 请求确认</li>
+<li>-r    强行删除文件,  常用于删除目录文件, 特别是非空的目录文件</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>复制文件:  cp 命令<ul>
+<li>cp   [-i] [-r]   oldfile    newfile</li>
+<li>把文件oldfile拷贝到文件newfile中</li>
+<li>原文件oldfile继续存在, 不受任何影响</li>
+<li>新文件newfile如果原来不存在, 则新建立</li>
+<li>如果存在, 则用oldfile的内容覆盖newfile</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>移动文件:  mv 命令<ul>
+<li>mv    aaa    bbb</li>
+<li>mv 命令主要用于<ul>
+<li>将文件aaa换名为bbb<ul>
+<li>如果bbb为普通文件名, 则将aaa换名为bbb</li>
+<li>如果bbb不存在, 则新建bbb,</li>
+<li>如果bbb存在, 则用aaa覆盖bbb. 执行后aaa不存在了. (注意与命令cp的区别)</li>
+<li>如果bbb为一个带路径的普通文件名, 则把aaa移动到指定的目录下, 并且换名为bbb.</li>
+</ul>
+</li>
+<li>或将aaa移动到目录bbb下<ul>
+<li>如果bbb为一个目录文件名,  则将aaa移动到bbb目录下,  文件名不变, 仍然为aaa.  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="6">
+<li>打印文件:  lp 命令<ul>
+<li>lp   [-options]  file1  [file2    file3   …]<ul>
+<li>任选项　　　　　　功 能</li>
+<li>-d　　　　　在指定的打印机上打印</li>
+<li>-m　　　　　打印完成后, 向用户发通知邮件</li>
+<li>-n　　　　　指定打印份数</li>
+<li>-s　　　　　取消屏幕提示信息</li>
+<li>-t　　　　　在文档封面打印指定的标题</li>
+<li>-w　　　　　打印完成后在用户终端上显示提示信息
+　</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>格式化输出文件:  pr 命令<ul>
+<li>pr命令把文本文件按标准打印(纸)格式显示在屏幕上  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="8">
+<li>链接文件:  ln 命令<ul>
+<li>主要功能是给一个已经存在的文件再取一个名字</li>
+<li>新的文件名与原文件名可以在同一个目录下,</li>
+<li>也可以在不同的目录下</li>
+<li>新老文件名代表同一个文件</li>
+<li>说明：<ul>
+<li>链接前, 文件已有不止一个名字</li>
+<li>链接后, 文件内容并没有被复制</li>
+<li>对文件的任何一个名字的操作具有完全相同的效果</li>
+<li>删除一个文件名时, 只要剩余文件名个数不为零, 文件继续存在  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="9">
+<li>文件统计:  wc 命令<ul>
+<li>wc   [-lwc]   file1  [file2  file3  …] </li>
+<li>wc 命令对指定的一个或多个文件进行行、单词和字符数进行统计<ul>
+<li>-l      只对行数进行统计</li>
+<li>-w    只对单词数进行统计</li>
+<li>-c     只对字符数进行统计  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="10">
+<li>查找文件:  find 命令<ul>
+<li>find pathname1 [pathname2 …] option1 [option2 …] [action]</li>
+<li>find命令在指定的目录下递归查找指定属性的文件.</li>
+<li>例如<ul>
+<li>$ find  /home/teacher  -name  book  -print<ul>
+<li>指定目录pathname</li>
+<li>指定文件属性option</li>
+<li>找到后的动作  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="11">
+<li>文件排序:  sort 命令<ul>
+<li>sort命令按行对文本文件的内容进行排序. </li>
+<li>排序的基本方法是文本中行与行之间进行两两比较</li>
+<li>从行首到行尾逐个对应位置的字符按其ASCII码的大小进行比较</li>
+<li>直到找到第一个不相同的字符位置为止  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="12">
+<li>grep命令在一个或多个文本文件中查找指定的字符串, 并显示包含指定字符串的行<ul>
+<li>例如<ul>
+<li>$ grep  second  testfile<br>  This  is  the second</li>
+<li>$ grep  teacher   data1  data2<br>  分别在data1和data2文件中查找包含字符串teacher的行</li>
+<li>$ grep  the  first   testfile<br>分别在first和testfile文件中查找字符串the, 而不是查找希望的the  first, 如要查找带空格的字符串, 应使用引号: $ grep  “the  first”  testfile  </li>
+<li>$ grep  -v   computer   article<br>  在给定文件中查找不包含指定字符串的行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="13">
+<li>切取文件内容:  cut 命令<ul>
+<li>cut命令用于”切取”文件中的列或字段. 它把文本文件中每一行的一部分显示输出</li>
+<li>cut命令运行时必须指定功能选项:<ul>
+<li>-f       指定字段的位置</li>
+<li>-c       指定列的位置</li>
+<li>-d       指定字段分隔符,  缺省的字段分隔符是制表符tab</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="六-习题"><a href="#六-习题" class="headerlink" title="六.习题"></a>六.习题</h3><ul>
+<li>1、目录文件与普通文件的区别是什么</li>
+<li>2、相对路径名和绝对路径名的区别是什么</li>
+<li>解释下列命令<ul>
+<li>ls</li>
+<li>pwd</li>
+<li>cd</li>
+<li>mkdir xyz</li>
+<li>ls –l, </li>
+<li>cd .. </li>
+<li>ls –a</li>
+<li>cat xyz</li>
+<li>lp xyz</li>
+<li>rm xyz </li>
+<li>rmdir xyz</li>
+<li>cancel lp1</li>
+<li>lpstat</li>
+<li>rm –i.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UNIX/" rel="tag"># UNIX</a>
+          
+            <a href="/tags/期末复习/" rel="tag"># 期末复习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/21/cjrhvjzg5000c80uspwdnumqm.html" rel="next" title="UNIX期末复习第三章">
+                <i class="fa fa-chevron-left"></i> UNIX期末复习第三章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/21/cjrhvjzie002980ushd38xe9p.html" rel="prev" title="UNIX期末复习第五章">
+                UNIX期末复习第五章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UNIX期末复习第四章"><span class="nav-number">1.</span> <span class="nav-text">UNIX期末复习第四章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UNIX文件系统"><span class="nav-number">1.1.</span> <span class="nav-text">UNIX文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-UNIX文件系统"><span class="nav-number">1.1.1.</span> <span class="nav-text">一. UNIX文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-UNIX目录和文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">二. UNIX目录和文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-文件及其分类"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1. 文件及其分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-路径名、绝对路径、相对路径"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2. 路径名、绝对路径、相对路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-目录操作"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">3. 目录操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-文件权限与设置"><span class="nav-number">1.1.3.</span> <span class="nav-text">三. 文件权限与设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-文件的权限的种类"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">1. 文件的权限的种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改文件权限"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">2. 修改文件权限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-文件名置换"><span class="nav-number">1.1.4.</span> <span class="nav-text">四.文件名置换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-文件管理命令"><span class="nav-number">1.1.5.</span> <span class="nav-text">五.文件管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-习题"><span class="nav-number">1.1.6.</span> <span class="nav-text">六.习题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
