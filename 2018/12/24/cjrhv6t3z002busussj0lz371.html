@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="计算机组成原理期末复习第三章3.1 CPU概述1、CPU直接可访问的存储器是（主存）和（Cache）。2、各种寄存器的作用 IR(指令寄存器) 只有1个，用于存放指令代码 从存储器(或者指令缓存)中读取到指令以后，就直接存入到指 令寄存器中   PC(程序计数器) 仅1个，用来指明指令在存储器中的存放位置，即存储单元的地址码。 [注意]取指令结束后，PC保存的地址码自动修改，以指向下一条指令的存">
+<meta name="keywords" content="期末复习,计算机组成原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计组期末复习第三章">
+<meta property="og:url" content="http://yoursite.com/2018/12/24/cjrhv6t3z002busussj0lz371.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="计算机组成原理期末复习第三章3.1 CPU概述1、CPU直接可访问的存储器是（主存）和（Cache）。2、各种寄存器的作用 IR(指令寄存器) 只有1个，用于存放指令代码 从存储器(或者指令缓存)中读取到指令以后，就直接存入到指 令寄存器中   PC(程序计数器) 仅1个，用来指明指令在存储器中的存放位置，即存储单元的地址码。 [注意]取指令结束后，PC保存的地址码自动修改，以指向下一条指令的存">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/3-1.png">
+<meta property="og:image" content="http://yoursite.com/images/3-2.png">
+<meta property="og:image" content="http://yoursite.com/images/3-3.png">
+<meta property="og:image" content="http://yoursite.com/images/3-4.png">
+<meta property="og:image" content="http://yoursite.com/images/3-5.png">
+<meta property="og:image" content="http://yoursite.com/images/3-19.png">
+<meta property="og:image" content="http://yoursite.com/images/3-20.png">
+<meta property="og:image" content="http://yoursite.com/images/3-21.png">
+<meta property="og:image" content="http://yoursite.com/images/3-22.png">
+<meta property="og:image" content="http://yoursite.com/images/3-23.png">
+<meta property="og:image" content="http://yoursite.com/images/3-24.png">
+<meta property="og:image" content="http://yoursite.com/images/3-25.png">
+<meta property="og:image" content="http://yoursite.com/images/3-12.png">
+<meta property="og:image" content="http://yoursite.com/images/3-13.png">
+<meta property="og:image" content="http://yoursite.com/images/3-14.png">
+<meta property="og:image" content="http://yoursite.com/images/3-16.png">
+<meta property="og:image" content="http://yoursite.com/images/3-17.png">
+<meta property="og:image" content="http://yoursite.com/images/3-15.png">
+<meta property="og:image" content="http://yoursite.com/images/3-18.png">
+<meta property="og:image" content="http://yoursite.com/images/3-26.jpg">
+<meta property="og:image" content="http://yoursite.com/images/3-6.png">
+<meta property="og:image" content="http://yoursite.com/images/3-7.png">
+<meta property="og:image" content="http://yoursite.com/images/3-8.png">
+<meta property="og:image" content="http://yoursite.com/images/3-9.png">
+<meta property="og:image" content="http://yoursite.com/images/3-10.png">
+<meta property="og:image" content="http://yoursite.com/images/3-11.png">
+<meta property="og:updated_time" content="2019-01-20T05:00:46.789Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计组期末复习第三章">
+<meta name="twitter:description" content="计算机组成原理期末复习第三章3.1 CPU概述1、CPU直接可访问的存储器是（主存）和（Cache）。2、各种寄存器的作用 IR(指令寄存器) 只有1个，用于存放指令代码 从存储器(或者指令缓存)中读取到指令以后，就直接存入到指 令寄存器中   PC(程序计数器) 仅1个，用来指明指令在存储器中的存放位置，即存储单元的地址码。 [注意]取指令结束后，PC保存的地址码自动修改，以指向下一条指令的存">
+<meta name="twitter:image" content="http://yoursite.com/images/3-1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/24/cjrhv6t3z002busussj0lz371.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>计组期末复习第三章 | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/cjrhv6t3z002busussj0lz371.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计组期末复习第三章
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-24 21:12:56" itemprop="dateCreated datePublished" datetime="2018-12-24T21:12:56+08:00">2018-12-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-20 13:00:46" itemprop="dateModified" datetime="2019-01-20T13:00:46+08:00">2019-01-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机组成原理期末复习/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理期末复习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h1 id="计算机组成原理期末复习第三章"><a href="#计算机组成原理期末复习第三章" class="headerlink" title="计算机组成原理期末复习第三章"></a>计算机组成原理期末复习第三章</h1><h2 id="3-1-CPU概述"><a href="#3-1-CPU概述" class="headerlink" title="3.1 CPU概述"></a>3.1 CPU概述</h2><h3 id="1、CPU直接可访问的存储器是（主存）和（Cache）。"><a href="#1、CPU直接可访问的存储器是（主存）和（Cache）。" class="headerlink" title="1、CPU直接可访问的存储器是（主存）和（Cache）。"></a>1、CPU直接可访问的存储器是（主存）和（Cache）。</h3><h3 id="2、各种寄存器的作用"><a href="#2、各种寄存器的作用" class="headerlink" title="2、各种寄存器的作用"></a>2、各种寄存器的作用</h3><ul>
+<li>IR(指令寄存器)<ul>
+<li>只有1个，用于存放指令代码</li>
+<li>从存储器(或者指令缓存)中读取到指令以后，就直接存入到指 令寄存器中</li>
+</ul>
+</li>
+<li>PC(程序计数器)<ul>
+<li>仅1个，用来指明指令在存储器中的存放位置，即存储单元的地址码。</li>
+<li>[注意]取指令结束后，PC保存的地址码自动修改，以指向下一条指令的存储单元，修改量取决于指令字长和存储器的编址单位</li>
+</ul>
+</li>
+<li>PSW(程序状态字寄存器)（特征位、中断位、工作方式）<ul>
+<li>仅1个，记录现行程序的运行状态和程序的工作模式</li>
+<li><img src="/../images/3-1.png" alt="程序状态字寄存器"></li>
+<li>PSW-特征位 也叫标志位，反映CPU的当前状态。 指令执行时，根据情况自动设置这些特征位，作为后续操作的判断依据.<ul>
+<li>进位位C: 指令执行后,若结果产生进位,则将C置为1,否则置0</li>
+<li>溢出位V: 如果运算结果产生溢出,则将V置为1, 否则置0;</li>
+<li>零标志Z: 如果运算结果为0,则将Z置为1, 否则置0; 正负标志</li>
+<li>N: 如果运算结果为负,  则将N置为1, 否则置0</li>
+<li>奇偶标志P: 如果运算结果中1的个数为奇数, 将P置为1, 否则置0;(Intel80x86的规定与此相反) </li>
+<li>以上标志位的状态是由指令执行的结果决定的</li>
+</ul>
+</li>
+<li>PSW-编程设定位 PSW中某些位或字段可通过程序来设定，以决定程序 的调试、对中断的响应、程序的运行模式等<ul>
+<li><img src="/../images/3-2.png" alt="编程设定位"></li>
+<li>中断允许标志或程序优先级字段: <ul>
+<li>中断允许标志I(或TI): 根据当前运行程序与外 部中断的紧要程度, 处理器通过对该标志的设 置, 决定是否响应中断请求。</li>
+<li>为每一程序和中断请求设置优先级, 仅当中断 请求的优先级高于正在执行的程序的优先级, 才响应中断请求。</li>
+<li>(在微型计算机中, 一般采用前一种方式)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>工作方式<ul>
+<li>规定程序的特权级</li>
+<li>用户方式：禁止程序执行某些指令</li>
+<li>核心方式：允许程序执行所有指令    </li>
+</ul>
+</li>
+<li>PSW在CPU中，反映程序运行状态</li>
+<li>控制/状态字在接口中, 反映CPU命令、 设备状态。</li>
+</ul>
+</li>
+<li>SP（堆栈指针）<ul>
+<li>[主要用途]<ul>
+<li>仅1个，固定存放堆栈的栈顶单元的地址码</li>
+<li>根据这个地址码，去读写堆栈</li>
+<li><img src="/../images/3-3.png" alt="堆栈指针"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MAR（地址寄存器）<ul>
+<li>[主要用途]<ul>
+<li>只有1个，读写存储器时，先要定位存储单元，因此设置MAR来存放目标单元的地址码。</li>
+<li>先将有效地址送入MAR，再启动后续的读写操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据缓冲寄存器（MBR）<ul>
+<li>[主要用途]<ul>
+<li>只有1个，过渡性地存放CPU与主存之间交换的数据。 无论是从主存读取的数据，还是写入到主存的数据，都要经过MBR。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MDR（三态门 ）</li>
+<li>C</li>
+<li>D<h3 id="3、数据通路和控制通路"><a href="#3、数据通路和控制通路" class="headerlink" title="3、数据通路和控制通路"></a>3、数据通路和控制通路</h3></li>
+<li>单组内总线、分立寄存器特点<ul>
+<li><img src="/../images/3-4.png" alt="分立寄存器"></li>
+</ul>
+</li>
+<li>单组内总线，集成寄存器组特点<ul>
+<li>与第一种方式的主要区别在于寄存器的结构</li>
+<li>CPU内部集成小型的存储器, 存储器的每一个单 元作为一个寄存器使用(称为寄存器组)</li>
+<li>一组双向数据总线连接ALU和寄存器组</li>
+<li>暂存器取代了(独立寄存器结构中的)选择器</li>
+<li>主要特点:<ul>
+<li>数据总线为双向, 运算器ALU既能向总线发送数据, 也能直接从总线接收数据(由暂存器接收);</li>
+<li>各寄存器可从总线接收和向总线发送数据;</li>
+</ul>
+</li>
+<li><img src="/../images/3-5.png" alt="集成寄存器"></li>
+</ul>
+</li>
+<li>多路总线结构<ul>
+<li>CPU内部设置多组总线,用于传输不同类别的信息（地址信息、数据信息、指令信息）</li>
+<li>即在一个时钟周期内，可以并行地实现不同数据通路传送操作  </li>
+</ul>
+</li>
+</ul>
+<h3 id="4、CPU执行指令的工作过程"><a href="#4、CPU执行指令的工作过程" class="headerlink" title="4、CPU执行指令的工作过程"></a>4、CPU执行指令的工作过程</h3><ul>
+<li>取指</li>
+<li>指令译码</li>
+<li>指令执行</li>
+<li>保存结果  </li>
+</ul>
+<h3 id="5、时序控制方式"><a href="#5、时序控制方式" class="headerlink" title="5、时序控制方式"></a>5、时序控制方式</h3><ul>
+<li>同步控制</li>
+<li>异步控制</li>
+<li>扩展同步<ul>
+<li>① 不同指令安排不同时钟周期数</li>
+<li>② 总线周期中插入延长周期</li>
+<li>③ 同步方式引入异步应答）</li>
+</ul>
+</li>
+</ul>
+<h4 id="1、程序计数器PC用于（A）"><a href="#1、程序计数器PC用于（A）" class="headerlink" title="1、程序计数器PC用于（A）"></a>1、程序计数器PC用于（A）</h4><p>A、存放指令地址 B、对程序中的指令数量进行计数 C、存放将要执行的下一条指令 D、计数并统计系统中程序的数量  </p>
+<h4 id="2、不可编程寄存器，是指（C）"><a href="#2、不可编程寄存器，是指（C）" class="headerlink" title="2、不可编程寄存器，是指（C）"></a>2、不可编程寄存器，是指（C）</h4><p>A、不能用于存放数据的寄存器 B、不能用于存放指令的寄存器 C、程序不可访问的寄存器 D、不能用于存放地址的寄存器  </p>
+<h4 id="3、时序控制方式中，有一种方式，是总线周期中允许插入延长周期，其含义是（C）"><a href="#3、时序控制方式中，有一种方式，是总线周期中允许插入延长周期，其含义是（C）" class="headerlink" title="3、时序控制方式中，有一种方式，是总线周期中允许插入延长周期，其含义是（C）"></a>3、时序控制方式中，有一种方式，是总线周期中允许插入延长周期，其含义是（C）</h4><p>A、将一个总线周期延长为多个总线周期 B、在一个时钟周期内插入新的总线周期 C、在总线周期内增加新的时钟周期数量 D、在一个总线周期内，延长时钟周期长度  </p>
+<h4 id="4、在扩展的同步控制中，（D）"><a href="#4、在扩展的同步控制中，（D）" class="headerlink" title="4、在扩展的同步控制中，（D）"></a>4、在扩展的同步控制中，（D）</h4><p>A、无时钟周期划分 B、无总线周期划分 C、允许时钟周期长度可变 D、允许总线周期长度可变  </p>
+<h4 id="5、CPU依据（ALU的运算结果）设置程序状态字中相应状态位。"><a href="#5、CPU依据（ALU的运算结果）设置程序状态字中相应状态位。" class="headerlink" title="5、CPU依据（ALU的运算结果）设置程序状态字中相应状态位。"></a>5、CPU依据（ALU的运算结果）设置程序状态字中相应状态位。</h4><h2 id="3-2-指令系统"><a href="#3-2-指令系统" class="headerlink" title="3.2 指令系统"></a>3.2 指令系统</h2><h3 id="1、CISC和RISC概念"><a href="#1、CISC和RISC概念" class="headerlink" title="1、CISC和RISC概念"></a>1、CISC和RISC概念</h3><ul>
+<li>CISC<ul>
+<li>计算机的指令系统比较丰富，有专用指令来完成特定的功能。因此，处理特殊任务效率较高。</li>
+</ul>
+</li>
+<li>RISC<ul>
+<li>设计者把主要精力放在那些经常使用的指令上，尽量使它们具有简单高效的特色。对不常用的功能，常通过组合指令来完成。因此，在RISC 机器上实现特殊功能时，效率可能较低。但可以利用流水技术和超标量技术加以改进和弥补  </li>
+</ul>
+</li>
+</ul>
+<h3 id="2、指令格式，扩展操作码与地址结构的关系"><a href="#2、指令格式，扩展操作码与地址结构的关系" class="headerlink" title="2、指令格式，扩展操作码与地址结构的关系"></a>2、指令格式，扩展操作码与地址结构的关系</h3><ul>
+<li><img src="/../images/3-19.png" alt="指令格式"></li>
+<li><img src="/../images/3-20.png" alt="变长操作码"></li>
+<li><img src="/../images/3-21.png" alt="变长操作码"></li>
+</ul>
+<h5 id="【例3-1】-计算机器指令条数"><a href="#【例3-1】-计算机器指令条数" class="headerlink" title="【例3-1】 计算机器指令条数"></a>【例3-1】 计算机器指令条数</h5><h3 id="3、隐地址、显地址、间接地址和直接地址"><a href="#3、隐地址、显地址、间接地址和直接地址" class="headerlink" title="3、隐地址、显地址、间接地址和直接地址"></a>3、隐地址、显地址、间接地址和直接地址</h3><ul>
+<li>简化地址结构的基本途径是什么？【使用隐地址方式给出地】</li>
+<li>减少指令中一个地址信息的位数的方法是什么？【以寄存器为基础的寻址方式】</li>
+<li><img src="/../images/3-22.png" alt="四地址结构指令"></li>
+<li><img src="/../images/3-23.png" alt="三地址结构指令"></li>
+<li><img src="/../images/3-24.png" alt="二地址结构指令"></li>
+<li><img src="/../images/3-25.png" alt="一地址结构指令"> </li>
+</ul>
+<h3 id="4、寻址方式（重点P98-P114）结合模型机的指令系统"><a href="#4、寻址方式（重点P98-P114）结合模型机的指令系统" class="headerlink" title="4、寻址方式（重点P98-P114）结合模型机的指令系统"></a>4、寻址方式（重点P98-P114）结合模型机的指令系统</h3><ul>
+<li>指令寻址:<ul>
+<li>顺序寻址</li>
+<li>跳跃寻址</li>
+</ul>
+</li>
+<li>数据寻址:<ul>
+<li>立即数<ul>
+<li><img src="/../images/3-12.png" alt="寻址"></li>
+</ul>
+</li>
+<li>直接（1次访存）<ul>
+<li>助记符(A)</li>
+<li><img src="/../images/3-13.png" alt="寻址"></li>
+<li>助记符(R)</li>
+<li><img src="/../images/3-14.png" alt="寻址"></li>
+</ul>
+</li>
+<li>寄存器间接（1次访存）<ul>
+<li>助记符(R)</li>
+<li><img src="/../images/3-16.png" alt="寻址"></li>
+</ul>
+</li>
+<li>堆栈寻址【自增型寄存器间址、自减型寄存器间址】<ul>
+<li><img src="/../images/3-17.png" alt="寻址"></li>
+<li>自增型寄存器间址<ul>
+<li>从寄存器中读取操作数地址，寄存器内容加1</li>
+<li>D =((Ri))</li>
+<li>Ri =（Ri）+1</li>
+<li>助记符(R)+</li>
+</ul>
+</li>
+<li>自减型寄存器间址<ul>
+<li>寄存器内容减1作为操作数地址，按此地址访问存储器</li>
+<li>Ri =（Ri）-1</li>
+<li>D =((Ri))</li>
+<li>助记符-(R)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>存储器间址（2次访存）<ul>
+<li><img src="/../images/3-15.png" alt="寻址"></li>
+</ul>
+</li>
+<li>变址寻址<ul>
+<li>助记符X(R)</li>
+<li>Rx　　D</li>
+</ul>
+</li>
+<li>基址寻址<ul>
+<li>Rb　　Ｄ</li>
+<li><img src="/../images/3-18.png" alt="寻址"></li>
+</ul>
+</li>
+<li>基址+变址<ul>
+<li>基准地址+变址偏移量+常规偏移量（形式地址）</li>
+<li>Rb　　Rx　　D</li>
+</ul>
+</li>
+<li>相对寻址  <ul>
+<li>PC当前的内容作为基准地址</li>
+<li>指令中给出的形式地址为偏移量（可正可负）</li>
+<li>两者相加后形成操作数的有效地址</li>
+<li>助记符X(PC)</li>
+<li><img src="/../images/3-26.jpg" alt="寻址"><h3 id="5、指令类型："><a href="#5、指令类型：" class="headerlink" title="5、指令类型："></a>5、指令类型：</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(1)按照指令格式分类<ul>
+<li>双操作数</li>
+<li>单操作数</li>
+<li>程序转移指令</li>
+</ul>
+</li>
+<li>(2)按照寻址方式分类<ul>
+<li>RR</li>
+<li>RS</li>
+<li>SI</li>
+<li>SS</li>
+</ul>
+</li>
+<li>(3)按照功能分类：<ul>
+<li>传送指令<ul>
+<li>一般传送指令【范围、单位】</li>
+<li>堆栈指令</li>
+<li>数据交换指令</li>
+</ul>
+</li>
+<li>输入输出指令<ul>
+<li>单独编址</li>
+<li>统一编址</li>
+</ul>
+</li>
+<li>算术逻辑运算指令<ul>
+<li>程序控制指令<ul>
+<li>无条件转移</li>
+<li>条件转移</li>
+<li>转子指令</li>
+<li>返回指令 </li>
+<li>软中断指令</li>
+<li>面向操作系统的指令  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="【例】假设R0的内容为2000H，R1的内容为2500H，（2000H）-3000H，（3000H）-3500H，则指令“MOV-R1，-R0-”执-行完后，R0、R1、（2000H）、（3000H）中的值是？"><a href="#【例】假设R0的内容为2000H，R1的内容为2500H，（2000H）-3000H，（3000H）-3500H，则指令“MOV-R1，-R0-”执-行完后，R0、R1、（2000H）、（3000H）中的值是？" class="headerlink" title="【例】假设R0的内容为2000H，R1的内容为2500H，（2000H）=3000H，（3000H）=3500H，则指令“MOV  R1，@(R0)+”执 行完后，R0、R1、（2000H）、（3000H）中的值是？"></a>【例】假设R0的内容为2000H，R1的内容为2500H，（2000H）=3000H，（3000H）=3500H，则指令“MOV  R1，@(R0)+”执 行完后，R0、R1、（2000H）、（3000H）中的值是？</h5><h5 id="R0-2001H，R1：3500H-2000H-3000H-3000H-3500H"><a href="#R0-2001H，R1：3500H-2000H-3000H-3000H-3500H" class="headerlink" title="R0:2001H，R1：3500H, (2000H):3000H,  (3000H):3500H"></a>R0:2001H，R1：3500H, (2000H):3000H,  (3000H):3500H</h5><h5 id="【例】、某机器字长为16位，主存按照字节编址，转移指令-采用相对寻址，有2个字节组成，第一字节位操作码字段，第-二字节位相对位移量字段，假定取指时，每取一字节PC自动-加1。若某转移指令所在的主存地址为2000H，相对位移量字-段内容为06H，则该转移指令成功转移后的目标地址是-（2008H）"><a href="#【例】、某机器字长为16位，主存按照字节编址，转移指令-采用相对寻址，有2个字节组成，第一字节位操作码字段，第-二字节位相对位移量字段，假定取指时，每取一字节PC自动-加1。若某转移指令所在的主存地址为2000H，相对位移量字-段内容为06H，则该转移指令成功转移后的目标地址是-（2008H）" class="headerlink" title="【例】、某机器字长为16位，主存按照字节编址，转移指令 采用相对寻址，有2个字节组成，第一字节位操作码字段，第 二字节位相对位移量字段，假定取指时，每取一字节PC自动 加1。若某转移指令所在的主存地址为2000H，相对位移量字 段内容为06H，则该转移指令成功转移后的目标地址是? （2008H）"></a>【例】、某机器字长为16位，主存按照字节编址，转移指令 采用相对寻址，有2个字节组成，第一字节位操作码字段，第 二字节位相对位移量字段，假定取指时，每取一字节PC自动 加1。若某转移指令所在的主存地址为2000H，相对位移量字 段内容为06H，则该转移指令成功转移后的目标地址是? （2008H）</h5><h5 id="【例】对-I-O-设备的编址方法有哪几种？"><a href="#【例】对-I-O-设备的编址方法有哪几种？" class="headerlink" title="【例】对 I/O 设备的编址方法有哪几种？"></a>【例】对 I/O 设备的编址方法有哪几种？</h5><ul>
+<li>① 外围设备单独编址</li>
+<li>②外围设备与主存统一编址</li>
+</ul>
+<h5 id="I-O-指令的设置方法有哪几种？"><a href="#I-O-指令的设置方法有哪几种？" class="headerlink" title="I/O 指令的设置方法有哪几种？"></a>I/O 指令的设置方法有哪几种？</h5><ul>
+<li>① 在指令系统中设置专门的 I/O 指令</li>
+<li>② 采用通用的数据传送指令实现 I/O 操作</li>
+</ul>
+<h5 id="1、采用寄存器间接寻址方式，可以实现（D）"><a href="#1、采用寄存器间接寻址方式，可以实现（D）" class="headerlink" title="1、采用寄存器间接寻址方式，可以实现（D）"></a>1、采用寄存器间接寻址方式，可以实现（D）</h5><ul>
+<li>A、禁用寄存器获得操作数，避免访问存储器</li>
+<li>B、用相同的地址码可间接访问多个存储单元</li>
+<li>C、不需要地址码即可间接访问所需存储单元</li>
+<li>D、用同一个寄存器对不同存储单元的访问  </li>
+</ul>
+<h5 id="2、某主存器部分单元的地址码与存储器内容对应关系如下："><a href="#2、某主存器部分单元的地址码与存储器内容对应关系如下：" class="headerlink" title="2、某主存器部分单元的地址码与存储器内容对应关系如下："></a>2、某主存器部分单元的地址码与存储器内容对应关系如下：</h5><ul>
+<li>地址码 　　存储内容 </li>
+<li>E000H 　　0308H </li>
+<li>E001H 　　2005H </li>
+<li>E002H 　　E004H </li>
+<li>E003H 　　E03CH </li>
+<li>E004H 　　A022H </li>
+<li>A、若采用自减型间址方式-(R2)读取操作数，R2内容为E001H，则操作数是（0308H），指令执行完成后R2的内容是（E000H）。</li>
+<li>B、若采用自增型寄存器双重间址寻址@（R0）+读取操作数，R0内容为 E002H，则操作数是（A022H）。  </li>
+</ul>
+<h5 id="3、指令ADD（R0），-（R1）-的指令长度是3字节（存储器按字节编址-地-址线为8条，寄存器宽度为8bit），则指令从取指开始执行，共需要（6）次访-问存储器"><a href="#3、指令ADD（R0），-（R1）-的指令长度是3字节（存储器按字节编址-地-址线为8条，寄存器宽度为8bit），则指令从取指开始执行，共需要（6）次访-问存储器" class="headerlink" title="3、指令ADD（R0），@（R1）+的指令长度是3字节（存储器按字节编址,地 址线为8条，寄存器宽度为8bit），则指令从取指开始执行，共需要（6）次访 问存储器"></a>3、指令ADD（R0），@（R1）+的指令长度是3字节（存储器按字节编址,地 址线为8条，寄存器宽度为8bit），则指令从取指开始执行，共需要（6）次访 问存储器</h5><p><img src="/../images/3-6.png" alt="第三章例题"><br><img src="/../images/3-7.png" alt="第三章例题"><br><img src="/../images/3-8.png" alt="第三章例题"><br><img src="/../images/3-9.png" alt="第三章例题"><br><img src="/../images/3-10.png" alt="第三章例题"><br><img src="/../images/3-11.png" alt="第三章例题"></p>
+<ul>
+<li>【Rs源寄存器，Rd目的寄存器】</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/期末复习/" rel="tag"># 期末复习</a>
+          
+            <a href="/tags/计算机组成原理/" rel="tag"># 计算机组成原理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/22/cjrhv6svn000ousus85zyl46i.html" rel="next" title="计组期末复习第二章">
+                <i class="fa fa-chevron-left"></i> 计组期末复习第二章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/31/cjrhv6t4p002qususyufj84e4.html" rel="prev" title="UNIX期末复习题">
+                UNIX期末复习题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机组成原理期末复习第三章"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理期末复习第三章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-CPU概述"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 CPU概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、CPU直接可访问的存储器是（主存）和（Cache）。"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、CPU直接可访问的存储器是（主存）和（Cache）。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、各种寄存器的作用"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、各种寄存器的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、数据通路和控制通路"><span class="nav-number">1.1.3.</span> <span class="nav-text">3、数据通路和控制通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、CPU执行指令的工作过程"><span class="nav-number">1.1.4.</span> <span class="nav-text">4、CPU执行指令的工作过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、时序控制方式"><span class="nav-number">1.1.5.</span> <span class="nav-text">5、时序控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、程序计数器PC用于（A）"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">1、程序计数器PC用于（A）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、不可编程寄存器，是指（C）"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">2、不可编程寄存器，是指（C）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、时序控制方式中，有一种方式，是总线周期中允许插入延长周期，其含义是（C）"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">3、时序控制方式中，有一种方式，是总线周期中允许插入延长周期，其含义是（C）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、在扩展的同步控制中，（D）"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">4、在扩展的同步控制中，（D）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、CPU依据（ALU的运算结果）设置程序状态字中相应状态位。"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">5、CPU依据（ALU的运算结果）设置程序状态字中相应状态位。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-指令系统"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 指令系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、CISC和RISC概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、CISC和RISC概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、指令格式，扩展操作码与地址结构的关系"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、指令格式，扩展操作码与地址结构的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#【例3-1】-计算机器指令条数"><span class="nav-number">1.2.2.0.1.</span> <span class="nav-text">【例3-1】 计算机器指令条数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、隐地址、显地址、间接地址和直接地址"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、隐地址、显地址、间接地址和直接地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、寻址方式（重点P98-P114）结合模型机的指令系统"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、寻址方式（重点P98-P114）结合模型机的指令系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、指令类型："><span class="nav-number">1.2.5.</span> <span class="nav-text">5、指令类型：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#【例】假设R0的内容为2000H，R1的内容为2500H，（2000H）-3000H，（3000H）-3500H，则指令“MOV-R1，-R0-”执-行完后，R0、R1、（2000H）、（3000H）中的值是？"><span class="nav-number">1.2.5.0.1.</span> <span class="nav-text">【例】假设R0的内容为2000H，R1的内容为2500H，（2000H）=3000H，（3000H）=3500H，则指令“MOV  R1，@(R0)+”执 行完后，R0、R1、（2000H）、（3000H）中的值是？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#R0-2001H，R1：3500H-2000H-3000H-3000H-3500H"><span class="nav-number">1.2.5.0.2.</span> <span class="nav-text">R0:2001H，R1：3500H, (2000H):3000H,  (3000H):3500H</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【例】、某机器字长为16位，主存按照字节编址，转移指令-采用相对寻址，有2个字节组成，第一字节位操作码字段，第-二字节位相对位移量字段，假定取指时，每取一字节PC自动-加1。若某转移指令所在的主存地址为2000H，相对位移量字-段内容为06H，则该转移指令成功转移后的目标地址是-（2008H）"><span class="nav-number">1.2.5.0.3.</span> <span class="nav-text">【例】、某机器字长为16位，主存按照字节编址，转移指令 采用相对寻址，有2个字节组成，第一字节位操作码字段，第 二字节位相对位移量字段，假定取指时，每取一字节PC自动 加1。若某转移指令所在的主存地址为2000H，相对位移量字 段内容为06H，则该转移指令成功转移后的目标地址是? （2008H）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【例】对-I-O-设备的编址方法有哪几种？"><span class="nav-number">1.2.5.0.4.</span> <span class="nav-text">【例】对 I/O 设备的编址方法有哪几种？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#I-O-指令的设置方法有哪几种？"><span class="nav-number">1.2.5.0.5.</span> <span class="nav-text">I/O 指令的设置方法有哪几种？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1、采用寄存器间接寻址方式，可以实现（D）"><span class="nav-number">1.2.5.0.6.</span> <span class="nav-text">1、采用寄存器间接寻址方式，可以实现（D）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、某主存器部分单元的地址码与存储器内容对应关系如下："><span class="nav-number">1.2.5.0.7.</span> <span class="nav-text">2、某主存器部分单元的地址码与存储器内容对应关系如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、指令ADD（R0），-（R1）-的指令长度是3字节（存储器按字节编址-地-址线为8条，寄存器宽度为8bit），则指令从取指开始执行，共需要（6）次访-问存储器"><span class="nav-number">1.2.5.0.8.</span> <span class="nav-text">3、指令ADD（R0），@（R1）+的指令长度是3字节（存储器按字节编址,地 址线为8条，寄存器宽度为8bit），则指令从取指开始执行，共需要（6）次访 问存储器</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
