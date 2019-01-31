@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.Math对象 Math是 JavaScript 的原生对象，提供各种数学功能。该对象不是构造函数，不能生成实例，所有的属性和方法都必须在Math对象上调用 Math的静态属性 Math.E：常数e Math.LN2：2 的自然对数 Math.LN10：10 的自然对数 Math.LOG2E：以 2 为底的e的对数 Math.LOG10E：以 10 为底的e的对数 Math.PI：常数π Mat">
+<meta name="keywords" content="前端知识,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS入门教程学习笔记（七）">
+<meta property="og:url" content="http://yoursite.com/2019/01/29/cjrjzny7t0025cous60rzcsra.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="1.Math对象 Math是 JavaScript 的原生对象，提供各种数学功能。该对象不是构造函数，不能生成实例，所有的属性和方法都必须在Math对象上调用 Math的静态属性 Math.E：常数e Math.LN2：2 的自然对数 Math.LN10：10 的自然对数 Math.LOG2E：以 2 为底的e的对数 Math.LOG10E：以 10 为底的e的对数 Math.PI：常数π Mat">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-30T03:28:34.074Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS入门教程学习笔记（七）">
+<meta name="twitter:description" content="1.Math对象 Math是 JavaScript 的原生对象，提供各种数学功能。该对象不是构造函数，不能生成实例，所有的属性和方法都必须在Math对象上调用 Math的静态属性 Math.E：常数e Math.LN2：2 的自然对数 Math.LN10：10 的自然对数 Math.LOG2E：以 2 为底的e的对数 Math.LOG10E：以 10 为底的e的对数 Math.PI：常数π Mat">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/29/cjrjzny7t0025cous60rzcsra.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JS入门教程学习笔记（七） | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/cjrjzny7t0025cous60rzcsra.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS入门教程学习笔记（七）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-29 13:22:12" itemprop="dateCreated datePublished" datetime="2019-01-29T13:22:12+08:00">2019-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-30 11:28:34" itemprop="dateModified" datetime="2019-01-30T11:28:34+08:00">2019-01-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JS基础知识学习笔记/" itemprop="url" rel="index"><span itemprop="name">JS基础知识学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-Math对象"><a href="#1-Math对象" class="headerlink" title="1.Math对象"></a>1.Math对象</h2><ul>
+<li><code>Math</code>是 JavaScript 的原生对象，提供各种数学功能。该对象不是构造函数，不能生成实例，所有的属性和方法都必须在<code>Math</code>对象上调用</li>
+<li><code>Math</code>的静态属性<ul>
+<li><code>Math.E</code>：常数e</li>
+<li><code>Math.LN2</code>：2 的自然对数</li>
+<li><code>Math.LN10</code>：10 的自然对数</li>
+<li><code>Math.LOG2E</code>：以 2 为底的<code>e</code>的对数</li>
+<li><code>Math.LOG10E</code>：以 10 为底的<code>e</code>的对数</li>
+<li><code>Math.PI</code>：常数<code>π</code></li>
+<li><code>Math.SQRT1_2</code>：0.5 的平方根</li>
+<li><code>Math.SQRT2</code>：2 的平方根</li>
+</ul>
+</li>
+<li><code>Math</code>的静态方法<ul>
+<li><code>Math.abs()</code>：绝对值</li>
+<li><code>Math.ceil()</code>：向上取整</li>
+<li><code>Math.floor()</code>：向下取整</li>
+<li><code>Math.max()</code>：最大值<ul>
+<li>返回参数中最大的那个值</li>
+<li>如果参数为空，返回<code>Infinity</code></li>
+</ul>
+</li>
+<li><code>Math.min()</code>：最小值<ul>
+<li>如果参数为空，返回<code>-Infinity</code></li>
+</ul>
+</li>
+<li><code>Math.pow()</code>：指数运算<ul>
+<li>第一个参数为底数，第二个参数为幂的指数值</li>
+</ul>
+</li>
+<li><code>Math.sqrt()</code>：平方根</li>
+<li><code>Math.log()</code>：自然对数<ul>
+<li>返回以<code>e</code>为底的自然对数值</li>
+</ul>
+</li>
+<li><code>Math.exp()</code>：e的指数<ul>
+<li>返回常数<code>e</code>的参数次方</li>
+</ul>
+</li>
+<li><code>Math.round()</code>：四舍五入</li>
+<li><code>Math.random()</code>：随机数<ul>
+<li>返回0到1之间的一个伪随机数，可能等于0但是一定小于1</li>
+</ul>
+</li>
+<li><code>Math</code>的三角函数方法<ul>
+<li><code>Math.sin()</code>：返回参数的正弦（参数为弧度值）</li>
+<li><code>Math.cos()</code>：返回参数的余弦（参数为弧度值）</li>
+<li><code>Math.tan()</code>：返回参数的正切（参数为弧度值）</li>
+<li><code>Math.asin()</code>：返回参数的反正弦（返回值为弧度值）</li>
+<li><code>Math.acos()</code>：返回参数的反余弦（返回值为弧度值）</li>
+<li><code>Math.atan()</code>：返回参数的反正切（返回值为弧度值）<h2 id="2-Date对象"><a href="#2-Date对象" class="headerlink" title="2.Date对象"></a>2.Date对象</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Date</code>对象可以作为普通函数直接调用，返回一个代表当前时间的字符串</li>
+</ul>
+<p>示例如下</p>
+<pre><code>Date()
+// &quot;Tue Dec 01 2015 09:34:43 GMT+0800 (CST)&quot;
+</code></pre><p>即使带有参数，<code>Date</code>作为普通函数使用时，返回的还是当前时间</p>
+<ul>
+<li>其他对象求值的时候，都是默认调用<code>.valueOf()</code>方法，但是<code>Date</code>实例求值的时候，默认调用的是<code>toString()</code>方法。这导致对<code>Date</code>实例求值，返回的是一个字符串，代表该实例对应的时间</li>
+<li>作为构造函数时，<code>Date</code>对象可以接受多种格式的参数，返回一个该参数对应的时间实例。</li>
+</ul>
+<p>示例如下</p>
+<pre><code>// 参数为时间零点开始计算的毫秒数
+new Date(1378218728000)
+// Tue Sep 03 2013 22:32:08 GMT+0800 (CST)
+
+// 参数为日期字符串
+new Date(&apos;January 6, 2013&apos;);
+// Sun Jan 06 2013 00:00:00 GMT+0800 (CST)
+
+// 参数为多个整数，
+// 代表年、月、日、小时、分钟、秒、毫秒
+new Date(2013, 0, 1, 0, 0, 0, 0)
+// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
+</code></pre><ul>
+<li>关于<code>Date</code>构造函数的参数<ul>
+<li>参数可以是负整数，代表1970年元旦之前的时间</li>
+<li>只要是能被<code>Date.parse()</code>方法解析的字符串，都可以当作参数</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>new Date(&apos;2013-2-15&apos;)
+new Date(&apos;2013/2/15&apos;)
+new Date(&apos;02/15/2013&apos;)
+new Date(&apos;2013-FEB-15&apos;)
+new Date(&apos;FEB, 15, 2013&apos;)
+new Date(&apos;FEB 15, 2013&apos;)
+new Date(&apos;February, 15, 2013&apos;)
+new Date(&apos;February 15, 2013&apos;)
+new Date(&apos;15 Feb 2013&apos;)
+new Date(&apos;15, February, 2013&apos;)
+// Fri Feb 15 2013 00:00:00 GMT+0800 (CST)
+</code></pre><ul>
+<li><ul>
+<li>参数为年、月、日等多个整数时，年和月是不能省略的，其他参数都可以省略的。这时至少需要两个参数，因为如果只使用“年”这一个参数，<code>Date</code>会将其解释为毫秒数</li>
+<li>参数范围<ul>
+<li>年：使用四位数年份，比如<code>2000</code>。如果写成两位数或个位数，则加上<code>1900</code>，即<code>10</code>代表<code>1910</code>年。如果是负数，表示公元前</li>
+<li>月：<code>0</code>表示一月，依次类推，<code>11</code>表示12月</li>
+<li>日：<code>1</code>到<code>31</code></li>
+<li>小时：<code>0</code>到<code>23</code></li>
+<li>分钟：<code>0</code>到<code>59</code></li>
+<li>秒：<code>0</code>到<code>59</code></li>
+<li>毫秒：<code>0</code>到<code>999</code></li>
+<li>这些参数如果超出了正常范围，会被自动折算。比如，如果月设为<code>15</code>，就折算为下一年的4月(日设为<code>0</code>会退到上一个月去)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>类型自动转换时，<code>Date</code>实例如果转为数值，则等于对应的毫秒数；如果转为字符串，则等于对应的日期字符串</p>
+<ul>
+<li>日期实例对象进行减法运算时，返回的是它们间隔的毫秒数</li>
+<li>进行加法运算时，返回的是两个字符串连接而成的新字符串</li>
+</ul>
+</li>
+<li><p><code>Date.now</code>方法返回当前时间距离时间零点（1970年1月1日 00:00:00 UTC）的毫秒数，相当于 Unix 时间戳乘以1000</p>
+</li>
+<li><code>Date.parse</code>方法用来解析日期字符串，返回该时间距离时间零点（1970年1月1日 00:00:00）的毫秒数<ul>
+<li>如果解析失败，返回<code>NaN</code></li>
+</ul>
+</li>
+<li><p><code>Date.UTC</code>方法接受年、月、日等变量作为参数，返回该时间距离时间零点（1970年1月1日 00:00:00 UTC）的毫秒数</p>
+<ul>
+<li>该方法的参数用法与Date构造函数完全一致</li>
+<li>区别是该方法的参数会被解释为 UTC 时间（世界标准时间），<code>Date</code>构造函数的参数会被解释为当前时区的时间</li>
+</ul>
+</li>
+<li><p>实例方法</p>
+<ul>
+<li><code>Date.prototype.valueOf()</code><ul>
+<li><code>valueOf</code>方法返回实例对象距离时间零点（1970年1月1日00:00:00 UTC）对应的毫秒数，该方法等同于<code>getTime</code>方法</li>
+<li>预期为数值的场合，<code>Date</code>实例会自动调用该方法</li>
+</ul>
+</li>
+<li>to 类方法<ul>
+<li><code>Date.prototype.toString()</code><ul>
+<li>返回一个完整的日期字符串</li>
+<li><code>toString</code>是默认的调用方法，所以如果直接读取<code>Date</code>实例，就相当于调用这个方法</li>
+</ul>
+</li>
+<li><code>Date.prototype.toUTCString()</code><ul>
+<li>返回对应的 UTC 时间，也就是比北京时间晚8个小时</li>
+</ul>
+</li>
+<li><code>Date.prototype.toISOString()</code><ul>
+<li>返回对应时间的 ISO8601 写法</li>
+</ul>
+</li>
+<li><code>Date.prototype.toJSON()</code><ul>
+<li>返回一个符合 JSON 格式的 ISO 日期字符串，与<code>toISOString</code>方法的返回结果完全相同</li>
+</ul>
+</li>
+<li><code>Date.prototype.toDateString()</code><ul>
+<li>返回日期字符串（不含小时、分和秒）</li>
+</ul>
+</li>
+<li><code>Date.prototype.toTimeString()</code><ul>
+<li>返回时间字符串（不含年月日）</li>
+</ul>
+</li>
+<li>本地时间<ul>
+<li><code>Date.prototype.toLocaleString()</code>：完整的本地时间</li>
+<li><code>Date.prototype.toLocaleDateString()</code>：本地日期（不含小时、分和秒）</li>
+<li><code>Date.prototype.toLocaleTimeString()</code>：本地时间（不含年月日）</li>
+<li>中文版和英文版浏览器的显示不同</li>
+<li>有两个可选的参数<ul>
+<li>第一个是指定所用语言的字符串</li>
+<li>第二个是一个配置对象<ul>
+<li>指定参数类型的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>get 类方法<ul>
+<li><code>Date</code>对象提供了一系列<code>get*</code>方法，用来获取实例对象某个方面的值<br>getTime()：返回实例距离1970年1月1日00:00:00的毫秒数，等同于valueOf方法。</li>
+<li><code>getDate()</code>：返回实例对象对应每个月的几号（从1开始）。</li>
+<li><code>getDay()</code>：返回星期几，星期日为0，星期一为1，以此类推。</li>
+<li><code>getFullYear()</code>：返回四位的年份。</li>
+<li><code>getMonth()</code>：返回月份（0表示1月，11表示12月）。</li>
+<li><code>getHours()</code>：返回小时（0-23）。</li>
+<li><code>getMilliseconds()</code>：返回毫秒（0-999）。</li>
+<li><code>getMinutes()</code>：返回分钟（0-59）。</li>
+<li><code>getSeconds()</code>：返回秒（0-59）。</li>
+<li><code>getTimezoneOffset()</code>：返回当前时间与 UTC 的时区差异，以分钟表示，返回结果考虑到了夏令时因素</li>
+</ul>
+</li>
+<li>set 类方法<ul>
+<li><code>setDate(date)</code>：设置实例对象对应的每个月的几号（1-31），返回改变后毫秒时间戳。</li>
+<li><code>setFullYear(year [, month, date])</code>：设置四位年份。</li>
+<li><code>setHours(hour [, min, sec, ms])</code>：设置小时（0-23）。</li>
+<li><code>setMilliseconds()</code>：设置毫秒（0-999）。</li>
+<li><code>setMinutes(min [, sec, ms])</code>：设置分钟（0-59）。</li>
+<li><code>setMonth(month [, date])</code>：设置月份（0-11）。</li>
+<li><code>setSeconds(sec [, ms])</code>：设置秒（0-59）。</li>
+<li><code>setTime(milliseconds)</code>：设置毫秒时间戳</li>
+<li><code>set*</code>系列方法除了<code>setTime()</code>，都有对应的 UTC 版本，即设置 UTC 时区的时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-RegExp-对象"><a href="#3-RegExp-对象" class="headerlink" title="3.RegExp 对象"></a>3.RegExp 对象</h2><ul>
+<li>新建正则表达式有两种方法<ul>
+<li>使用字面量，以斜杠表示开始和结束</li>
+<li>使用<code>RegExp</code>构造函数<ul>
+<li><code>RegExp</code>构造函数还可以接受第二个参数，表示修饰符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实例属性<ul>
+<li>修饰符相关,表示对应的修饰符是否设置<ul>
+<li><code>RegExp.prototype.ignoreCase</code>：返回一个布尔值，表示是否设置了<code>i</code>修饰符</li>
+<li><code>RegExp.prototype.global</code>：返回一个布尔值，表示是否设置了<code>g</code>修饰符</li>
+<li><code>RegExp.prototype.multiline</code>：返回一个布尔值，表示是否设置了<code>m</code>修饰符</li>
+<li>上面三个属性都是只读的</li>
+</ul>
+</li>
+<li>修饰符无关的属性<ul>
+<li><code>RegExp.prototype.lastIndex</code>：返回一个整数，表示下一次开始搜索的位置。该属性可读写，但是只在进行连续搜索时有意义</li>
+<li><code>RegExp.prototype.source</code>：返回正则表达式的字符串形式（不包括反斜杠），该属性只读</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实例方法<ul>
+<li><code>RegExp.prototype.test()</code><ul>
+<li>返回一个布尔值，表示当前模式是否能匹配参数字符串</li>
+<li>如果正则表达式带有<code>g</code>修饰符，则每一次<code>test</code>方法都从上一次结束的位置开始向后匹配</li>
+<li>带有<code>g</code>修饰符时，可以通过正则对象的<code>lastIndex</code>属性(一个位置)指定开始搜索的位置</li>
+<li>带有<code>g</code>修饰符时，正则表达式内部会记住上一次的<code>lastIndex</code>属性，这时不应该更换所要匹配的字符串，否则会有一些难以察觉的错误</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>var r = /bb/g;
+r.test(&apos;bb&apos;) // true
+r.test(&apos;-bb-&apos;) // false
+</code></pre><p><code>lastIndex</code>属性只对同一个正则表达式有效，所以下面这样写是错误的</p>
+<pre><code>var count = 0;
+while (/a/g.test(&apos;babaa&apos;)) count++;
+</code></pre><p>上面代码会导致无限循环，因为<code>while</code>循环的每次匹配条件都是一个新的正则表达式，导致<code>lastIndex</code>属性总是等于0</p>
+<ul>
+<li><ul>
+<li><ul>
+<li>如果正则模式是一个空字符串，则匹配所有字符串</li>
+</ul>
+</li>
+<li><code>RegExp.prototype.exec()</code><ul>
+<li>该方法用来返回匹配结果。如果发现匹配，就返回一个数组，成员是匹配成功的子字符串，否则返回<code>null</code></li>
+<li><code>exec</code>方法的返回数组还包含以下两个属性<ul>
+<li><code>input</code>：整个原字符串</li>
+<li><code>index</code>：整个模式匹配成功的开始位置（从0开始计数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>之前的字符串的实例方法之中，也有4种与正则表达式有关</li>
+</ul>
+</li>
+<li><p>匹配规则</p>
+<ul>
+<li>字面量字符</li>
+<li>元字符<ul>
+<li>点字符（<code>.</code>)<ul>
+<li>匹配除回车（<code>\r</code>）、换行(<code>\n</code>) 、行分隔符（<code>\u2028</code>）和段分隔符（<code>\u2029</code>）以外的所有字符</li>
+</ul>
+</li>
+<li>位置字符<ul>
+<li><code>^</code> 表示字符串的开始位置</li>
+<li><code>$</code> 表示字符串的结束位置</li>
+</ul>
+</li>
+<li>选择符（<code>|</code>）<ul>
+<li>竖线符号（|）在正则表达式中表示“或关系”（OR），即<code>cat|dog</code>表示匹配<code>cat</code>或<code>dog</code></li>
+<li></li>
+</ul>
+</li>
+<li>转义符<ul>
+<li><code>\</code></li>
+</ul>
+</li>
+<li>特殊<code>\cX</code> 表示<code>Ctrl-[X]</code>，其中的<code>X</code>是A-Z之中任一个英文字母，用来匹配控制字符</li>
+<li>[<code>\b</code>] 匹配退格键(U+0008)，不要与<code>\b</code>混淆</li>
+<li><code>\n</code> 匹配换行键</li>
+<li><code>\r</code> 匹配回车键</li>
+<li><code>\t</code> 匹配制表符 tab（U+0009）</li>
+<li><code>\v</code> 匹配垂直制表符（U+000B</li>
+<li><code>\f</code> 匹配换页符（U+000C）</li>
+<li><code>\0</code> 匹配<code>null</code>字符（U+0000）</li>
+<li><code>\xhh</code> 匹配一个以两位十六进制数（<code>\x00</code>-<code>\xFF</code>）表示的字符</li>
+<li><code>\uhhhh</code> 匹配一个以四位十六进制数（<code>\u0000</code>-<code>\uFFF</code>F）表示的 Unicode 字符</li>
+</ul>
+</li>
+<li>字符类<ul>
+<li>方括号表示其中的字符只要匹配一个就可以了</li>
+<li>如果方括号内的第一个字符是脱字符（^），则表示除了字符类之中的字符，其他字符都可以匹配<ul>
+<li>脱字符只有在字符类的第一个位置才有特殊含义，否则就是字面含义</li>
+</ul>
+</li>
+<li>对于连续序列的字符，连字符（<code>-</code>）用来提供简写形式，表示字符的连续范围。比如，<code>[abc]</code>可以写成<code>[a-c]</code>，<code>[0123456789]</code>可以写成<code>[0-9]</code><ul>
+<li>连字号不配合方括号就是字面含义</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>预定义模式<ul>
+<li><code>\d</code> 匹配0-9之间的任一数字，相当于<code>[0-9]</code></li>
+<li><code>\D</code> 匹配所有0-9以外的字符，相当于<code>[^0-9]</code></li>
+<li><code>\w</code> 匹配任意的字母、数字和下划线，相当于<code>[A-Za-z0-9_]</code></li>
+<li><code>\W</code> 除所有字母、数字和下划线以外的字符，相当于<code>[^A-Za-z0-9_]</code></li>
+<li><code>\s</code> 匹配空格（包括换行符、制表符、空格符等），相等于<code>[^ \t\r\n\v\f]</code></li>
+<li><code>\S</code> 匹配非空格的字符，相当于<code>[^ \t\r\n\v\f]</code></li>
+<li><code>\b</code> 匹配词的边界</li>
+<li><code>\B</code> 匹配非词边界，即在词的内部</li>
+</ul>
+</li>
+<li>重复类<ul>
+<li>模式的精确匹配次数，使用大括号（<code>{}</code>）表示。<code>{n}</code>表示恰好重复<code>n</code>次，<code>{n,}</code>表示至少重复<code>n</code>次，<code>{n,m}</code>表示重复不少于<code>n</code>次，不多于<code>m</code>次</li>
+</ul>
+</li>
+<li>量词符<ul>
+<li><code>?</code> 问号表示某个模式出现0次或1次，等同于<code>{0, 1}</code></li>
+<li><code>*</code>星号表示某个模式出现0次或多次，等同于<code>{0,}</code></li>
+<li><code>+</code> 加号表示某个模式出现1次或多次，等同于<code>{1,}</code></li>
+</ul>
+</li>
+<li>贪婪模式<ul>
+<li>上面三个量词符默认最大可能匹配，这是贪婪匹配</li>
+<li>如果想将贪婪模式改为非贪婪模式，可以在量词符后面加一个问号（不匹配最大多个，匹配到一个就不往下匹配了）</li>
+</ul>
+</li>
+<li>修饰符<ul>
+<li>g 修饰符：全局匹配</li>
+<li>i 修饰符：忽略大小写</li>
+<li>m 修饰符：多行模式<ul>
+<li>默认情况下（即不加<code>m</code>修饰符时），<code>^</code>和<code>$</code>匹配字符串的开始处和结尾处，加上m修饰符以后，<code>^</code>和<code>$</code>还会匹配行首和行尾，即<code>^</code>和<code>$</code>会识别换行符（<code>\n</code>）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>组匹配<ul>
+<li>正则表达式的括号表示分组匹配，括号中的模式可以用来匹配分组的内容</li>
+<li>即让量词符等将其视为一组内容</li>
+<li>字符的<code>match</code>方法在捕获分组时，返回的数组里，先是整体字符串，后面是分组内容</li>
+<li>使用组匹配时，不宜同时使用<code>g</code>修饰符，否则<code>match</code>方法不会捕获分组的内容<ul>
+<li>如果要匹配全部内容，应该使用正则表达式的<code>exec</code>方法，配合循环</li>
+</ul>
+</li>
+<li>正则表达式内部，还可以用<code>\n</code>引用括号匹配的内容，<code>n</code>是从1开始的自然数，表示对应顺序的括号</li>
+<li>括号可以嵌套</li>
+<li>非捕获组<ul>
+<li><code>(?:x)</code>称为非捕获组（Non-capturing group），表示不返回该组匹配的内容，即匹配的结果中不计入这个括号（<code>match</code>不返回分组，但是返回整体字符串中有这一部分）</li>
+</ul>
+</li>
+<li>先行断言<ul>
+<li><code>x(?=y)</code>称为先行断言（Positive look-ahead），x只有在y前面才匹配，y不会被计入返回结果(<code>match</code>既不返回分组，整个字符串中也没有)</li>
+</ul>
+</li>
+<li>先行否定断言<br>  -<code>x(?!y)</code>称为先行否定断言（Negative look-ahead），<code>x</code>只有不在y前面才匹配，<code>y</code>不会被计入返回结果<br>  （大体同先行断言，只是变成了后面不能是XXX）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端知识/" rel="tag"># 前端知识</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/28/cjrjzny8j002jcoust4g5vx9a.html" rel="next" title="JS入门教程学习笔记（六）">
+                <i class="fa fa-chevron-left"></i> JS入门教程学习笔记（六）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/30/cjrjznxsa0002cous8xskpzcj.html" rel="prev" title="JS入门教程学习笔记（八）">
+                JS入门教程学习笔记（八） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Math对象"><span class="nav-number">1.</span> <span class="nav-text">1.Math对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Date对象"><span class="nav-number">2.</span> <span class="nav-text">2.Date对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-RegExp-对象"><span class="nav-number">3.</span> <span class="nav-text">3.RegExp 对象</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
