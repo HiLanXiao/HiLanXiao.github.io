@@ -102,20 +102,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hi Lanxiao!">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+  <meta name="description" content="1.构造函数的缺点 通过构造函数为实例对象定义属性，虽然很方便，但是有一个缺点。同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费 JavaScript 继承机制的设计思想就是将属性和方法定义在原型上，使所有实例对象能共享 JavaScript 规定，每个函数都有一个prototype属性，指向一个对象 对于普通函数来说，该属性基本无用。但是，对于构造函数来说，生成实例的时候，该">
+<meta name="keywords" content="前端知识,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS入门教程学习笔记（九）">
+<meta property="og:url" content="http://yoursite.com/2019/02/08/cjryzjqyr0001q8uslmbt77i1.html">
 <meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="1.构造函数的缺点 通过构造函数为实例对象定义属性，虽然很方便，但是有一个缺点。同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费 JavaScript 继承机制的设计思想就是将属性和方法定义在原型上，使所有实例对象能共享 JavaScript 规定，每个函数都有一个prototype属性，指向一个对象 对于普通函数来说，该属性基本无用。但是，对于构造函数来说，生成实例的时候，该">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-10T14:09:38.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hi Lanxiao!">
+<meta name="twitter:title" content="JS入门教程学习笔记（九）">
+<meta name="twitter:description" content="1.构造函数的缺点 通过构造函数为实例对象定义属性，虽然很方便，但是有一个缺点。同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费 JavaScript 继承机制的设计思想就是将属性和方法定义在原型上，使所有实例对象能共享 JavaScript 规定，每个函数都有一个prototype属性，指向一个对象 对于普通函数来说，该属性基本无用。但是，对于构造函数来说，生成实例的时候，该">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/3/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/08/cjryzjqyr0001q8uslmbt77i1.html">
 
 
 
@@ -125,7 +130,7 @@
   };
 </script>
 
-  <title>Hi Lanxiao!</title>
+  <title>JS入门教程学习笔记（九） | Hi Lanxiao!</title>
   
 
 
@@ -173,8 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -329,9 +333,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -346,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/cjryzjqz6000aq8us1i59v50o.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/08/cjryzjqyr0001q8uslmbt77i1.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lance Zhang">
@@ -363,10 +367,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/21/cjryzjqz6000aq8us1i59v50o.html" class="post-title-link" itemprop="http://yoursite.com/page/3/index.html">UNIX期末复习第三章</a>
+          <h1 class="post-title" itemprop="name headline">JS入门教程学习笔记（九）
+
               
             
           </h1>
@@ -391,7 +393,7 @@
                 
               
 
-              <time title="创建时间：2018-12-21 10:44:30" itemprop="dateCreated datePublished" datetime="2018-12-21T10:44:30+08:00">2018-12-21</time>
+              <time title="创建时间：2019-02-08 16:26:04" itemprop="dateCreated datePublished" datetime="2019-02-08T16:26:04+08:00">2019-02-08</time>
             
 
             
@@ -408,7 +410,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-20 12:59:48" itemprop="dateModified" datetime="2019-01-20T12:59:48+08:00">2019-01-20</time>
+                <time title="修改时间：2019-02-10 22:09:38" itemprop="dateModified" datetime="2019-02-10T22:09:38+08:00">2019-02-10</time>
               
             
           </span>
@@ -425,7 +427,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JS基础知识学习笔记/" itemprop="url" rel="index"><span itemprop="name">JS基础知识学习笔记</span></a></span>
 
                 
                 
@@ -459,31 +461,92 @@
       
 
       
-        
-          
-          
-UNIX期末复习第三章编辑程序vivi 的两种工作模式
-命令模式
-文本输入模式  
+        <h2 id="1-构造函数的缺点"><a href="#1-构造函数的缺点" class="headerlink" title="1.构造函数的缺点"></a>1.构造函数的缺点</h2><ul>
+<li>通过构造函数为实例对象定义属性，虽然很方便，但是有一个缺点。同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费</li>
+<li>JavaScript 继承机制的设计思想就是将属性和方法定义在原型上，使所有实例对象能共享<ul>
+<li>JavaScript 规定，每个函数都有一个<code>prototype</code>属性，指向一个对象<ul>
+<li>对于普通函数来说，该属性基本无用。但是，对于构造函数来说，生成实例的时候，该属性会自动成为实例对象的原型</li>
+<li>是共享的对象不是实例对象自身的属性，只要修改原型对象，变动就立刻会体现在所有实例对象上</li>
+<li>如果实例对象自身就有某个属性或方法，它就不会再去原型对象寻找这个属性或方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-原型链"><a href="#2-原型链" class="headerlink" title="2.原型链"></a>2.原型链</h2><ul>
+<li>“原型链”（prototype chain）：对象到原型，再到原型的原型……<ul>
+<li>一层层地上溯，所有对象的原型最终都可以上溯到<code>Object.prototype</code>，即<code>Object</code>构造函数的<code>prototype</code>属性</li>
+<li><code>Object.prototype</code>的原型是<code>null</code>。<code>null</code>没有任何属性和方法，也没有自己的原型。因此，原型链的尽头就是<code>null</code></li>
+<li>所寻找的属性在越上层的原型对象，对性能的影响越大</li>
+<li>如果让构造函数的<code>prototype</code>属性指向一个数组，就意味着实例对象可以调用数组方法</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-constructor-属性"><a href="#3-constructor-属性" class="headerlink" title="3.constructor 属性"></a>3.constructor 属性</h2><ul>
+<li><code>prototype</code>对象有一个<code>constructor</code>属性，默认指向<code>prototype</code>对象所在的构造函数</li>
+</ul>
+<p>示例如下</p>
+<pre><code>function P() {}
+P.prototype.constructor === P // true
+</code></pre><p><code>constructor</code>属性定义在<code>prototype</code>对象上面，意味着可以被所有实例对象继承</p>
+<ul>
+<li><code>constructor</code>属性的作用是，可以得知某个实例对象，到底是哪一个构造函数产生的</li>
+<li>另一方面，有了<code>constructor</code>属性，就可以从一个实例对象新建另一个实例</li>
+</ul>
+<p>示例如下</p>
+<pre><code>function Constr() {}
+var x = new Constr();
 
-文本输入模式
-从命令模式进入文本输入模式的命令键： i、a、o
-i　　　在光标前插入文本
-I　　　在光标所在行首插入文本
-a　　　在光标后加入文本
-A　　　在光标所在行尾加入文本
-o　　　在光标所在行下面新加一行
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/21/cjryzjqz6000aq8us1i59v50o.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+var y = new x.constructor();
+y instanceof Constr // true
+</code></pre><p><code>constructor</code>属性表示原型对象与构造函数之间的关联关系，如果修改了原型对象，一般会同时修改<code>constructor</code>属性，防止引用的时候出错</p>
+<pre><code>function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.constructor === Person // true
+
+Person.prototype = {
+  method: function () {}
+};
+
+Person.prototype.constructor === Person // false
+Person.prototype.constructor === Object // true
+</code></pre><p>构造函数的原型对象修改后，<code>constructor</code>属性不再指向<code>Person</code>，因为新原型是一个普通对象，所以指向<code>Object</code>构造函数,所以修改原型对象时，一般要同时修改<code>constructor</code>属性的指向</p>
+<ul>
+<li>如果不能确定<code>constructor</code>属性是什么函数，还有一个办法：通过<code>name</code>属性，从实例得到构造函数的名称</li>
+</ul>
+<h2 id="4-instanceof运算符"><a href="#4-instanceof运算符" class="headerlink" title="4.instanceof运算符"></a>4.instanceof运算符</h2><ul>
+<li><code>instanceof</code>检查整个原型链，检查右边原型链中是否存在左边实例对象的构造函数</li>
+</ul>
+<p>下面两种写法是等价的</p>
+<pre><code>v instanceof Vehicle
+// 等同于
+Vehicle.prototype.isPrototypeOf(v)
+</code></pre><ul>
+<li><code>instanceof</code>运算符只能用于对象，不适用原始类型的值</li>
+</ul>
+<h2 id="5-构造函数的继承"><a href="#5-构造函数的继承" class="headerlink" title="5.构造函数的继承"></a>5.构造函数的继承</h2><ul>
+<li>首先在子类的构造函数中，调用父类的构造函数</li>
+</ul>
+<p>示例如下</p>
+<pre><code>function Sub(value) {
+  Super.call(this);
+  this.prop = value;
+}
+</code></pre><p>其中<code>Super</code>是父类的构造函数，<code>this.prop</code>应该是子类新增的属性</p>
+<ul>
+<li>再让子类的原型指向父类的原型</li>
+</ul>
+<p>示例如下</p>
+<pre><code>Sub.prototype = Object.create(Super.prototype);
+Sub.prototype.constructor = Sub;
+Sub.prototype.method = &apos;...&apos;;
+</code></pre><p>上面代码中，<code>Sub.prototype</code>是子类的原型，要将它赋值为<code>Object.create(Super.prototype)</code>，而不是直接等于<code>Super.prototype</code>。否则后面两行对<code>Sub.prototype</code>的操作，会连父类的原型<code>Super.prototype</code>一起修改掉</p>
+<p>另外一种写法是<code>Sub.prototype</code>等于一个父类实例。</p>
+<pre><code>Sub.prototype = new Super();
+</code></pre><p>这种会包括符类实例的方法，所以可能并不是我们需要的，就不推荐这种写法</p>
+
       
     </div>
 
@@ -504,400 +567,38 @@ o　　　在光标所在行下面新加一行
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/cjryzjqz8000bq8us3gop2lh8.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lance Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hi Lanxiao!">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/20/cjryzjqz8000bq8us3gop2lh8.html" class="post-title-link" itemprop="http://yoursite.com/page/3/index.html">UNIX期末复习第二章</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-20 20:32:38" itemprop="dateCreated datePublished" datetime="2018-12-20T20:32:38+08:00">2018-12-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:06:42" itemprop="dateModified" datetime="2019-01-28T13:06:42+08:00">2019-01-28</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/前端知识/" rel="tag"># 前端知识</a>
           
-
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          
-UNIX期末复习第二章UNIX操作系统入门一.UNIX的外部运行/应用结构二.UNXI的启动过程三.用户登录和退出1.登录过程
-login：&lt;登录名&gt;
-Password:&lt;口令&gt;
-登录成功提示符: $  
-
-2.退出系统
-$ exit
-可用logout退出
-可用[Ctrl-
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/cjryzjqz8000bq8us3gop2lh8.html#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/07/cjryzjqyk0000q8usy75fynkp.html" rel="next" title="HTML_DOM知识复习">
+                <i class="fa fa-chevron-left"></i> HTML_DOM知识复习
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/cjryzjqz00005q8us9u2ybie9.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lance Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hi Lanxiao!">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/20/cjryzjqz00005q8us9u2ybie9.html" class="post-title-link" itemprop="http://yoursite.com/page/3/index.html">UNIX期末复习第一章</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-20 16:32:38" itemprop="dateCreated datePublished" datetime="2018-12-20T16:32:38+08:00">2018-12-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:06:41" itemprop="dateModified" datetime="2019-01-28T13:06:41+08:00">2019-01-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          
-UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
-交互式分时多用户
-
-人机间实时交互数据
-多个用户可同时使用一台机器
-每个用户可同时执行多个任务
-
-
-软件复用
-
-每个程序模块完成单一的功能
-程序模块可按需任意组合
-较高的系统和应用开发效率
-
-
-可移植性强
-数千行汇编码,  数十万行C语言
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/cjryzjqz00005q8us9u2ybie9.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -907,18 +608,15 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -939,8 +637,17 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1030,6 +737,22 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-构造函数的缺点"><span class="nav-number">1.</span> <span class="nav-text">1.构造函数的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-原型链"><span class="nav-number">2.</span> <span class="nav-text">2.原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-constructor-属性"><span class="nav-number">3.</span> <span class="nav-text">3.constructor 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-instanceof运算符"><span class="nav-number">4.</span> <span class="nav-text">4.instanceof运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-构造函数的继承"><span class="nav-number">5.</span> <span class="nav-text">5.构造函数的继承</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1164,6 +887,10 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
   
 
   
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
