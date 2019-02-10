@@ -102,20 +102,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hi Lanxiao!">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+  <meta name="description" content="1.数组 数组可以先定义，后赋值 任何类型的数据，都可以放入数组 数组的键名其实也是字符串，可以用数值读取的原因是非字符串的键名会被转为字符串 对于数值的键名，不能使用点结构，因为单独的数值不能作为标识符 数组的length属性是一个动态的值，等于键名中的最大整数加上1 length属性是可写的。如果人为设置一个小于当前成员个数的值，该数组的成员会自动减少到length设置的值 数组本质上是一种">
+<meta name="keywords" content="前端知识,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS入门教程学习笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/cjrytrwce0004pcus8ifrkfvd.html">
 <meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="1.数组 数组可以先定义，后赋值 任何类型的数据，都可以放入数组 数组的键名其实也是字符串，可以用数值读取的原因是非字符串的键名会被转为字符串 对于数值的键名，不能使用点结构，因为单独的数值不能作为标识符 数组的length属性是一个动态的值，等于键名中的最大整数加上1 length属性是可写的。如果人为设置一个小于当前成员个数的值，该数组的成员会自动减少到length设置的值 数组本质上是一种">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-24T11:58:31.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hi Lanxiao!">
+<meta name="twitter:title" content="JS入门教程学习笔记（二）">
+<meta name="twitter:description" content="1.数组 数组可以先定义，后赋值 任何类型的数据，都可以放入数组 数组的键名其实也是字符串，可以用数值读取的原因是非字符串的键名会被转为字符串 对于数值的键名，不能使用点结构，因为单独的数值不能作为标识符 数组的length属性是一个动态的值，等于键名中的最大整数加上1 length属性是可写的。如果人为设置一个小于当前成员个数的值，该数组的成员会自动减少到length设置的值 数组本质上是一种">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/3/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/cjrytrwce0004pcus8ifrkfvd.html">
 
 
 
@@ -125,7 +130,7 @@
   };
 </script>
 
-  <title>Hi Lanxiao!</title>
+  <title>JS入门教程学习笔记（二） | Hi Lanxiao!</title>
   
 
 
@@ -173,8 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -329,9 +333,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -346,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/cjrytrwd3000apcush2lkd4r0.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/cjrytrwce0004pcus8ifrkfvd.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lance Zhang">
@@ -363,10 +367,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/21/cjrytrwd3000apcush2lkd4r0.html" class="post-title-link" itemprop="http://yoursite.com/page/3/index.html">UNIX期末复习第三章</a>
+          <h1 class="post-title" itemprop="name headline">JS入门教程学习笔记（二）
+
               
             
           </h1>
@@ -391,7 +393,7 @@
                 
               
 
-              <time title="创建时间：2018-12-21 10:44:30" itemprop="dateCreated datePublished" datetime="2018-12-21T10:44:30+08:00">2018-12-21</time>
+              <time title="创建时间：2019-01-22 18:25:54" itemprop="dateCreated datePublished" datetime="2019-01-22T18:25:54+08:00">2019-01-22</time>
             
 
             
@@ -408,7 +410,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-20 12:59:48" itemprop="dateModified" datetime="2019-01-20T12:59:48+08:00">2019-01-20</time>
+                <time title="修改时间：2019-01-24 19:58:31" itemprop="dateModified" datetime="2019-01-24T19:58:31+08:00">2019-01-24</time>
               
             
           </span>
@@ -425,7 +427,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JS基础知识学习笔记/" itemprop="url" rel="index"><span itemprop="name">JS基础知识学习笔记</span></a></span>
 
                 
                 
@@ -459,31 +461,114 @@
       
 
       
-        
-          
-          
-UNIX期末复习第三章编辑程序vivi 的两种工作模式
-命令模式
-文本输入模式  
+        <a id="more"></a>
+<h2 id="1-数组"><a href="#1-数组" class="headerlink" title="1.数组"></a>1.数组</h2><ul>
+<li>数组可以先定义，后赋值</li>
+<li>任何类型的数据，都可以放入数组</li>
+<li>数组的键名其实也是字符串，可以用数值读取的原因是非字符串的键名会被转为字符串</li>
+<li>对于数值的键名，不能使用点结构，因为单独的数值不能作为标识符</li>
+<li>数组的<code>length</code>属性是一个动态的值，等于键名中的最大整数加上1</li>
+<li><code>length</code>属性是可写的。如果人为设置一个小于当前成员个数的值，该数组的成员会自动减少到<code>length</code>设置的值</li>
+<li>数组本质上是一种对象，所以可以为数组添加属性，但是这不影响length属性的值</li>
+<li>检查某个键名是否存在的运算符in，适用于对象，也适用于数组<ul>
+<li>如果数组的某个位置是空位，in运算符返回false</li>
+</ul>
+</li>
+<li><code>for...in</code>循环不仅可以遍历对象，也可以遍历数组<ul>
+<li>但是，<code>for...in</code>不仅会遍历数组所有的数字键，还会遍历非数字键</li>
+</ul>
+</li>
+<li>当数组的某个位置是空元素，即两个逗号之间没有任何值，我们称该数组存在空位（hole）  </li>
+</ul>
+<p>例子如下</p>
+<pre><code>var a = [1, , 1];
+a.length // 3
+</code></pre><p>如果最后一个元素后面有逗号，并不会产生空位</p>
+<ul>
+<li>数组的空位是可以读取的，返回<code>undefined</code></li>
+<li>数组的某个位置是空位，与某个位置是<code>undefined</code>，是不一样的。如果是空位，使用数组的<code>forEach</code>方法、<code>for...in</code>结构、以及<code>Object.keys</code>方法进行遍历，空位都会被跳过,但是<code>undefined</code>不会</li>
+<li>要注意类似数组但不是数组的对象：函数的<code>arguments</code>对象，以及大多数 DOM 元素集，还有字符串（<code>instanceof</code>运算符返回<code>false</code>）</li>
+</ul>
+<h2 id="2-算数运算符"><a href="#2-算数运算符" class="headerlink" title="2.算数运算符"></a>2.算数运算符</h2><ul>
+<li>JavaScript 允许非数值的相加</li>
+</ul>
+<p>例子如下</p>
+<pre><code>true + true // 2
+1 + true // 2
+</code></pre><ul>
+<li>如果是两个字符串相加，这时加法运算符会变成连接运算符，返回一个新的字符串<ul>
+<li>如果一个运算子是字符串，另一个运算子是非字符串，这时非字符串会转成字符串，再连接在一起</li>
+</ul>
+</li>
+<li>减法、除法和乘法运算符，都是将字符串自动转为数值，然后再运算</li>
+<li>如果运算子是对象，必须先转成原始类型的值，然后再相加</li>
+</ul>
+<p>例子如下</p>
+<pre><code>var obj = { p: 1 };
+obj + 2 // &quot;[object Object]2&quot;
+</code></pre><ul>
+<li>对象转成原始类型的值，规则如下<ul>
+<li>一般来说，对象的valueOf方法总是返回对象自身</li>
+<li>这时再自动调用对象的toString方法，将其转为字符串</li>
+</ul>
+</li>
+</ul>
+<p>例子如下</p>
+<pre><code>var obj = { p: 1 };
+obj.valueOf().toString() // &quot;[object Object]&quot;
+</code></pre><p>对象的toString方法默认返回[object Object]，所以就得到了最前面那个例子的结果</p>
+<pre><code>var obj = {
+  valueOf: function () {
+    return 1;
+  }
+};
 
-文本输入模式
-从命令模式进入文本输入模式的命令键： i、a、o
-i　　　在光标前插入文本
-I　　　在光标所在行首插入文本
-a　　　在光标后加入文本
-A　　　在光标所在行尾加入文本
-o　　　在光标所在行下面新加一行
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/21/cjrytrwd3000apcush2lkd4r0.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+obj + 2 // 3
+</code></pre><p>可以自己定义valueOf方法或toString方法，得到想要的结果<br>以上例子，由于valueOf方法直接返回一个原始类型的值，所以不再调用toString方法</p>
+<ul>
+<li><p>余数运算符运算结果的正负号由第一个运算子的正负号决定</p>
+</li>
+<li><p>当<code>+</code>号是一元运算符时，用于将任何值转为数值（与<code>Number</code>函数的作用相同）</p>
+</li>
+<li><code>**</code>完成指数运算<ul>
+<li>指数运算符是右结合</li>
+</ul>
+</li>
+<li><code>&gt;`</code>&lt;`将字符串按字典顺序（Unicode 码点）进行比较</li>
+<li><p>当两个运算子至少有一个不是字符串时</p>
+<ul>
+<li>如果两个运算子都是原始类型的值，则是先转成数值再比较</li>
+<li>如果运算子是对象，会转为原始类型的值，再进行比较<ul>
+<li>对象转换成原始类型的值，算法是先调用valueOf方法；如果返回的还是对象，再接着调用toString方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>比较时多用严格相等运算符，因为相等运算符可能会将数据进行相应转换</p>
+</li>
+<li>undefined和null与其他类型的值比较时，结果都为false，它们互相比较时结果为true</li>
+</ul>
+<h2 id="3-布尔运算符"><a href="#3-布尔运算符" class="headerlink" title="3.布尔运算符"></a>3.布尔运算符</h2><ul>
+<li>且运算符（<code>&amp;&amp;</code>）的运算规则是：如果第一个运算子的布尔值为true，则返回第二个运算子的值（注意是值，不是布尔值）；如果第一个运算子的布尔值为false，则直接返回第一个运算子的值，且不再对第二个运算子求值</li>
+<li>或运算符（<code>||</code>）的运算规则是：如果第一个运算子的布尔值为true，则返回第一个运算子的值，且不再对第二个运算子求值；如果第一个运算子的布尔值为false，则返回第二个运算子的值。</li>
+<li>。</li>
+<li>三元条件运算符（<code>XX ? XX :</code>）是JavaScript语言唯一一个需要三个运算子的运算符。如果第一个表达式的布尔值为true，则返回第二个表达式的值，否则返回第三个表达式的值</li>
+</ul>
+<h2 id="4-二进制位运算符"><a href="#4-二进制位运算符" class="headerlink" title="4.二进制位运算符"></a>4.二进制位运算符</h2><ul>
+<li>二进制或运算符（or）：符号为<code>|</code></li>
+<li>二进制与运算符（and）：符号为<code>&amp;</code></li>
+<li>二进制否运算符（not）：符号为<code>~</code></li>
+<li>异或运算符（xor）：符号为<code>^</code></li>
+<li>左移运算符（left shift）：符号为<code>&lt;&lt;</code></li>
+<li>右移运算符（right shift）：符号为<code>&gt;&gt;</code></li>
+<li>带符号位的右移运算符（zero filled right shift）：符号为<code>&gt;&gt;&gt;</code></li>
+<li>位运算是非常底层的运算，速度极快</li>
+<li>位运算符只对整数起作用，如果一个运算子不是整数，会自动转为整数后再执行</li>
+<li>在 JavaScript 内部，数值都是以64位浮点数的形式储存，但是做位运算的时候，是以32位带符号的整数进行运算的，并且返回值也是一个32位带符号的整数</li>
+<li><code>i = i | 0;</code>的意思，就是将i（不管是整数或小数）转为32位整数</li>
+<li>位运算只对整数有效，遇到小数时，会将小数部分舍去，只保留整数部分。所以，将一个小数与0进行二进制或运算，等同于对该数去除小数部分，即取整数位</li>
+</ul>
+
       
     </div>
 
@@ -504,400 +589,42 @@ o　　　在光标所在行下面新加一行
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/cjrytrwth0016pcusyvsw89cb.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lance Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hi Lanxiao!">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/20/cjrytrwth0016pcusyvsw89cb.html" class="post-title-link" itemprop="http://yoursite.com/page/3/index.html">UNIX期末复习第二章</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-20 20:32:38" itemprop="dateCreated datePublished" datetime="2018-12-20T20:32:38+08:00">2018-12-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:06:42" itemprop="dateModified" datetime="2019-01-28T13:06:42+08:00">2019-01-28</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/前端知识/" rel="tag"># 前端知识</a>
           
-
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          
-UNIX期末复习第二章UNIX操作系统入门一.UNIX的外部运行/应用结构二.UNXI的启动过程三.用户登录和退出1.登录过程
-login：&lt;登录名&gt;
-Password:&lt;口令&gt;
-登录成功提示符: $  
-
-2.退出系统
-$ exit
-可用logout退出
-可用[Ctrl-
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/cjrytrwth0016pcusyvsw89cb.html#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/cjrytrwtx0019pcuskodfs26k.html" rel="next" title="《苏菲的世界》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《苏菲的世界》读书笔记
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/cjrytrwcm0005pcuspqgwizq4.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lance Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hi Lanxiao!">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/20/cjrytrwcm0005pcuspqgwizq4.html" class="post-title-link" itemprop="http://yoursite.com/page/3/index.html">UNIX期末复习第一章</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/24/cjrytrwv60027pcussxnbhy5f.html" rel="prev" title="JS入门教程学习笔记（三）">
+                JS入门教程学习笔记（三） <i class="fa fa-chevron-right"></i>
+              </a>
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-20 16:32:38" itemprop="dateCreated datePublished" datetime="2018-12-20T16:32:38+08:00">2018-12-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:06:41" itemprop="dateModified" datetime="2019-01-28T13:06:41+08:00">2019-01-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          
-UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
-交互式分时多用户
-
-人机间实时交互数据
-多个用户可同时使用一台机器
-每个用户可同时执行多个任务
-
-
-软件复用
-
-每个程序模块完成单一的功能
-程序模块可按需任意组合
-较高的系统和应用开发效率
-
-
-可移植性强
-数千行汇编码,  数十万行C语言
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/cjrytrwcm0005pcuspqgwizq4.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -907,18 +634,15 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -939,8 +663,17 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1030,6 +763,22 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数组"><span class="nav-number">1.</span> <span class="nav-text">1.数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-算数运算符"><span class="nav-number">2.</span> <span class="nav-text">2.算数运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-布尔运算符"><span class="nav-number">3.</span> <span class="nav-text">3.布尔运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-二进制位运算符"><span class="nav-number">4.</span> <span class="nav-text">4.二进制位运算符</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1164,6 +913,10 @@ UNIX期末复习第一章UNIX操作系统概述发展历史功能特征
   
 
   
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
