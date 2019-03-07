@@ -1,0 +1,109 @@
+<!DOCTYPE html>  
+<html>
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+
+</style>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YBL07cGISw82llLLedsiks1jmCQvybUa">
+
+</script>
+</head>  
+ 
+<body>  
+<div id="container">
+</div> 
+<script type="text/javascript"> 
+var map = new BMap.Map("container");
+// ������ͼʵ��  
+var point = new BMap.Point(104.105, 30.681);
+// ����������  
+map.addControl(new BMap.NavigationControl());//平移缩放的组件
+map.centerAndZoom(point, 17);
+//��ʼ��
+map.enableScrollWheelZoom();   //���ù��ַŴ���С��Ĭ�Ͻ���
+map.enableContinuousZoom();    //���õ�ͼ����
+
+var points;
+
+function Research(){
+	this.defaultAnchor=BMAP_ANCHOR_TOP_LEFT;
+	this.defaultOffset=new BMap.Size(230,30);
+}
+Research.prototype=new BMap.Control();
+
+Research.prototype.initialize = function(map){    
+    // 创建一个DOM元素   
+    var input = document.createElement("input");    
+               
+      
+    // 添加DOM元素到地图中   
+    map.getContainer().appendChild(input);
+	input.style.height="30px";
+	input.style.width="700px";  
+	input.placeholder="在此搜索…";  
+    // 将DOM元素返回  
+	
+    return input;    
+ }
+ 
+ var r=new Research();
+ map.addControl(r);
+
+//add button
+function MapButton(){
+	this.defaultAnchor=BMAP_ANCHOR_TOP_RIGHT;
+	this.defaultOffset=new BMap.Size(70,30);
+}
+MapButton.prototype=new BMap.Control();
+
+
+MapButton.prototype.initialize = function(map){    
+    // 创建一个DOM元素   
+    var div = document.createElement("div");    
+               
+      
+    // 添加DOM元素到地图中   
+    map.getContainer().appendChild(div);
+	div.style.height="100px";
+	div.style.width="30px";  
+	var input1=document.createElement("input");
+	div.appendChild(input1);
+	input1.style.height="50px";
+	input1.style.width="70px";
+	input1.type="button";
+	input1.value="热力图";
+	input1.id="hot graph";
+	input1.onclick=function(){
+		window.location.href='https://www.baidu.com/';
+		}
+	
+	
+	var input2=document.createElement("input");
+	div.appendChild(input2);
+	input2.style.height="50px";
+	input2.style.width="70px";
+	input2.type="button";
+	input2.value="患者特征";
+	input2.id="patient";
+	input2.style.marginTop="40px";
+	input2.onclick=function(){
+		window.location.href='https://www.baidu.com/';
+		}
+    // 将DOM元素返回  
+	
+    return div;    
+ }
+ 
+ var d=new MapButton();
+ map.addControl(d);
+
+
+</script>  
+</body>  
+</html>

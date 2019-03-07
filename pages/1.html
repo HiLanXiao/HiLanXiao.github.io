@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<style>
+body{
+margin:0;
+padding:0;	
+	}
+img{
+	
+	width:100%;
+	height:100%;
+	opacity:0.2;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	margin:0;
+	padding:0;
+	}
+li{
+	
+	margin:0;	
+	font-size:20px;
+	color:#3D3D92;
+	
+	margin-left:30px;
+	padding:10px;
+	padding-left:15px;
+	
+}
+
+ul{
+width:100%;
+	
+}
+
+
+
+div{
+width:100%;
+margin:0;
+padding:0;
+	}
+
+
+
+h1{
+	margin:0;
+	margin-top:20px;
+	color:#6F61BE;
+	text-align:center;
+	
+	
+}
+button{
+	margin:40px;
+	}
+</style>
+</head>
+
+<body>
+
+<div>
+<h1>分析结果：</h1>
+<ul>
+    <li><a href="https://zh.wikipedia.org/wiki/%E7%94%B2%E5%9E%8B%E6%B5%81%E6%84%9F%E7%97%85%E6%AF%92H7N9%E4%BA%9E%E5%9E%8B">1:H7N9</a></li><hr/>
+    <li><a href="https://zh.wikipedia.org/wiki/%E7%94%B2%E5%9E%8B%E6%B5%81%E6%84%9F%E7%97%85%E6%AF%92H1N1%E4%BA%9E%E5%9E%8B">2:H1N1</a></li><hr/>
+    <li><a href="https://zh.wikipedia.org/zh/%E5%9F%83%E5%8D%9A%E6%8B%89%E7%97%85%E6%AF%92%E5%B1%AC">3:埃博拉</a></li><hr/>
+    <li><a href="https://zh.wikipedia.org/wiki/%E9%AA%A8%E7%97%9B%E7%86%B1%E7%97%87">4:登革热</a></li><hr/>
+</ul>
+<button onclick="window.location.href='character.html'">返回上层</button>
+
+</div>
+<img src="timg.jpg" />
+<script>
+
+
+
+
+$(document).ready(function(){
+
+	$.post("http://localhost:8080/backforMSS/List",
+	{
+		a:"a",
+		b:"b"
+
+	},
+	function(data,status){
+			for(i in data){
+
+				$("ul").append("<li><a>"+i+":"+data[i]+"</a></li><hr/>");
+			}
+
+		});
+
+});
+
+
+
+$("li").mouseenter(function(){
+    this.style.backgroundColor="#EAEAEA";
+});
+$("li").mouseleave(function(){
+    this.style.backgroundColor="#F8F8F8";
+});
+
+
+
+</script>
+</body>
+</html>
+

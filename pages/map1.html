@@ -1,0 +1,386 @@
+<!DOCTYPE html>  
+<html>
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100% ; width: 100%}
+
+</style>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YBL07cGISw82llLLedsiks1jmCQvybUa">
+
+</script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+</head>  
+ 
+<body>  
+<div id="container">
+</div> 
+<script type="text/javascript">
+var map = new BMap.Map("container");
+
+var point = new BMap.Point(104.105, 30.681);
+
+map.addControl(new BMap.NavigationControl());//平移缩放的组件
+map.centerAndZoom(point, 17);
+
+map.enableScrollWheelZoom();   //���ù��ַŴ���С��Ĭ�Ͻ���
+map.enableContinuousZoom();    //���õ�ͼ����
+
+
+var points = [{"lng":116.425867,"lat":39.918989,"count":8}];
+
+
+if(!isSupportCanvas()){
+    alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+}
+
+heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+map.addOverlay(heatmapOverlay);
+heatmapOverlay.setDataSet({data:points,max:100});
+//是否显示热力图
+
+function closeHeatmap(){
+    heatmapOverlay.hide();
+}
+closeHeatmap();
+function setGradient(){
+
+    var gradient = {};
+    var colors = document.querySelectorAll("input[type='color']");
+    colors = [].slice.call(colors,0);
+    colors.forEach(function(ele){
+        gradient[ele.getAttribute("data-key")] = ele.value;
+    });
+    heatmapOverlay.setOptions({"gradient":gradient});
+}
+//判断浏览区是否支持canvas
+function isSupportCanvas(){
+    var elem = document.createElement('canvas');
+    return !!(elem.getContext && elem.getContext('2d'));
+}
+
+
+
+
+function Research(){
+	this.defaultAnchor=BMAP_ANCHOR_TOP_LEFT;
+	this.defaultOffset=new BMap.Size(230,30);
+}
+Research.prototype=new BMap.Control();
+
+Research.prototype.initialize = function(map){    
+    // 创建一个DOM元素   
+    var input = document.createElement("input");    
+
+      
+    // 添加DOM元素到地图中   
+    map.getContainer().appendChild(input);
+	input.style.height="30px";
+	input.style.width="700px";  
+	input.placeholder="在此搜索…";
+	input.id="search1";
+    input.type="text";
+	input.onkeypress=function theLocation(){
+
+        if(event.keyCode==13){
+
+            var city = document.getElementById("search1").value;
+            if(city != ""){
+                map.centerAndZoom(city,15);      // 用城市名设置地图中心点
+            }
+
+        }
+
+    }
+
+
+
+
+    // 将DOM元素返回  
+	
+    return input;    
+ }
+
+ function theLocation(){
+
+    if(event.keyCode==13){
+
+        var city = document.getElementById("search1").value;
+        if(city != ""){
+            map.centerAndZoom(city,15);      // 用城市名设置地图中心点
+        }
+
+    }
+
+ }
+
+
+
+ var r=new Research();
+ map.addControl(r);
+
+//add button
+function MapButton(){
+	this.defaultAnchor=BMAP_ANCHOR_TOP_RIGHT;
+	this.defaultOffset=new BMap.Size(70,30);
+}
+MapButton.prototype=new BMap.Control();
+
+
+MapButton.prototype.initialize = function(map){    
+    // 创建一个DOM元素   
+    var div = document.createElement("div");    
+               
+      
+    // 添加DOM元素到地图中   
+    map.getContainer().appendChild(div);
+	div.style.height="100px";
+	div.style.width="40px";
+	var input1=document.createElement("input");
+	div.appendChild(input1);
+	input1.style.height="50px";
+	input1.style.width="80px";
+	input1.type="button";
+	input1.value="开启热力图";
+    input1.id="hot graph";
+    
+	input1.onclick=function openHeatmap(){
+
+
+        $.post("http://localhost:8080/backforMSS/Map ",
+            {
+                BrotherJiaYu: "give_me_data",
+            },
+            function(result){
+                 points = JSON.stringify(result);
+                 alert(points);
+            });
+        return ;
+        heatmapOverlay.show();
+    }
+
+
+
+
+    map.getContainer().appendChild(div);
+    div.style.height="100px";
+    div.style.width="30px";
+    var input3=document.createElement("input");
+    div.appendChild(input3);
+    input3.style.height="50px";
+    input3.style.width="80px";
+    input3.type="button";
+    input3.value="关闭热力图";
+    input3.id="hot graphcl";
+    input3.onclick=function closeHeatmap(){
+        heatmapOverlay.hide();
+    }
+
+
+
+	
+	
+	var button=document.createElement("button");
+	div.appendChild(button);
+	button.style.height="50px";
+	button.style.width="70px";
+	button.id="bt";
+	button.style.marginTop="40px";
+	button.innerHTML="患病特征";
+    // 将DOM元素返回  
+	
+    return div;    
+ }
+ 
+ var d=new MapButton();
+ map.addControl(d);
+
+
+</script>
+</body>
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        .zhezhao
+        {
+            width:100%;
+            height:100%;
+            background-color:#000;
+            filter:alpha(opacity=50);
+            -moz-opacity:0.5;
+            opacity:0.5;
+            position:absolute;
+            left:0px;
+            top:0px;
+            display:none;
+            z-index:1000;
+        }
+        .login
+        {
+            width:280px;
+            height:180px;
+            position:absolute;
+            top:200px;
+            left:50%;
+            background-color:white;
+            margin-left:-140px;
+            display:none;
+            z-index:1500;
+        }
+        .content
+        {
+            margin-top:50px;
+            color:red;
+            line-height:200px;
+            height:200px;
+            text-align:center;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function()
+        {
+            var zhezhao=document.getElementById("zhezhao");
+            var login=document.getElementById("login");
+            var bt=document.getElementById("bt");
+            var btclose=document.getElementById("btclose");
+
+            bt.onclick=function()
+            {
+                zhezhao.style.display="block";
+                login.style.display="block";
+            }
+            btclose.onclick=function()
+            {
+                zhezhao.style.display="none";
+                login.style.display="none";
+            }
+        }
+    </script>
+
+<body>
+<div class="zhezhao" id="zhezhao"></div>
+<div class="login" id="login"><style type="text/css">
+    .container{
+        width: 200px;
+        height: 20px;
+        background-color: lightgreen;
+    }
+    #progress{
+        height: 20px;
+        background-color: orange;
+        display: inline-block;
+    }
+
+</style>
+    </head>
+    <body>
+    <p >请填写患病特征（<a href="aaaaaaaa">患病特征模板</a>）</p>
+    <form  id="form1" action="${pageContext.request.contextPath }/upload"
+          enctype="multipart/form-data" method="post">
+        上传患病特征模板: <input type="file" name="file1" id="file" ><br />
+        <div class='container'>
+            <span id="progress"></span>
+        </div>
+    </form>
+    <br>
+    <button onclick="fileSelected()">文件信息</button><button onclick="uploadFile()">确认上传</button>
+    <button onclick="startAnalyse()">开始分析</button>
+    <div id="info">
+        <div id="fileName"></div>
+        <div id="fileSize"></div>
+        <div id="fileType"></div>
+    </div>
+    <div id="result"></div>
+    <script>
+        function fileSelected() {
+            var file = document.getElementById('file').files[0];
+            if (file) {
+                var fileSize = 0;
+                if (file.size > 1024 * 1024)
+                    fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+                else
+                    fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+                document.getElementById('fileName').innerHTML = 'Name: ' + file.name;
+                document.getElementById('fileSize').innerHTML = 'Size: ' + fileSize;
+                document.getElementById('fileType').innerHTML = 'Type: ' + file.type;
+            }
+        }
+        function uploadFile() {
+            var fd = new FormData();
+            fd.append("file", document.getElementById('file').files[0]);
+            var xhr = new XMLHttpRequest();
+            xhr.upload.addEventListener("progress", uploadProgress, false);
+            xhr.addEventListener("load", uploadComplete, false);
+            xhr.addEventListener("error", uploadFailed, false);
+            xhr.addEventListener("abort", uploadCanceled, false);
+            xhr.open("POST", "${pageContext.request.contextPath }/upload");
+            xhr.send(fd);
+        }
+
+        function startAnalyse(){
+            $("#form1").ajaxForm(function(data){
+                if(1){
+                    alert("数据正在分析，请稍等一会再点击分析按钮");
+                    window.location.href = "file:///D:/Documents/Tencent%20Files/1256925921/FileRecv/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/1.html";
+                }
+                else{
+                    window.location.href = "file:///D:/Documents/Tencent%20Files/1256925921/FileRecv/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/1.html";
+
+                }
+            });
+
+        }
+
+
+
+        function uploadProgress(evt) {
+            if (evt.lengthComputable) {
+                var percent = Math.round(evt.loaded * 100 / evt.total);
+
+                document.getElementById('progress').innerHTML = percent.toFixed(2) + '%';
+                document.getElementById('progress').style.width = percent.toFixed(2) + '%';
+            }
+            else {
+                document.getElementById('progress').innerHTML = 'unable to compute';
+            }
+        }
+        function uploadComplete(evt) {
+            document.getElementById('result').innerHTML = evt.target.responseText;
+        }
+        function uploadFailed(evt) {
+            alert("There was an error attempting to upload the file.");
+        }
+        function uploadCanceled(evt) {
+            alert("The upload has been canceled by the user or the browser dropped the connection.");
+        }
+    </script><button id="btclose">点击关闭</button></div>
+<div><button id="bt">病患特征</button></div>
+</body>
+
+<style type="text/css">
+    .container{
+        width: 200px;
+        height: 20px;
+        background-color: lightgreen;
+    }
+    #progress{
+        height: 20px;
+        background-color: orange;
+        display: inline-block;
+    }
+
+</style>
+</body>
+
+
+
+</html>
