@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.HTML 文档中的所有内容都是节点： Document：整个文档树的顶层节点 DocumentType：doctype标签（比如&amp;lt;!DOCTYPE html&amp;gt;） Element：网页的各种HTML标签（比如&amp;lt;body&amp;gt;、&amp;lt;a&amp;gt;等） Attribute：网页元素的属性（比如class=&amp;quot;right&amp;quot;） Text：标签之间或标签包含的文本 C">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM知识复习">
+<meta property="og:url" content="http://yoursite.com/2019/02/07/cjzzj7h4q0042v8pjpn216g2p.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="1.HTML 文档中的所有内容都是节点： Document：整个文档树的顶层节点 DocumentType：doctype标签（比如&amp;lt;!DOCTYPE html&amp;gt;） Element：网页的各种HTML标签（比如&amp;lt;body&amp;gt;、&amp;lt;a&amp;gt;等） Attribute：网页元素的属性（比如class=&amp;quot;right&amp;quot;） Text：标签之间或标签包含的文本 C">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-28T00:43:13.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM知识复习">
+<meta name="twitter:description" content="1.HTML 文档中的所有内容都是节点： Document：整个文档树的顶层节点 DocumentType：doctype标签（比如&amp;lt;!DOCTYPE html&amp;gt;） Element：网页的各种HTML标签（比如&amp;lt;body&amp;gt;、&amp;lt;a&amp;gt;等） Attribute：网页元素的属性（比如class=&amp;quot;right&amp;quot;） Text：标签之间或标签包含的文本 C">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/07/cjzzj7h4q0042v8pjpn216g2p.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>DOM知识复习 | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/07/cjzzj7h4q0042v8pjpn216g2p.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DOM知识复习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-07 15:49:26" itemprop="dateCreated datePublished" datetime="2019-02-07T15:49:26+08:00">2019-02-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 08:43:13" itemprop="dateModified" datetime="2019-02-28T08:43:13+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DOM/" itemprop="url" rel="index"><span itemprop="name">DOM</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-HTML-文档中的所有内容都是节点："><a href="#1-HTML-文档中的所有内容都是节点：" class="headerlink" title="1.HTML 文档中的所有内容都是节点："></a>1.HTML 文档中的所有内容都是节点：</h2><ul>
+<li><code>Document</code>：整个文档树的顶层节点</li>
+<li><code>DocumentType</code>：<code>doctype</code>标签（比如<code>&lt;!DOCTYPE html&gt;</code>）</li>
+<li><code>Element</code>：网页的各种HTML标签（比如<code>&lt;body&gt;</code>、<code>&lt;a&gt;</code>等）</li>
+<li><code>Attribute</code>：网页元素的属性（比如<code>class=&quot;right&quot;</code>）</li>
+<li><code>Text</code>：标签之间或标签包含的文本</li>
+<li><code>Comment</code>：注释</li>
+<li><code>DocumentFragment</code>：文档的片段</li>
+<li>上面这七种节点都继承了<code>Node</code>这个原生的节点对象<h2 id="2-一些常用的-HTML-DOM-方法"><a href="#2-一些常用的-HTML-DOM-方法" class="headerlink" title="2.一些常用的 HTML DOM 方法"></a>2.一些常用的 HTML DOM 方法</h2></li>
+<li><code>getElementById(id)</code> <ul>
+<li>获取带有指定 id 的节点（元素）</li>
+<li>返回的是一个对象</li>
+</ul>
+</li>
+<li><code>appendChild(node)</code> <ul>
+<li>插入新的子节点（元素）</li>
+<li>如果参数节点是DOM已经存在的节点，该方法会将其从原来的位置移动到新位置</li>
+<li>返回值是插入文档的子节点</li>
+<li>如果<code>appendChild</code>方法的参数是<code>DocumentFragment</code>节点，那么插入的是<code>DocumentFragment</code>的所有子节点，而不是<code>DocumentFragment</code>节点本身。返回值是一个空的<code>DocumentFragment</code>节点</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var element = document</span><br><span class="line">  .createElement(&apos;div&apos;)</span><br><span class="line">  .appendChild(document.createElement(&apos;b&apos;));</span><br></pre></td></tr></table></figure>
+<p>上面代码的返回值是<code>&lt;b&gt;&lt;/b&gt;</code></p>
+<ul>
+<li><code>removeChild(node)</code> <ul>
+<li>删除子节点（元素）（传入的参数，当前节点的子节点）</li>
+<li>返回移除的子节点</li>
+<li>被移除的节点依然存在于内存之中，但不再是 DOM 的一部分</li>
+</ul>
+</li>
+<li><code>getElementsByTagName()</code> <ul>
+<li>返回包含带有指定标签名称的所有元素的节点列表（集合/节点数组）</li>
+<li>返回的是一个数组</li>
+</ul>
+</li>
+<li><code>getElementsByClassName()</code> <ul>
+<li>返回包含带有指定类名的所有元素的节点列表</li>
+<li>返回的也是一个数组</li>
+</ul>
+</li>
+<li><code>replaceChild()</code> <ul>
+<li>替换子节点</li>
+<li>用传入的第一个参数节点替换后面那个参数节点</li>
+</ul>
+</li>
+<li><code>parentNode.insertBefore(newNode,referenceNode)</code> <ul>
+<li>在指定的子节点前面插入新的子节点</li>
+<li>接受两个参数，第一个参数是要插入的节点<code>newNode</code>，第二个参数是父节点<code>praentNode</code>内部的一个子节点<code>referenceNode</code></li>
+<li>如果<code>insertBefore</code>方法的第二个参数为<code>null</code>，则新节点将插在当前节点内部的最后位置，即变成最后一个子节点</li>
+</ul>
+</li>
+<li><code>createAttribute()</code> <ul>
+<li>创建属性节点</li>
+</ul>
+</li>
+<li><code>createElement()</code> <ul>
+<li>创建元素节点</li>
+</ul>
+</li>
+<li><code>createTextNode()</code> <ul>
+<li>创建文本节点</li>
+</ul>
+</li>
+<li><code>getAttribute()</code> <ul>
+<li>返回指定的属性值</li>
+</ul>
+</li>
+<li><code>setAttribute()</code> <ul>
+<li>把指定属性设置或修改为指定的值</li>
+</ul>
+</li>
+<li><code>hasChildNodes()</code><ul>
+<li>返回一个布尔值，表示当前节点是否有子节点（包含空格）</li>
+<li>判断一个节点有没有子节点，下面有三种方法<ul>
+<li><code>node.hsChildNodes()</code></li>
+<li><code>node.firstChild !== null</code></li>
+<li><code>node.childNodes &amp;&amp; node.childNodes.length &gt; 0</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>一个示例（遍历当前节点的所有后代节点）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function DOMComb(parent, callback) &#123;</span><br><span class="line">  if (parent.hasChildNodes()) &#123;</span><br><span class="line">    for (var node = parent.firstChild; node; node = node.nextSibling) &#123;</span><br><span class="line">      DOMComb(node, callback);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  callback(parent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用法</span><br><span class="line">DOMComb(document.body, console.log)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Node.prototype.cloneNode()</p>
+<ul>
+<li><code>cloneNode</code>方法用于克隆一个节点。它接受一个布尔值作为参数，表示是否同时克隆子节点。它的返回值是一个克隆出来的新节点</li>
+<li>注意事项<ul>
+<li>克隆一个节点，会拷贝该节点的所有属性，但是会丧失<code>addEventListener</code>方法和on-属性（即<code>node.onclick = fn</code>），添加在这个节点上的事件回调函数</li>
+<li>该方法返回的节点不在文档之中，即没有任何父节点，必须使用诸如<code>Node.appendChild</code>这样的方法添加到文档之中</li>
+<li>克隆一个节点之后，DOM 有可能出现两个有相同<code>id</code>属性（即<code>id=&quot;xxx&quot;</code>）的网页元素，这时应该修改其中一个元素的<code>id</code>属性。如果原节点有<code>name</code>属性，可能也需要修改</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Node.prototype.contains()</p>
+<ul>
+<li><code>contains</code>方法返回一个布尔值，判断参数节点是否是当前节点或者当前节点的后代节点</li>
+</ul>
+</li>
+<li><p>Node.prototype.compareDocumentPosition()</p>
+<ul>
+<li>返回六个比特位的二进制，值，表示参数节点与当前节点的关系</li>
+<li>十进制值对应的含义<ul>
+<li>0：两个节点相同</li>
+<li>1：两个节点不在同一个文档</li>
+<li>2： 参数节点在当前节点的前面</li>
+<li>4：参数节点在当前节点的后面</li>
+<li>8：参数节点包含当前节点</li>
+<li>16：当前节点包含参数节点</li>
+<li>32：浏览器内部使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Node.prototype.isEqualNode()，Node.prototype.isSameNode()</p>
+<ul>
+<li>返回一个布尔值，表示两个节点是否为同一个节点（类型相同，属性相同，子节点相同）</li>
+</ul>
+</li>
+</ul>
+<p>一个示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var p1 = document.createElement(&apos;p&apos;);</span><br><span class="line">var p2 = document.createElement(&apos;p&apos;);</span><br><span class="line"></span><br><span class="line">p1.isEqualNode(p2) // true</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>Node.prototype.normalize()</p>
+<ul>
+<li>用于清理当前节点内部的所有文本节点(text)，会去除空的文本节点，并将毗邻的文本节点合并成一个</li>
+<li>两个以上相邻文本节点的产生原因包括<ul>
+<li>通过脚本调用有关的DOM接口进行了文本节点的插入和分割等</li>
+<li>HTML中超长的文本节点会被浏览器自动分割为多个相邻文本节点</li>
+</ul>
+</li>
+<li>该方法是<code>Text.splitText</code>的逆方法</li>
+</ul>
+</li>
+<li><p>Node.prototype.getRootNode()</p>
+<ul>
+<li><code>getRootNode()</code>方法返回当前节点所在文档的根节点<code>document</code>，与<code>ownerDocument</code>属性的作用相同</li>
+<li>该方法可以用于<code>document</code>节点自身，这一点与<code>document.ownerDocument</code>不同</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-一些常用的-HTML-DOM-属性"><a href="#3-一些常用的-HTML-DOM-属性" class="headerlink" title="3.一些常用的 HTML DOM 属性"></a>3.一些常用的 HTML DOM 属性</h2><ul>
+<li><code>innerHTML</code> <ul>
+<li>节点（元素）的文本值</li>
+</ul>
+</li>
+<li><code>parentNode</code> <ul>
+<li>节点（元素）的父节点</li>
+</ul>
+</li>
+<li><code>childNodes</code> <ul>
+<li>节点（元素）的子节点</li>
+</ul>
+</li>
+<li><code>attributes</code> <ul>
+<li>节点（元素）的属性节点</li>
+</ul>
+</li>
+<li><p><code>nodeName</code> 属性</p>
+<ul>
+<li><code>nodeName</code> 是只读的</li>
+<li>不同节点的<code>nodeName</code>属性值如下<ul>
+<li>文档节点（document）：<code>#document</code></li>
+<li>元素节点（element）：大写的标签名</li>
+<li>属性节点（attr）：属性的名称</li>
+<li>文本节点（text）：<code>#text</code></li>
+<li>文档片断节点（DocumentFragment）：<code>#document-fragment</code></li>
+<li>文档类型节点（DocumentType）：文档的类型</li>
+<li>注释节点（Comment）：<code>#comment</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>nodeValue</code> 属性</p>
+<ul>
+<li>文本节点的 <code>nodeValue</code> 是文本本身</li>
+<li>属性节点的 <code>nodeValue</code> 是属性值</li>
+<li>其他节点的 <code>nodeValue</code> 是 <code>null</code></li>
+</ul>
+</li>
+<li><code>nodeType</code> 属性<ul>
+<li>都对应了一个常量，格式为：<code>Node.XXX_NODE</code>（XXX为节点类型英文）</li>
+<li>元素    1</li>
+<li>属性    2</li>
+<li>文本    3</li>
+<li>注释    8</li>
+<li>文档    9</li>
+<li>可以结合位运算符判断特定含义<br>下面是对<code>Node</code>属性的补充</li>
+</ul>
+</li>
+<li>Node.prototype.textContent<ul>
+<li><code>textContent</code>属性返回当前节点和它的所有后代节点的文本内容</li>
+</ul>
+</li>
+</ul>
+<p>有一个好处，就是自动对 HTML 标签转义</p>
+<p><code>document.getElementById(&#39;foo&#39;).textContent = &#39;&lt;p&gt;GoodBye!&lt;/p&gt;&#39;;</code></p>
+<p>上面代码在插入文本时，会将<code>&lt;p&gt;</code>标签解释为文本，而不会当作标签处理</p>
+<p>文档节点（document）和文档类型节点（doctype）的<code>textContent</code>属性为<code>null</code>。如果要读取整个文档的内容，可以使用<code>document.documentElement.textContent</code></p>
+<ul>
+<li>Node.prototype.baseURI<ul>
+<li><code>baseURI</code>属性返回一个字符串，返回当前网页的绝对路径</li>
+<li>该属性是一个只读属性</li>
+<li>无法读取会返回<code>null</code></li>
+<li>一般由URL（<code>window.location</code>属性）决定，但是可以使用HTML的<code>&lt;base&gt;</code>标签改变</li>
+</ul>
+</li>
+</ul>
+<p>两个示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 当前网页的网址为</span><br><span class="line">// http://www.example.com/index.html</span><br><span class="line">document.baseURI</span><br><span class="line">// &quot;http://www.example.com/index.html&quot;</span><br></pre></td></tr></table></figure>
+<p>改变该属性可以通过改变<code>&lt;base&gt;</code>标签实现</p>
+<p><code>&lt;base href=&quot;http://www.example.com/page.html&quot;&gt;</code></p>
+<ul>
+<li><p>Node.prototype.ownerDocument</p>
+<ul>
+<li><code>Node.ownerDocument</code>属性返回当前节点所在的顶层文档对象，即<code>document</code>对象</li>
+<li><code>document</code>对象本身的<code>ownerDocument</code>属性，返回<code>null</code></li>
+</ul>
+</li>
+<li><p>Node.prototype.nextSibling</p>
+<ul>
+<li><code>Node.nextSibling</code>属性返回紧跟在当前节点后面的第一个同级节点。如果当前节点后面没有同级节点，则返回<code>null</code></li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// HTML 代码如下</span><br><span class="line">// &lt;div id=&quot;d1&quot;&gt;hello&lt;/div&gt;&lt;div id=&quot;d2&quot;&gt;world&lt;/div&gt;</span><br><span class="line">var d1 = document.getElementById(&apos;d1&apos;);</span><br><span class="line">var d2 = document.getElementById(&apos;d2&apos;);</span><br><span class="line"></span><br><span class="line">d1.nextSibling === d2 // true</span><br></pre></td></tr></table></figure>
+<p>注意该属性还包括文本节点和注释节点<br>如果当前节点后面有空格，该属性会返回一个文本节点，内容为空格</p>
+<p>该属性可以用来遍历节点</p>
+<ul>
+<li><p>Node.prototype.previousSibling</p>
+<ul>
+<li>和<code>nextSibling</code>类似，只是换成了是前面的节点，记住是同级节点</li>
+</ul>
+</li>
+<li><p>Node.prototype.parentNode</p>
+<ul>
+<li><code>parentNode</code>属性返回当前节点的父节点</li>
+<li>父节点只可能是三种类型：元素节点、文档节点、文档片段节点</li>
+<li>生成后还没插入DOM树的节点</li>
+</ul>
+</li>
+<li><p>Node.prototype.parentElement</p>
+<ul>
+<li><code>parentElement</code>属性返回当前节点的父元素节点。如果当前节点没有父节点，或者父节点类型不是元素节点，则返回<code>null</code></li>
+</ul>
+</li>
+<li><p>Node.prototype.firstChild，Node.prototype.lastChild</p>
+<ul>
+<li><code>firstChild</code>属性返回当前节点的第一个子节点，如果当前节点没有子节点，则返回<code>null</code></li>
+<li>注意，<code>firstChild</code>返回的除了元素节点，还可能是文本节点或注释节点</li>
+</ul>
+</li>
+<li><p>Node.prototype.childNodes</p>
+<ul>
+<li><code>childNodes</code>属性返回一个类似数组的对象（<code>NodeList</code>集合），成员包括当前节点的所有子节点</li>
+<li>同样可以使用该属性遍历某个节点的所有子节点</li>
+<li><code>NodeList</code>对象是一个动态集合</li>
+</ul>
+</li>
+<li><p>Node.prototype.isConnected </p>
+<ul>
+<li><code>isConnected</code>属性返回一个布尔值，表示当前节点是否在文档之中</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-NodeList接口"><a href="#4-NodeList接口" class="headerlink" title="4. NodeList接口"></a>4. NodeList接口</h2><ul>
+<li><code>NodeList</code>实例是一个类似数组的对象，它的成员是节点对象</li>
+<li>实例化方法：<ul>
+<li><code>Node.childNodes</code></li>
+<li><code>document.querySelectorAll()</code>等节点搜索方法</li>
+</ul>
+</li>
+<li><code>NodeList</code>实例很像数组，可以使用<code>length</code>属性和<code>forEach</code>方法。但是，它不是数组，不能使用<code>pop</code>或<code>push</code>之类数组特有的方法</li>
+<li>如果要使用数组方法，可以将其转为真正的数组</li>
+<li><p>可能是一个动态集合，也可能是一个静态集合</p>
+<ul>
+<li>只有<code>Node.childNodes</code>返回的是一个动态集合，其他的 <code>NodeList</code>都是静态集合</li>
+<li><code>NodeList.prototype.length</code>返回实例包含的节点数量</li>
+<li><code>NodeList.prototype.forEach</code>用于遍历NodeList的所有成员</li>
+<li><p><code>NodeList.prototype.item()</code>接受一个整数值作为参数，返回该位置上面的成员（从0开始）</p>
+<ul>
+<li>一般情况下用方括号<code>[]</code>运算符不用<code>item</code>方法</li>
+</ul>
+</li>
+<li><p><code>NodeList.prototype.keys()</code>，<code>NodeList.prototype.values()</code>，<code>NodeList.prototype.entries()</code>返回一个ES6的遍历器对象，可以通过<code>for...of</code>循环遍历获取成员信息</p>
+<ul>
+<li><code>keys()</code>返回键名的遍历器</li>
+<li><code>values()</code>返回键值的遍历器</li>
+<li><code>entries()</code>返回的遍历器同时包含键名和键值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var children = document.body.childNodes;</span><br><span class="line"></span><br><span class="line">for (var key of children.keys()) &#123;</span><br><span class="line">  console.log(key);</span><br><span class="line">&#125;</span><br><span class="line">// 0</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">for (var value of children.values()) &#123;</span><br><span class="line">  console.log(value);</span><br><span class="line">&#125;</span><br><span class="line">// #text</span><br><span class="line">// &lt;script&gt;</span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">for (var entry of children.entries()) &#123;</span><br><span class="line">  console.log(entry);</span><br><span class="line">&#125;</span><br><span class="line">// Array [ 0, #text ]</span><br><span class="line">// Array [ 1, &lt;script&gt; ]</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
+<h2 id="5-HTMLCollection-接口"><a href="#5-HTMLCollection-接口" class="headerlink" title="5.HTMLCollection 接口"></a>5.HTMLCollection 接口</h2><ul>
+<li>概述<ul>
+<li><code>HTMLCollection</code>是一个节点对象的集合<ul>
+<li>只包含元素节点</li>
+<li>不能包含其他类型的节点</li>
+<li>返回值是一个类似数组的对象，但是与<code>NodeList</code>不同的是它没有<code>forEach</code>方法，只能用<code>for</code>遍历</li>
+<li>返回HTMLCollection实例的，主要是一些<code>Document</code>对象的集合属性，比如<code>document.links</code>、<code>document.forms</code>、<code>document.images</code>等</li>
+<li><code>HTMLCollection</code>实例都是动态集合，节点的变化会实时反映在集合中</li>
+<li>如果元素节点有<code>id</code>或<code>name</code>属性，那么<code>HTMLCollection</code>实例上面，可以使用<code>id</code>属性或<code>name</code>属性引用该节点元素。如果没有对应的节点，则返回<code>null</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// HTML 代码如下</span><br><span class="line">// &lt;img id=&quot;pic&quot; src=&quot;http://example.com/foo.jpg&quot;&gt;</span><br><span class="line"></span><br><span class="line">var pic = document.getElementById(&apos;pic&apos;);</span><br><span class="line">document.images.pic === pic // true</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>HTMLCollection.prototype.length</p>
+<ul>
+<li><code>length</code>属性返回<code>HTMLCollection</code>实例包含的成员数量</li>
+<li><code>item</code>方法接受一个整数值作为参数，表示成员的位置，返回该位置上的成员</li>
+</ul>
+</li>
+<li><p>HTMLCollection.prototype.item()</p>
+<ul>
+<li><code>item</code>方法接受一个整数值作为参数，表示成员的位置，返回该位置上的成员<ul>
+<li>一般情况还是使用方括号运算符</li>
+<li>如果超出成员数量或者不合法，方法返回<code>null</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HTMLCollection.prototype.namedItem()</p>
+<ul>
+<li>该方法的参数是一个字符串，表示<code>id</code>属性或<code>name</code>属性的值，返回对应的元素节点，如果没有对应的节点，就返回<code>null</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-ParentNode-接口"><a href="#6-ParentNode-接口" class="headerlink" title="6.ParentNode 接口"></a>6.ParentNode 接口</h2><ul>
+<li>如果当前节点是父节点，就会继承<code>ParentNode</code>接口</li>
+<li>ParentNode.children<ul>
+<li><code>children</code>属性返回一个<code>HTMLCollection</code>实例，成员是当前节点的所有元素子节点。该属性只读</li>
+<li>注意，<code>children</code>属性只包括元素子节点，不包括其他类型的子节点</li>
+</ul>
+</li>
+<li><p>ParentNode.firstElementChild</p>
+<ul>
+<li><code>firstElementChild</code>属性返回当前节点的第一个元素子节点</li>
+<li>如果没有任何元素子节点，则返回null</li>
+</ul>
+</li>
+<li><p>ParentNode.lastElementChild</p>
+<ul>
+<li><code>lastElementChild</code>属性返回当前节点的最后一个元素子节点，如果不存在任何元素子节点，则返回<code>null</code></li>
+</ul>
+</li>
+<li><p>ParentNode.childElementCount</p>
+<ul>
+<li><code>childElementCount</code>属性返回一个整数，表示当前节点的所有元素子节点的数目</li>
+</ul>
+</li>
+<li><p>ParentNode.append()，ParentNode.prepend()</p>
+<ul>
+<li><code>append</code>方法为当前节点追加一个或多个子节点（包括文本子节点），位置是最后一个元素子节点的后面</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-ChildNode-接口"><a href="#7-ChildNode-接口" class="headerlink" title="7.ChildNode 接口"></a>7.ChildNode 接口</h2><ul>
+<li>如果一个节点有父节点，那么该节点就继承了<code>ChildNode</code>接口</li>
+<li>ChildNode.remove()<ul>
+<li><code>remove</code>方法用于从父节点移除当前节点</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>el.remove()
+</code></pre><ul>
+<li><p>ChildNode.before()，ChildNode.after()</p>
+<ul>
+<li><code>before</code>方法用于在当前节点的前面，插入一个或多个同级节点（包括文本节点）。两者拥有相同的父节点</li>
+</ul>
+</li>
+<li><p>ChildNode.replaceWith()</p>
+<ul>
+<li><code>replaceWith</code>方法使用参数节点，替换当前节点。参数可以是元素节点，也可以是文本节点</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>var span = document.createElement(&apos;span&apos;);
+el.replaceWith(span);
+</code></pre><h2 id="8-Document-节点"><a href="#8-Document-节点" class="headerlink" title="8.Document 节点"></a>8.Document 节点</h2><ul>
+<li><p>概述</p>
+<ul>
+<li><code>document</code>节点对象代表整个文档，每张网页都有自己的<code>document</code>对象。<code>window.document</code>属性就指向这个对象。只要浏览器开始载入 <code>HTML</code>文档，该对象就存在了，可以直接使用</li>
+<li><code>document</code>对象有不同的办法可以获取<ul>
+<li>正常的网页，直接使用<code>document</code>或<code>window.document</code></li>
+<li><code>iframe</code>框架里面的网页，使用<code>iframe</code>节点的<code>contentDocument</code>属性</li>
+<li><code>Ajax</code> 操作返回的文档，使用<code>XMLHttpRequest</code>对象的<code>responseXML</code>属性</li>
+<li>内部节点的<code>ownerDocument</code>属性</li>
+<li><code>document</code>对象继承了<code>EventTarget</code>接口、<code>Node</code>接口、<code>ParentNode</code>接口。这意味着，这些接口的方法都可以在<code>document</code>对象上调用。除此之外，<code>document</code>对象还有很多自己的属性和方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>document.defaultView<ul>
+<li><code>document.defaultView</code>属性返回<code>document</code>对象所属的<code>window</code>对象。如果当前文档不属于<code>window</code>对象，该属性返回<code>null</code></li>
+</ul>
+</li>
+<li>document.doctype<ul>
+<li>返回<code>&lt;DOCTYPE&gt;</code>节点</li>
+<li><code>document.firstChild</code>通常就返回这个节点</li>
+</ul>
+</li>
+<li>document.documentElement<ul>
+<li><code>document.documentElement</code>属性返回当前文档的根元素节点（root）。它通常是<code>document</code>节点的第二个子节点，紧跟在<code>document.doctype</code>节点后面。HTML网页的该属性，一般是<code>&lt;html&gt;</code>节点</li>
+</ul>
+</li>
+<li>document.body，document.head<ul>
+<li><code>document.body</code>属性指向<code>&lt;body&gt;</code>节点，<code>document.head</code>属性指向<code>&lt;head&gt;</code>节点</li>
+<li>这两个属性总是存在的，因为如果源码里省略了<code>&lt;head&gt;</code>或<code>&lt;body&gt;</code>,浏览器会自动创建，这两个属性是可写的，如果要改写的话，相当于移除了所有子节点</li>
+</ul>
+</li>
+<li>document.scrollingElement<ul>
+<li><code>document.scrollingElement</code>属性返回文档的滚动元素（文档整体滚动时，到底是哪个元素在滚动）</li>
+<li>标准模式下，这个属性返回的文档的根元素<code>document.documentElement</code>（即<code>&lt;html&gt;</code>）。兼容（quirk）模式下，返回的是<code>&lt;body&gt;</code>元素，如果该元素不存在，返回<code>null</code></li>
+</ul>
+</li>
+<li>document.activeElement<ul>
+<li><code>document.activeElement</code>属性返回获得当前焦点（focus）的 DOM 元素。通常，这个属性返回的是<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>等表单元素，如果当前没有焦点元素，返回<code>&lt;body&gt;</code>元素或<code>null</code></li>
+</ul>
+</li>
+<li>document.fullscreenElement<ul>
+<li><code>document.fullscreenElement</code>属性返回当前以全屏状态展示的 DOM 元素。如果不是全屏状态，该属性返回<code>null</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (document.fullscreenElement.nodeName == &apos;VIDEO&apos;) &#123;</span><br><span class="line">  console.log(&apos;全屏播放视频&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li>document.links<ul>
+<li><code>document.links</code>返回了当前文档所有设定了<code>href</code>属性的<code>&lt;a&gt;</code>及<code>&lt;area&gt;</code>节点(<code>HTMLCollection</code>实例)</li>
+</ul>
+</li>
+<li>document.forms<ul>
+<li><code>document.forms</code>属性返回所有<code>&lt;form&gt;</code>表单节点(<code>HTMLCollection</code>实例)</li>
+<li>除了使用位置序号，<code>id</code>属性和<code>name</code>属性也可以用来引用表单</li>
+</ul>
+</li>
+<li>document.images<ul>
+<li><code>document.images</code>属性返回页面所有<code>&lt;img&gt;</code>图片节点(<code>HTMLCollection</code>实例)</li>
+</ul>
+</li>
+<li>document.embeds，document.plugins<ul>
+<li><code>document.embeds</code>属性和<code>document.plugins</code>属性，都返回所有<code>&lt;embed&gt;</code>节点(<code>HTMLCollection</code>实例)</li>
+</ul>
+</li>
+<li>document.scripts<ul>
+<li><code>document.scripts</code>属性返回所有<code>&lt;script&gt;</code>节点(<code>HTMLCollection</code>实例)</li>
+</ul>
+</li>
+<li>document.styleSheets<ul>
+<li><code>document.styleSheets</code>属性返回文档内嵌或引入的样式表集合</li>
+<li>返回的非<code>HTMLCollection</code>实例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>文档静态信息属性</p>
+<ul>
+<li>document.documentURI，document.URL<ul>
+<li><code>document.documentURI</code>属性和<code>document.URL</code>属性都返回一个字符串，表示当前文档的网址</li>
+<li><code>documentURI</code>继承自<code>Document</code>接口，可用于所有文档</li>
+<li><code>URL</code>继承自<code>HTMLDocument</code>接口，只能用于 HTML 文档</li>
+<li>如果文档的锚点（<code>#anchor</code>）变化，这两个属性都会跟着变化</li>
+</ul>
+</li>
+<li>document.domain<ul>
+<li><code>document.domain</code>属性返回当前文档的域名，不包含协议和接口<ul>
+<li>比如，网页的网址是<code>http://www.example.com:80/hello.html</code>，那么<code>domain</code>属性就等于<code>www.example.com</code></li>
+</ul>
+</li>
+<li>如果无法获取域名，该属性返回<code>null</code></li>
+<li><code>document.domain</code>基本上是一个只读属性<ul>
+<li>只有一种情况除外<ul>
+<li>次级域名的网页，可以把<code>document.domain</code>设为对应的上级域名</li>
+<li>比如，当前域名是<code>a.sub.example.com</code>，则<code>document.domain</code>属性可以设置为<code>sub.example.com</code>，也可以设为<code>example.com</code></li>
+<li>修改后，<code>document.domain</code>相同的两个网页，可以读取对方的资源，比如设置的 <code>Cookie</code></li>
+<li>另外，设置<code>document.domain</code>会导致端口被改成<code>null</code>。因此，如果通过设置<code>document.domain</code>来进行通信，双方网页都必须设置这个值，才能保证端口相同</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>document.location<ul>
+<li><code>Location</code>对象是浏览器提供的原生对象，提供 URL 相关的信息和操作方法。通过<code>window.location</code>和<code>document.location</code>属性，可以拿到这个对象</li>
+</ul>
+</li>
+<li>document.lastModified<ul>
+<li><code>document.lastModified</code>属性返回一个字符串，表示当前文档最后修改的时间。不同浏览器的返回值，日期格式是不一样的</li>
+<li>可以利用<code>Date.parse</code>方法转为<code>Date</code>实例后，比较日期是否发生变化，来了解网页是否变更</li>
+<li>如果页面上有 JavaScript 生成的内容，<code>document.lastModified</code>属性返回的总是当前时间</li>
+</ul>
+</li>
+<li>document.title<ul>
+<li><code>document.title</code>属性返回当前文档的标题。默认情况下，返回<code>&lt;title&gt;</code>节点的值。但是该属性是可写的，一旦被修改，就返回修改后的值</li>
+</ul>
+</li>
+<li>document.characterSet<ul>
+<li><code>document.characterSet</code>属性返回当前文档的编码，比如<code>UTF-8</code>、<code>ISO-8859-1</code>等等</li>
+</ul>
+</li>
+<li>document.referrer<pre><code>- `document.referrer`属性返回一个字符串，表示当前文档的访问者来自哪里
+- 如果无法获取来源，或者用户直接键入网址而不是从其他网页点击进入，`document.referrer`返回一个空字符串
+- `document.referrer`的值，总是与 HTTP 头信息的`Referer`字段保持一致。但是，`document.referrer`的拼写有两个`r`，而头信息的`Referer`字段只有一个`r`
+</code></pre></li>
+<li>document.dir<ul>
+<li><code>document.dir</code>返回一个字符串，表示文字方向。它只有两个可能的值：<code>rtl</code>表示文字从右到左，阿拉伯文是这种方式；<code>ltr</code>表示文字从左到右，包括英语和汉语在内的大多数文字采用这种方式</li>
+</ul>
+</li>
+<li>document.compatMode<ul>
+<li><code>compatMode</code>属性返回浏览器处理文档的模式，可能的值为<code>BackCompat</code>（向后兼容模式）和<code>CSS1Compat</code>（严格模式）。</li>
+<li>一般来说，如果网页代码的第一行设置了明确的<code>DOCTYPE</code>（比如<code>&lt;!doctype html&gt;</code>），<code>document.compatMode</code>的值都为<code>CSS1Compat</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>文档状态属性</p>
+<ul>
+<li><p>document.hidden</p>
+<ul>
+<li><code>document.hidden</code>属性返回一个布尔值，表示当前页面是否可见。如果窗口最小化、浏览器切换了 <code>Tab</code>，都会导致导致页面不可见，使得<code>document.hidden</code>返回<code>true</code></li>
+<li>一般是配合Page Visibility API 引入的</li>
+</ul>
+</li>
+<li><p>document.visibilityState</p>
+<ul>
+<li><code>document.visibilityState</code>返回文档的可见状态</li>
+<li>四种可能<ul>
+<li><code>visible</code>：页面可见。注意，页面可能是部分可见，即不是焦点窗口，前面被其他窗口部分挡住了</li>
+<li><code>hidden</code>：页面不可见，有可能窗口最小化，或者浏览器切换到了另一个 Tab</li>
+<li><code>prerender</code>：页面处于正在渲染状态，对于用户来说，该页面不可见</li>
+<li><code>unloaded</code>：页面从内存里面卸载了</li>
+</ul>
+</li>
+<li>这个属性可以用在页面加载时，防止加载某些资源；或者页面不可见时，停掉一些页面功能</li>
+</ul>
+</li>
+<li><p>document.readyState</p>
+<ul>
+<li><code>document.readyState</code>属性返回当前文档的状态，共有三种可能的值<ul>
+<li><code>loading</code>：加载 HTML 代码阶段（尚未完成解析）</li>
+<li><code>interactive</code>：加载外部资源阶段</li>
+<li><code>complete</code>：加载完成</li>
+</ul>
+</li>
+<li>变化过程如下<ul>
+<li>浏览器开始解析 HTML 文档，<code>document.readyState</code>属性等于<code>loading</code></li>
+<li>浏览器遇到 HTML 文档中的<code>&lt;script&gt;</code>元素，并且没有<code>async</code>或<code>defer</code>属性，就暂停解析，开始执行脚本，这时<code>document.readyState</code>属性还是等于<code>loading</code></li>
+<li>HTML 文档解析完成，<code>document.readyState</code>属性变成<code>interactive</code></li>
+<li>浏览器等待图片、样式表、字体文件等外部资源加载完成，一旦全部加载完成，<code>document.readyState</code>属性变成<code>complete</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 基本检查</span><br><span class="line">if (document.readyState === &apos;complete&apos;) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轮询检查</span><br><span class="line">var interval = setInterval(function() &#123;</span><br><span class="line">  if (document.readyState === &apos;complete&apos;) &#123;</span><br><span class="line">    clearInterval(interval);</span><br><span class="line">    // ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 100);</span><br></pre></td></tr></table></figure>
+<p>另外，每次状态变化都会触发一个<code>readystatechange</code>事件</p>
+<ul>
+<li><ul>
+<li>document.cookie<ul>
+<li><code>document.cookie</code>属性用来操作浏览器 <code>Cookie</code></li>
+</ul>
+</li>
+<li>document.designMode<ul>
+<li><code>document.designMode</code>属性控制当前文档是否可编辑。该属性只有两个值<code>on</code>和<code>off</code>，默认值为<code>off</code>。一旦设为<code>on</code>，用户就可以编辑整个文档的内容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// HTML 代码如下</span><br><span class="line">// &lt;iframe id=&quot;editor&quot; src=&quot;about:blank&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">var editor = document.getElementById(&apos;editor&apos;);</span><br><span class="line">editor.contentDocument.designMode = &apos;on&apos;;</span><br></pre></td></tr></table></figure>
+<p>打开<code>iframe</code>元素内部文档的<code>designMode</code>属性，就可将其变为一个所见即所得的编辑器</p>
+<ul>
+<li><ul>
+<li>document.implementation<ul>
+<li><code>document.implementation</code>属性返回一个<code>DOMImplementation</code>对象。该对象有三个方法，主要用于创建独立于当前文档的新的 Document 对象<ul>
+<li><code>DOMImplementation.createDocument()</code>：创建一个 XML 文档</li>
+<li><code>DOMImplementation.createHTMLDocument()</code>：创建一个 HTML 文档</li>
+<li><code>DOMImplementation.createDocumentType()</code>：创建一个 DocumentType 对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var doc = document.implementation.createHTMLDocument(&apos;Title&apos;);</span><br><span class="line">var p = doc.createElement(&apos;p&apos;);</span><br><span class="line">p.innerHTML = &apos;hello world&apos;;</span><br><span class="line">doc.body.appendChild(p);</span><br><span class="line"></span><br><span class="line">document.replaceChild(</span><br><span class="line">  doc.documentElement,</span><br><span class="line">  document.documentElement</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>以上代码会将当前文档的全部内容替换为<code>hello world</code></p>
+<ul>
+<li>方法<ul>
+<li>document.open()，document.close() <ul>
+<li><code>document.open</code>方法清除当前文档所有内容，使得文档处于可写状态，供<code>document.write</code>方法写入内容</li>
+<li><code>document.close</code>方法用来关闭<code>document.open()</code>打开的文档</li>
+</ul>
+</li>
+<li>document.write()，document.writeln()<ul>
+<li><code>document.write</code>方法用于向当前文档写入内容</li>
+<li>在网页的首次渲染阶段，只要页面没有关闭写入（即没有执行<code>document.close()</code>），<code>document.write</code>写入的内容就会追加在已有内容的后面</li>
+<li><code>document.write</code>会当作 HTML 代码解析，不会转义(一般是传一个字符串做参数)</li>
+<li>如果页面已经解析完成（<code>DOMContentLoaded</code>事件发生之后），再调用<code>write</code>方法，它会先调用<code>open</code>方法，擦除当前文档所有内容，然后再写入</li>
+<li>如果在页面渲染过程中调用<code>write</code>方法，并不会自动调用<code>open</code>方法。（可以理解成，<code>open</code>方法已调用，但<code>close</code>方法还未调用。）（不会擦除文档所有内容）</li>
+<li>这个方法是标准化以前的方法……要避免使用这个方法……用更标准的方法（比如对<code>innerHTML</code>属性赋值）</li>
+<li><code>document.writeln</code>方法与<code>write</code>方法完全一致，除了会在输出内容的尾部添加换行符</li>
+</ul>
+</li>
+<li>document.querySelector()<ul>
+<li><code>document.querySelector()</code>接受一个CSS选择器作为参数，返回匹配该选择器的元素节点（多个返回第一个，没有返回<code>null</code>）</li>
+</ul>
+</li>
+<li>document.querySelectorAll()<ul>
+<li><code>document.querySelectorAll()</code>和<code>querySelector</code>用法类似，区别是返回一个<code>NodeList</code>对象，包含所有匹配给定选择器的节点<ul>
+<li>可以用逗号分隔多个CSS选择器，返回匹配其中一个选择器的元素节点</li>
+<li>它们不支持 CSS 伪元素的选择器（比如<code>:first-line</code>和<code>:first-letter</code>）和伪类的选择器（比如<code>:link</code>和<code>:visited</code>），即无法选中伪元素和伪类</li>
+<li>如果<code>querySelectorAll</code>方法的参数是字符串<code>*</code>，则会返回文档中的所有元素节点</li>
+<li><code>querySelectorAll</code>的返回结果不是动态集合，不会实时反映元素节点的变化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>document.getElementsByTagName()<ul>
+<li><code>document.getElementsByTagName</code>方法搜索 HTML 标签名，返回符合条件的元素。它的返回值是一个类似数组对象（<code>HTMLCollection</code>实例），可以实时反映 HTML 文档的变化。如果没有任何匹配的元素，就返回一个空集</li>
+<li>这个方法是大小写不敏感的（标签名）</li>
+<li>返回成员的顺序就是它们在文档中出现的顺序</li>
+<li>传入<code>*</code>可以返回所有HTML元素</li>
+<li>元素节点上也定义了这个方法，可以在任何元素节点上调用</li>
+</ul>
+</li>
+<li>document.getElementsByClassName()<ul>
+<li><code>document.getElementsByClassName</code>方法返回一个类似数组的对象（<code>HTMLCollection</code>实例），包括了所有<code>class</code>名字符合指定条件的元素，元素的变化实时反映在返回结果中</li>
+<li>参数可以是多个<code>class</code>，之间用空格分隔（多个参数，意味着需要同时具有）</li>
+<li>这个方法是大小写敏感的（class大小写敏感）</li>
+<li>同样可以在任何元素节点上调用</li>
+</ul>
+</li>
+<li>document.getElementsByName()<ul>
+<li><code>document.getElementsByName</code>方法用于选择拥有<code>name</code>属性的 HTML 元素（比如<code>&lt;form&gt;</code>、<code>&lt;radio&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;frame&gt;</code>、<code>&lt;embed&gt;</code>和<code>&lt;object&gt;</code>等），返回一个类似数组的的对象（<code>NodeList</code>实例），因为<code>name</code>属性相同的元素可能不止一个</li>
+</ul>
+</li>
+<li>document.getElementById()<ul>
+<li><code>document.getElementById</code>方法返回匹配指定id属性的元素节点。如果没有发现匹配的节点，则返回<code>null</code></li>
+<li>该方法的参数是大小写敏感的</li>
+<li><code>document.getElementById</code>方法与<code>document.querySelector</code>方法都能获取元素节点，不同之处是<code>document.querySelector</code>方法的参数使用 CSS 选择器语法，<code>document.getElementById</code>方法的参数是元素的<code>id</code>属性</li>
+<li>上面代码中，两个方法都能选中id为<code>myElement</code>的元素，但是<code>document.getElementById()</code>比<code>document.querySelector()</code>效率高得多</li>
+<li>另外，这个方法只能在<code>document</code>对象上使用，不能在其他元素节点上使用</li>
+</ul>
+</li>
+<li>document.elementFromPoint()<ul>
+<li><code>document.elementFromPoint</code>方法返回位于页面指定位置最上层的元素节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<p>var element = document.elementFromPoint(50, 50);</p>
+<p><code>elementFromPoint</code>方法的两个参数，依次是相对于当前视口左上角的横坐标和纵坐标，单位是像素。如果位于该位置的 HTML 元素不可返回（比如文本框的滚动条），则返回它的父元素（比如文本框）。如果坐标值无意义（比如负值或超过视口大小），则返回<code>null</code></p>
+<ul>
+<li><ul>
+<li><ul>
+<li>该方法返回一个数组，成员是位于指定坐标（相对于视口）的所有元素</li>
+</ul>
+</li>
+<li><p>document.caretPositionFromPoint()</p>
+<ul>
+<li><code>document.caretPositionFromPoint()</code>返回一个 CaretPosition 对象，包含了指定坐标点在节点对象内部的位置信息</li>
+<li>两个参数，分别是相对于当前视口左上角的横坐标和纵坐标</li>
+<li>该对象有两个属性<ul>
+<li><code>CaretPosition.offsetNode</code>：该位置的节点对象</li>
+<li><code>CaretPosition.offset</code>：该位置在<code>offsetNode</code>对象内部，与起始位置相距的字符数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>document.createElement()</p>
+<ul>
+<li><code>document.createElement</code>方法用来生成元素节点，并返回该节点</li>
+<li>大小写不敏感，参数不能包括尖括号</li>
+<li>参数名也可以是自定义的标签名</li>
+</ul>
+</li>
+<li><p><code>document.createTextNode</code>方法用来生成文本节点（Text实例），并返回该节点。它的参数是文本节点的内容</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>var newDiv = document.createElement(&apos;div&apos;);
+var newContent = document.createTextNode(&apos;Hello&apos;);
+newDiv.appendChild(newContent);
+</code></pre><p>上面代码新建一个div节点和一个文本节点，然后将文本节点插入div节点</p>
+<p>这个方法可以确保返回的节点，被浏览器当作文本渲染，而不是当作 HTML 代码渲染。因此，可以用来展示用户的输入，避免 XSS 攻击</p>
+<ul>
+<li><ul>
+<li><ul>
+<li><code>createTextNode</code>方法对大于号和小于号进行转义，从而保证即使用户输入的内容包含恶意代码，也能正确显示</li>
+<li>该方法不对单引号和双引号转义，所以不能用来对 HTML 属性赋值,不然可能会被注入代码</li>
+</ul>
+</li>
+<li>document.createAttribute()<ul>
+<li><code>document.createAttribute</code>方法生成一个新的属性节点（<code>Attr</code>实例），并返回它</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/30/cjzzj7h1b002yv8pjom67scer.html" rel="next" title="JS网道学习笔记（八）">
+                <i class="fa fa-chevron-left"></i> JS网道学习笔记（八）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/08/cjzzj7gxs0002v8pj52q9d834.html" rel="prev" title="JS网道学习笔记（九）">
+                JS网道学习笔记（九） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HTML-文档中的所有内容都是节点："><span class="nav-number">1.</span> <span class="nav-text">1.HTML 文档中的所有内容都是节点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-一些常用的-HTML-DOM-方法"><span class="nav-number">2.</span> <span class="nav-text">2.一些常用的 HTML DOM 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-一些常用的-HTML-DOM-属性"><span class="nav-number">3.</span> <span class="nav-text">3.一些常用的 HTML DOM 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-NodeList接口"><span class="nav-number">4.</span> <span class="nav-text">4. NodeList接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HTMLCollection-接口"><span class="nav-number">5.</span> <span class="nav-text">5.HTMLCollection 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-ParentNode-接口"><span class="nav-number">6.</span> <span class="nav-text">6.ParentNode 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-ChildNode-接口"><span class="nav-number">7.</span> <span class="nav-text">7.ChildNode 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Document-节点"><span class="nav-number">8.</span> <span class="nav-text">8.Document 节点</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

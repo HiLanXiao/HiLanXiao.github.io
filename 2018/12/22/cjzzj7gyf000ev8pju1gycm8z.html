@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="UNIX期末复习第七章shell编程一、shell 编程的基本过程 shell 编程的基本过程分为三步: 建立 shell 文件 包含任意多行操作系统命令或shell命令的文本文件   赋予shell文件执行权限 用chmod命令修改权限   执行shell文件 直接在命令行上调用shell程序   实例 建立shell文件 (可用任何建立文本文件的方法): $ cat  prog1 who">
+<meta name="keywords" content="UNIX,期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNIX期末复习第七章">
+<meta property="og:url" content="http://yoursite.com/2018/12/22/cjzzj7gyf000ev8pju1gycm8z.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="UNIX期末复习第七章shell编程一、shell 编程的基本过程 shell 编程的基本过程分为三步: 建立 shell 文件 包含任意多行操作系统命令或shell命令的文本文件   赋予shell文件执行权限 用chmod命令修改权限   执行shell文件 直接在命令行上调用shell程序   实例 建立shell文件 (可用任何建立文本文件的方法): $ cat  prog1 who">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-20T04:59:38.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UNIX期末复习第七章">
+<meta name="twitter:description" content="UNIX期末复习第七章shell编程一、shell 编程的基本过程 shell 编程的基本过程分为三步: 建立 shell 文件 包含任意多行操作系统命令或shell命令的文本文件   赋予shell文件执行权限 用chmod命令修改权限   执行shell文件 直接在命令行上调用shell程序   实例 建立shell文件 (可用任何建立文本文件的方法): $ cat  prog1 who">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/22/cjzzj7gyf000ev8pju1gycm8z.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UNIX期末复习第七章 | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/cjzzj7gyf000ev8pju1gycm8z.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UNIX期末复习第七章
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-22 16:32:38" itemprop="dateCreated datePublished" datetime="2018-12-22T16:32:38+08:00">2018-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-20 12:59:38" itemprop="dateModified" datetime="2019-01-20T12:59:38+08:00">2019-01-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/UNIX期末复习/" itemprop="url" rel="index"><span itemprop="name">UNIX期末复习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h1 id="UNIX期末复习第七章"><a href="#UNIX期末复习第七章" class="headerlink" title="UNIX期末复习第七章"></a>UNIX期末复习第七章</h1><h2 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h2><h3 id="一、shell-编程的基本过程"><a href="#一、shell-编程的基本过程" class="headerlink" title="一、shell 编程的基本过程"></a>一、shell 编程的基本过程</h3><ul>
+<li>shell 编程的基本过程分为三步:<ul>
+<li>建立 shell 文件<ul>
+<li>包含任意多行操作系统命令或shell命令的文本文件</li>
+</ul>
+</li>
+<li>赋予shell文件执行权限<ul>
+<li>用chmod命令修改权限</li>
+</ul>
+</li>
+<li>执行shell文件<ul>
+<li>直接在命令行上调用shell程序</li>
+</ul>
+</li>
+<li>实例<ul>
+<li>建立shell文件 (可用任何建立文本文件的方法):<ul>
+<li>$ cat  prog1</li>
+<li>who  |  grep  $1</li>
+</ul>
+</li>
+<li>赋予执行权限:  (初始文本文件无执行权限)<ul>
+<li>$ chmod  740  prog1</li>
+</ul>
+</li>
+<li>执行该shell程序<ul>
+<li>$ prog1  student5</li>
+<li>prog1: not found</li>
+<li>(shell在标准搜索目录中找不到prog1命令)</li>
+</ul>
+</li>
+<li>指定路径或修改环境变量PATH后执行shell程序<ul>
+<li>$ ./prog1  student5</li>
+<li>student5   tty06   Feb 8   09:12</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、-shell语句包括三大类"><a href="#二、-shell语句包括三大类" class="headerlink" title="二、 shell语句包括三大类"></a>二、 shell语句包括三大类</h3><ul>
+<li>说明性语句<ul>
+<li>以#号开始到行尾的部分，不被解释执行</li>
+</ul>
+</li>
+<li>功能性语句<ul>
+<li>操作系统命令</li>
+<li>shell内部命令</li>
+<li>自编程序</li>
+<li>其它shell程序名等</li>
+<li>几个常用的功能性语句(命令): <ul>
+<li>read命令<ul>
+<li>read从标准输入读入一行, 并赋值给后面的变量</li>
+<li>其语法为：<ul>
+<li>read  var<ul>
+<li>把读入的数据全部赋给var</li>
+</ul>
+</li>
+<li>read  var1  var2  var3<ul>
+<li>把读入行中的第一个词(word)赋给var1</li>
+<li>第二个词赋给var2, ……</li>
+<li>把其余所有的词赋给最后一个变量</li>
+</ul>
+</li>
+<li>如果执行read语句时标准输入无数据, 则程序在此停留等侯, 直到数据的到来或被中止运行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>expr 命令<ul>
+<li>算术运算命令expr主要用于进行简单的整数运算，包括加(+)、减（-）、乘（*)、整除（/）和求模（%）等操作</li>
+<li>例如:<ul>
+<li>$ expr  12  +  5  *  3<br>　　27<ul>
+<li>反斜线去掉*号的元字符含义</li>
+</ul>
+</li>
+<li>$ num=9<br>$ sum=`expr  $num  *  6 `<br>$ echo  $sum<br>54</li>
+<li>反撇号引用命令的运行结果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tput 命令<ul>
+<li>tput命令主要用于设置终端工作模式, 或读出终端控制字符.</li>
+<li>tput命令与终端控制代码数据库terminfo相连, 根据shell环境变量TERM的值, 读出这种终端的指定功能控制代码</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>结构性语句<ul>
+<li>条件测试语句</li>
+<li>多路分支语句</li>
+<li>循环语句</li>
+<li>循环控制语句等</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、-结构性语句"><a href="#三、-结构性语句" class="headerlink" title="三、 结构性语句"></a>三、 结构性语句</h3><ul>
+<li>条件语句　if…then…fi <ul>
+<li>语法结构<ul>
+<li>if　　表达式</li>
+<li>then　命令表</li>
+<li>fi</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>条件语句　if…then…else…fi<ul>
+<li>语法结构为<ul>
+<li>if　　表达式</li>
+<li>then　命令表1</li>
+<li>else　命令表2</li>
+<li>fi</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>测试语句 test<ul>
+<li>test语句可测试三种对象：<ul>
+<li>字符串<ul>
+<li>test  “$answer”  =  “yes”</li>
+</ul>
+</li>
+<li>整数<ul>
+<li>test  $num –eq  18</li>
+<li>变量num的值是否为整数18</li>
+</ul>
+</li>
+<li>文件属性<ul>
+<li>test  -d  tmp    </li>
+<li>测试tmp是否为一个目录名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用法<ul>
+<li>用法一：<ul>
+<li>test   $name  -eq   $1<br>echo  $?</li>
+</ul>
+</li>
+<li>用法二：<ul>
+<li>if   test   -f   $filename<br>then<br>……<br>fi</li>
+<li>通常简写为:       if  [   -f  $filename  ]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多路分支语句 case…esac<ul>
+<li>多路分支语句case用于多重条件测试，语法结构清晰自然.其语法结构为:<ul>
+<li>case　　字符串变量　　in</li>
+<li>　　　　模式1）</li>
+<li>　　　　　　　　　　命令表1</li>
+<li>　　　　　　　　　　 ;;</li>
+<li>　　　　模式2）</li>
+<li>　　　　　　　　　　命令表2</li>
+<li>　　　　　　　　　　 ;;</li>
+<li>　　　　……</li>
+<li>　　　　模式n)</li>
+<li>　　　　　　　　　　命令表n</li>
+<li>　　　　　　　　　　 ;;</li>
+<li>　　　　esac</li>
+<li>case语句只能检测字符串变量</li>
+<li>各模式中可用文件名元字符,以右括号结束</li>
+<li>命令表以单独的双分号行结束,退出case语句</li>
+<li>模式 n常写为字符* 表示所有其它模式</li>
+<li>最后一个双分号行可以省略</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>循环语句 for…do…done<ul>
+<li>当循环次数已知或确定时，使用for循环语句来多次执行一条或一组命令.　循环体由语句括号 do 和 done 来限定</li>
+<li>for　　变量名　　in　　单词表</li>
+<li>do</li>
+<li>　　　命令表</li>
+<li>done</li>
+</ul>
+</li>
+<li><p>循环语句　while…do…done</p>
+<ul>
+<li>语法结构为:</li>
+<li>while　　命令或表达</li>
+<li>do</li>
+<li>　　　　　命令表</li>
+<li>done</li>
+<li>while语句的退出状态为命令表中被执行的最后一条命令的退出状态</li>
+</ul>
+</li>
+<li><p>循环语句　until…do…done</p>
+<ul>
+<li>语法结构为:</li>
+<li>until　　命令或表达式</li>
+<li>do</li>
+<li>　　　　命令表</li>
+<li>done</li>
+</ul>
+</li>
+<li>循环控制语句 break 和 continue<ul>
+<li>break语句<ul>
+<li>break 从包含该语句的最近一层循环中跳出一层</li>
+<li>break n  则跳出n层; </li>
+</ul>
+</li>
+<li>continue语句<ul>
+<li>continue 马上转到最近一层循环语句的下一轮循环上</li>
+<li>continue  n则转到最近n层循环语句的下一轮循环上.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UNIX/" rel="tag"># UNIX</a>
+          
+            <a href="/tags/期末复习/" rel="tag"># 期末复习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/22/cjzzj7gyo000pv8pjgpqci8yj.html" rel="next" title="UNIX期末复习第六章">
+                <i class="fa fa-chevron-left"></i> UNIX期末复习第六章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/22/cjzzj7gym000nv8pjxi364mc6.html" rel="prev" title="UNIX期末复习第八章">
+                UNIX期末复习第八章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UNIX期末复习第七章"><span class="nav-number">1.</span> <span class="nav-text">UNIX期末复习第七章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell编程"><span class="nav-number">1.1.</span> <span class="nav-text">shell编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、shell-编程的基本过程"><span class="nav-number">1.1.1.</span> <span class="nav-text">一、shell 编程的基本过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-shell语句包括三大类"><span class="nav-number">1.1.2.</span> <span class="nav-text">二、 shell语句包括三大类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-结构性语句"><span class="nav-number">1.1.3.</span> <span class="nav-text">三、 结构性语句</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
