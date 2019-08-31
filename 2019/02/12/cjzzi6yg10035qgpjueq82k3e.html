@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.严格模式 启用方法：&amp;#39;use strict&amp;#39;; 老版本引擎会忽略，新版本就会进入 可以用于整个脚本，也可以只用于单个函数 use strict放在函数体的第一行，则整个函数以严格模式运行 可以在调用函数时，再传入”use strict”    示例如下 f2(&amp;apos;&amp;quot;use strict&amp;quot;;undeclared_variable = 1&amp;apos;)">
+<meta name="keywords" content="前端知识,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS网道学习笔记（十一）">
+<meta property="og:url" content="http://yoursite.com/2019/02/12/cjzzi6yg10035qgpjueq82k3e.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="1.严格模式 启用方法：&amp;#39;use strict&amp;#39;; 老版本引擎会忽略，新版本就会进入 可以用于整个脚本，也可以只用于单个函数 use strict放在函数体的第一行，则整个函数以严格模式运行 可以在调用函数时，再传入”use strict”    示例如下 f2(&amp;apos;&amp;quot;use strict&amp;quot;;undeclared_variable = 1&amp;apos;)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-28T00:47:24.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS网道学习笔记（十一）">
+<meta name="twitter:description" content="1.严格模式 启用方法：&amp;#39;use strict&amp;#39;; 老版本引擎会忽略，新版本就会进入 可以用于整个脚本，也可以只用于单个函数 use strict放在函数体的第一行，则整个函数以严格模式运行 可以在调用函数时，再传入”use strict”    示例如下 f2(&amp;apos;&amp;quot;use strict&amp;quot;;undeclared_variable = 1&amp;apos;)">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/12/cjzzi6yg10035qgpjueq82k3e.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JS网道学习笔记（十一） | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/12/cjzzi6yg10035qgpjueq82k3e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS网道学习笔记（十一）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-12 17:14:41" itemprop="dateCreated datePublished" datetime="2019-02-12T17:14:41+08:00">2019-02-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 08:47:24" itemprop="dateModified" datetime="2019-02-28T08:47:24+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS网道学习笔记/" itemprop="url" rel="index"><span itemprop="name">JS网道学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-严格模式"><a href="#1-严格模式" class="headerlink" title="1.严格模式"></a>1.严格模式</h2><ul>
+<li>启用方法：<code>&#39;use strict&#39;;</code><ul>
+<li>老版本引擎会忽略，新版本就会进入</li>
+<li>可以用于整个脚本，也可以只用于单个函数</li>
+<li><code>use strict</code>放在函数体的第一行，则整个函数以严格模式运行</li>
+<li>可以在调用函数时，再传入”use strict”</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>f2(&apos;&quot;use strict&quot;;undeclared_variable = 1&apos;)
+</code></pre><p>原本只用传入<code>&#39;undeclared_variable = 1&#39;</code></p>
+<ul>
+<li><p>两个脚本合并在一起时，严格模式的脚本在前，则合并后的脚本都是严格模式；如果正常模式的脚本在前，则合并后的脚本都是正常模式</p>
+</li>
+<li><p>常规模式对部分失败操作会不报错处理，而严格模式下这些地方就会报错</p>
+</li>
+<li>函数不能有重名的参数<ul>
+<li>正常模式下，如果函数有多个重名的参数，可以用<code>arguments[i]</code>读取。严格模式下，这属于语法错误</li>
+</ul>
+</li>
+<li>禁止八进制的前缀0表示法<ul>
+<li>正常模式下，整数的第一位如果是0，表示这是八进制数，比如<code>0100</code>等于十进制的64。严格模式禁止这种表示法，整数第一位为0，将报错</li>
+</ul>
+</li>
+<li>严格模式下，使用<code>eval</code>或者<code>arguments</code>作为标识名，将会报错</li>
+</ul>
+<p>下面的语句都会报错</p>
+<pre><code>&apos;use strict&apos;;
+var eval = 17;
+var arguments = 17;
+var obj = { set p(arguments) { } };
+try { } catch (arguments) { }
+function x(eval) { }
+function arguments() { }
+var y = function eval() { };
+var f = new Function(&apos;arguments&apos;, &quot;&apos;use strict&apos;; return 17;&quot;);
+// SyntaxError: Unexpected eval or arguments in strict mode
+</code></pre><ul>
+<li><p>正常模式下，如果函数有多个重名的参数，可以用<code>arguments[i]</code>读取。严格模式下，这属于语法错误(出现重名参数就会报错)</p>
+</li>
+<li><p>禁止八进制的前缀0表示法</p>
+<ul>
+<li>正常模式下，整数的第一位如果是<code>0</code>，表示这是八进制数，比如<code>0100</code>等于十进制的64。严格模式禁止这种表示法，整数第一位为<code>0</code>，将报错</li>
+</ul>
+</li>
+<li><p>正常模式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式禁止这种用法，全局变量必须显式声明(先声明再使用)</p>
+</li>
+<li><p>正常模式下，函数内部的<code>this</code>可能会指向全局对象，严格模式禁止这种用法</p>
+<ul>
+<li>严格模式的函数体内部<code>this</code>是<code>undefined</code></li>
+<li>这种限制对于构造函数尤其有用。使用构造函数时，有时忘了加<code>new</code>，这时<code>this</code>不再指向全局对象，而是报错</li>
+<li>严格模式下可以用<code>call</code>、<code>apply</code>和<code>bind</code>方法，将任意值绑定在<code>this</code>（<code>undefined</code>）上面，而正常模式下绑定时，<code>this</code>是先将绑定地值转为对象再绑定上去。而<code>null</code>和<code>undefined</code>这两个无法转成对象的值会被忽略</li>
+</ul>
+</li>
+<li><p>严格模式下禁止使用 fn.callee、fn.caller</p>
+</li>
+<li><p>严格模式下禁止使用arguments.callee、arguments.caller</p>
+</li>
+<li><p>严格模式下无法删除变量，如果使用<code>delete</code>命令删除一个变量，会报错。只有对象的属性，且属性的描述对象的<code>configurable</code>属性设置为true，才能被<code>delete</code>命令删除</p>
+</li>
+<li><p>JavaScript 语言的一个特点，就是允许“动态绑定”，即某些属性和方法到底属于哪一个对象，不是在编译时确定的，而是在运行时（runtime）确定的</p>
+<ul>
+<li>严格模式对动态绑定做了一些限制。某些情况下，只允许静态绑定。也就是说，属性和方法到底归属哪个对象，必须在编译阶段就确定。这样做有利于编译效率的提高，也使得代码更容易阅读，更少出现意外</li>
+</ul>
+</li>
+<li><p>以下几个方面为具体涉及</p>
+</li>
+<li><p>严格模式下禁止使用<code>with</code>语句</p>
+</li>
+<li><p>创设 <code>eval</code> 作用域</p>
+<ul>
+<li>正常模式下，<code>eval</code>语句的作用域，取决于它处于全局作用域，还是函数作用域。</li>
+<li>严格模式下，<code>eval</code>语句本身就是一个作用域，不再能够在其所运行的作用域创设新的变量了<ul>
+<li>也就是说，<code>eval</code>所生成的变量只能用于<code>eval</code>内部</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>arguments 不再追踪参数的变化</p>
+</li>
+</ul>
+<ul>
+<li><p>为了平稳过渡，严格模式引入了一些 ES6 语法</p>
+<ul>
+<li>以下为具体表现</li>
+</ul>
+</li>
+<li><p>非函数代码块不得声明函数</p>
+<ul>
+<li>ES6 会引入块级作用域。为了与新版本接轨，ES5 的严格模式只允许在全局作用域或函数作用域声明函数。也就是说，不允许在非函数的代码块（比如<code>if</code>和<code>for</code>）内声明函数</li>
+</ul>
+</li>
+<li><p>严格模式下新增了一些保留字（implements、interface、let、package、private、protected、public、static、yield等）。使用这些词作为变量名将会报错</p>
+</li>
+</ul>
+<h2 id="2-异步操作"><a href="#2-异步操作" class="headerlink" title="2.异步操作"></a>2.异步操作</h2><ul>
+<li><p>JavaScript是单线程模型，引擎有多个县城，但是单个脚本只能在一个县城上运行（称为主线程），其他线程都是在后台配合</p>
+<ul>
+<li>常见的浏览器无响应（假死），往往就是因为某一段 JavaScript 代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行</li>
+<li>Javascript语言本身并不慢，慢的是读写外部数据</li>
+<li>设计者意识到这种情况，设置了”事件循环”机制，先挂起等待输入输出（IO操作）的任务，先运行排在后面的任务，等待IO操作有结果了，再回头继续任务</li>
+</ul>
+</li>
+<li><p>程序里面的任务可以分为两类</p>
+<ul>
+<li>同步任务<ul>
+<li>不挂起</li>
+</ul>
+</li>
+<li>异步任务<ul>
+<li>有挂起</li>
+<li>引擎认为某个异步任务可以执行了，该任务才会采用回调函数的形式进入主线程执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>任务队列和事件循环</p>
+<ul>
+<li>除了主线程，引擎还提供一个任务队列，里面是需要当前程序处理的异步任务</li>
+<li>当一个同步任务执行完之后就去检查挂起来的异步任务，就调用可以执行异步任务的回调函数，这时这个异步任务就变成了一个同步任务</li>
+<li>如果一个异步任务没有回调函数，就不会进入任务队列，无法正常完成任务</li>
+</ul>
+</li>
+<li><p>回调函数</p>
+<ul>
+<li>为了使<code>f2</code>在<code>f1</code>之后执行完成，可以让<code>f2</code>以回调函数的形式传给<code>f1</code>，然后再在<code>f2</code>中执行</li>
+<li>这样可以安排两个事件的执行顺序</li>
+</ul>
+</li>
+<li><p>事件监听</p>
+<ul>
+<li>还可以采用事件驱动模式，比如利用jQuery的on方法等，让一个</li>
+</ul>
+</li>
+<li><p>发布/订阅</p>
+<ul>
+<li>存在一个“消息”中心，任务执行完成，向信号中心发布信号，其他任务向信号中心订阅该信号</li>
+<li>具体操作结合相应模块</li>
+<li>该操作优于“事件监听”，因为可以查看“消息中心”从而更好监控程序运行</li>
+</ul>
+</li>
+<li><p>异步操作的流程控制</p>
+</li>
+</ul>
+<p>第一个示例</p>
+<pre><code>function final(value) {
+  console.log(&apos;完成: &apos;, value);
+}
+
+async(1, function (value) {
+  async(2, function (value) {
+    async(3, function (value) {
+      async(4, function (value) {
+        async(5, function (value) {
+          async(6, final);
+        });
+      });
+    });
+});
+});
+// 参数为 1 , 1秒后返回结果
+// 参数为 2 , 1秒后返回结果
+// 参数为 3 , 1秒后返回结果
+// 参数为 4 , 1秒后返回结果
+// 参数为 5 , 1秒后返回结果
+// 参数为 6 , 1秒后返回结果
+// 完成:  12
+</code></pre><p>上面代码有六个回调函数的嵌套，写起来麻烦，容易出错，且难以维护</p>
+<p>第二个示例，串行执行</p>
+<pre><code>var items = [ 1, 2, 3, 4, 5, 6 ];
+var results = [];
+
+function async(arg, callback) {
+  console.log(&apos;参数为 &apos; + arg +&apos; , 1秒后返回结果&apos;);
+  setTimeout(function () { callback(arg * 2); }, 1000);
+}
+
+function final(value) {
+  console.log(&apos;完成: &apos;, value);
+}
+
+function series(item) {
+  if(item) {
+    async( item, function(result) {
+      results.push(result);
+      return series(items.shift());
+    });
+} else {
+    return final(results[results.length - 1]);
+}
+}
+
+series(items.shift());
+</code></pre><p><code>series</code>就是一个串行函数，它会依次执行异步任务，执行完后才调用<code>final</code>函数（总体也需要6秒）</p>
+<p>第三个示例，并行执行</p>
+<pre><code>var items = [ 1, 2, 3, 4, 5, 6 ];
+var results = [];
+
+function async(arg, callback) {
+  console.log(&apos;参数为 &apos; + arg +&apos; , 1秒后返回结果&apos;);
+setTimeout(function () { callback(arg * 2); }, 1000);
+}
+
+function final(value) {
+  console.log(&apos;完成: &apos;, value);
+}
+
+items.forEach(function(item) {
+  async(item, function(result){
+    results.push(result);
+    if(results.length === items.length) {
+      final(results[results.length - 1]);
+    }
+})
+});
+</code></pre><p>第四个示例，并行串行结合</p>
+<pre><code>var items = [ 1, 2, 3, 4, 5, 6 ];
+var results = [];
+var running = 0;
+var limit = 2;
+
+function async(arg, callback) {
+  console.log(&apos;参数为 &apos; + arg +&apos; , 1秒后返回结果&apos;);
+  setTimeout(function () { callback(arg * 2); }, 1000);
+}
+
+function final(value) {
+  console.log(&apos;完成: &apos;, value);
+}
+
+function launcher() {
+  while(running &lt; limit &amp;&amp; items.length &gt; 0) {
+    var item = items.shift();
+    async(item, function(result) {
+      results.push(result);
+      running--;
+      if(items.length &gt; 0) {
+        launcher();
+     } else if(running == 0) {
+      final(results);
+      }
+  });
+  running++;
+  }
+}
+
+launcher();
+</code></pre><p>根据个人的理解，JavaScript里面的并行应该是对资源的一种合理分配，遇到并行操作时（比如定时器，比如Ajax）会先挂起没有占用资源的任务，接着往下进行</p>
+<h2 id="2-定时器"><a href="#2-定时器" class="headerlink" title="2.定时器"></a>2.定时器</h2><ul>
+<li><code>setTimeout</code>函数用来指定某个函数或某段代码，在多少毫秒之后执行。它返回一个整数，表示定时器的编号，以后可以用来取消这个定时器。</li>
+</ul>
+<p>示例如下</p>
+<p><code>var timerId = setTimeout(func|&#39;code&#39;, delay);</code></p>
+<ul>
+<li><ul>
+<li>除了前两个参数，<code>setTimeout</code>还允许更多的参数。它们（传入的回调函数的参数）将依次传入推迟执行的函数（回调函数）</li>
+<li>还有一个需要注意的地方，如果回调函数是对象的方法，那么<code>setTimeout</code>使得方法内部的<code>this</code>关键字指向全局环境，而不是定义时所在的那个对象</li>
+</ul>
+</li>
+</ul>
+<p>示例如下</p>
+<pre><code>var x = 1;
+
+var obj = {
+  x: 2,
+  y: function () {
+   console.log(this.x);
+  }
+};
+
+setTimeout(obj.y, 1000) // 1
+</code></pre><p>此时<code>this</code>的指向已经变化了</p>
+<p>为了防止出现这个问题，一种解决方法是将<code>obj.y</code>放入一个函数</p>
+<figure class="highlight plain"><figcaption><span>x </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var obj = &#123;</span><br><span class="line">  x: 2,</span><br><span class="line">  y: function () &#123;</span><br><span class="line">    console.log(this.x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">  obj.y();</span><br><span class="line">&#125;, 1000);</span><br><span class="line">// 2</span><br></pre></td></tr></table></figure>
+<p>这样一来<code>obj.y</code>在<code>obj</code>的作用域执行，而不是在全局作用域内执行</p>
+<p>另外一种是使用<code>bind</code>方法，将<code>obj.y</code>这个方法绑定在<code>obj</code>上面</p>
+<ul>
+<li><code>setInterval</code>函数的用法与<code>setTimeout</code>完全一致<ul>
+<li>区别是<code>setInterval</code>指定某个任务</li>
+</ul>
+</li>
+</ul>
+<p><code>setInterval</code>的一个示例如下</p>
+<figure class="highlight plain"><figcaption><span>hash </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">var hashWatcher = setInterval(function() &#123;</span><br><span class="line">  if (window.location.hash != hash) &#123;</span><br><span class="line">    updatePage();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, 1000);</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">该例子实现了轮询URL的Hash值是否发生变化</span><br><span class="line"></span><br><span class="line">为了确保两次执行之间有固定的间隔，可以不用`setInterval`，而是每次执行结束后，使用`setTimeout`指定下一次执行的具体时间</span><br><span class="line"></span><br><span class="line">```var i = 1;</span><br><span class="line">var timer = setTimeout(function f() &#123;</span><br><span class="line">  // ...</span><br><span class="line">  timer = setTimeout(f, 2000);</span><br><span class="line">&#125;, 2000);</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">上面代码可以确保，下一次执行时间总是在本地执行结束之后的2000毫秒开始</span><br><span class="line"></span><br><span class="line">- `clearTimeout()，clearInterval()`会清空相应的计数器</span><br><span class="line">    - `setTimeout`和`setInterval`返回的整数值是连续的</span><br><span class="line">    - 利用这一点可以写一个函数，取消当前所有的`setTimeout`定时器</span><br><span class="line">        - 先调用`setTimeout`得到一个计算器编号，然后把编号比它小的计数器全部取消掉</span><br><span class="line"></span><br><span class="line">- debounce(控制回调函数的调用)</span><br><span class="line">    - 有些时候我们不希望回调函数被频繁调用，比如用户填入网页输入框的内容，希望通过Ajax方法传回服务器（见示例）</span><br><span class="line"></span><br><span class="line">示例如下</span><br><span class="line"></span><br><span class="line">`$(&apos;textarea&apos;).on(&apos;keydown&apos;, ajaxAction);`</span><br><span class="line"></span><br><span class="line">这样写有一个缺点是，如果用户连续点击，就会造成大量Ajax通信，可能会产生性能问题。正确的做法是，设置一个门槛值</span><br><span class="line"></span><br><span class="line">上面的代码可以这样写</span><br><span class="line"></span><br><span class="line">```$(&apos;textarea&apos;).on(&apos;keydown&apos;, debounce(ajaxAction, 2500));</span><br><span class="line"></span><br><span class="line">function debounce(fn, delay)&#123;</span><br><span class="line">  var timer = null; // 声明计时器</span><br><span class="line">  return function() &#123;</span><br><span class="line">    var context = this;</span><br><span class="line">    var args = arguments;</span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">    timer = setTimeout(function () &#123;</span><br><span class="line">      fn.apply(context, args);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">- 运行机制</span><br><span class="line">    - `setTimeout`和`setInterval`的运行机制，是将指定的代码移出本轮事件循环，等到下一轮事件循环，再检查是否到了指定时间。如果到了，就执行对应的代码；如果不到，就继续等待</span><br><span class="line">    - 时间到后，如果本轮事件循环的同步任务有没结束的就会继续等待</span><br><span class="line"></span><br><span class="line">- `setTimeout(f, 0)`</span><br><span class="line">    - 该代码指定的回调函数不会立即执行，而是会在下一轮时间循环一开始就执行</span><br><span class="line">    - 对于`setTimeout(f, 0)`，不同的浏览器有不同的实现，还会考虑节省系统资源等问题</span><br><span class="line"></span><br><span class="line">一个应用示例（调整事件发生顺序）如下</span><br><span class="line"></span><br><span class="line">```// HTML 代码如下</span><br><span class="line">// &lt;input type=&quot;button&quot; id=&quot;myButton&quot; value=&quot;click&quot;&gt;</span><br><span class="line"></span><br><span class="line">var input = document.getElementById(&apos;myButton&apos;);</span><br><span class="line"></span><br><span class="line">input.onclick = function A() &#123;</span><br><span class="line">  setTimeout(function B() &#123;</span><br><span class="line">    input.value +=&apos; input&apos;;</span><br><span class="line">  &#125;, 0)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">document.body.onclick = function C() &#123;</span><br><span class="line">  input.value += &apos; body&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的函数就是实现了先触发回调函数A，再触发函数C，再触发函数B</p>
+<p>另一个应用是，用户自定义的回调函数，通常在浏览器的默认动作之前触发</p>
+<p>示例如下</p>
+<figure class="highlight plain"><figcaption><span>HTML 代码如下</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// &lt;input type=&quot;text&quot; id=&quot;input-box&quot;&gt;</span><br><span class="line"></span><br><span class="line">document.getElementById(&apos;input-box&apos;).onkeypress = function (event) &#123;</span><br><span class="line">  this.value = this.value.toUpperCase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码达不到想要的要求，原因是监听的事件会在浏览器接收文本之前触发</p>
+<p>所以用<code>setTimeout</code>改写后，才能发挥想要的作用</p>
+<p>示例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  var self = this;</span><br><span class="line">  setTimeout(function() &#123;</span><br><span class="line">    self.value = self.value.toUpperCase();</span><br><span class="line">  &#125;, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于<code>setTimeout(f, 0)</code>实际上意味着，将任务放到浏览器最早可得的空闲时段执行，所以那些计算量大、耗时长的任务，常常会被放到几个小部分，分别放到<code>setTimeout(f, 0)</code>里面执行</p>
+<figure class="highlight plain"><figcaption><span>div </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 写法一</span><br><span class="line">for (var i = 0xA00000; i &lt; 0xFFFFFF; i++) &#123;</span><br><span class="line">  div.style.backgroundColor = &apos;#&apos; + i.toString(16);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 写法二</span><br><span class="line">var timer;</span><br><span class="line">var i=0x100000;</span><br><span class="line"></span><br><span class="line">function func() &#123;</span><br><span class="line">  timer = setTimeout(func, 0);</span><br><span class="line">  div.style.backgroundColor = &apos;#&apos; + i.toString(16);</span><br><span class="line">  if (i++ == 0xFFFFFF) clearTimeout(timer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">timer = setTimeout(func, 0);</span><br></pre></td></tr></table></figure>
+<p>两种写法都是改变一个网页元素的背景色，写法一会造成浏览器“堵塞”，JavaScript 执行速度远高于 DOM，会造成大量 DOM 操作“堆积”，而写法二就不会</p>
+<p>另一个使用这种技巧的例子是代码高亮的处理。如果代码块很大，一次性处理，可能会对性能造成很大的压力，那么将其分成一个个小块，一次处理一块，比如写成<code>setTimeout(highlightNext, 50)</code>的样子，性能压力就会减轻</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端知识/" rel="tag"># 前端知识</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/cjzzi6y8w000hqgpjy4qum60q.html" rel="next" title="JS网道学习笔记（十）">
+                <i class="fa fa-chevron-left"></i> JS网道学习笔记（十）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/15/cjzzi6y90000kqgpjuxjpu1x9.html" rel="prev" title="JS网道学习笔记（十二）">
+                JS网道学习笔记（十二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-严格模式"><span class="nav-number">1.</span> <span class="nav-text">1.严格模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-异步操作"><span class="nav-number">2.</span> <span class="nav-text">2.异步操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-定时器"><span class="nav-number">3.</span> <span class="nav-text">2.定时器</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
