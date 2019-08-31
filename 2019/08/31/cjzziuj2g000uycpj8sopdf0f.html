@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tx.jpg?v=6.6.0">
+
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前端萌新成长计划&amp;amp;考核 新学期伊始，又到了一年一度的招新时间   我靠我的假期怎么就余额不足了 为了帮助各位同学尽快了解前端和能上手编写一些小demo，找到编程的乐趣   实际上是为了完成招新考核任务，  学长在这里给大家布置了一些小任务，如果大家对加入我们工作室感兴趣，可以尝试完成这些任务，并按照要求把相关成果发至指定邮箱  Step 1 养成良好习惯在这个阶段没有任何实质性的考核，有的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hi Lanxiao!">
+<meta property="og:url" content="http://yoursite.com/2019/08/31/cjzziuj2g000uycpj8sopdf0f.html">
+<meta property="og:site_name" content="Hi Lanxiao!">
+<meta property="og:description" content="前端萌新成长计划&amp;amp;考核 新学期伊始，又到了一年一度的招新时间   我靠我的假期怎么就余额不足了 为了帮助各位同学尽快了解前端和能上手编写一些小demo，找到编程的乐趣   实际上是为了完成招新考核任务，  学长在这里给大家布置了一些小任务，如果大家对加入我们工作室感兴趣，可以尝试完成这些任务，并按照要求把相关成果发至指定邮箱  Step 1 养成良好习惯在这个阶段没有任何实质性的考核，有的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-31T12:26:43.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hi Lanxiao!">
+<meta name="twitter:description" content="前端萌新成长计划&amp;amp;考核 新学期伊始，又到了一年一度的招新时间   我靠我的假期怎么就余额不足了 为了帮助各位同学尽快了解前端和能上手编写一些小demo，找到编程的乐趣   实际上是为了完成招新考核任务，  学长在这里给大家布置了一些小任务，如果大家对加入我们工作室感兴趣，可以尝试完成这些任务，并按照要求把相关成果发至指定邮箱  Step 1 养成良好习惯在这个阶段没有任何实质性的考核，有的">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/31/cjzziuj2g000uycpj8sopdf0f.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | Hi Lanxiao!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/HiLanXiao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hi Lanxiao!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">To be a better man</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/cjzziuj2g000uycpj8sopdf0f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lance Zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi Lanxiao!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-31 20:07:51 / 修改时间：20:26:43" itemprop="dateCreated datePublished" datetime="2019-08-31T20:07:51+08:00">2019-08-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前端萌新成长计划-amp-考核"><a href="#前端萌新成长计划-amp-考核" class="headerlink" title="前端萌新成长计划&amp;考核"></a>前端萌新成长计划&amp;考核</h1><hr>
+<p>新学期伊始，又到了一年一度的招新时间   <strong><del>我靠我的假期怎么就余额不足了</del></strong></p>
+<p>为了帮助各位同学尽快了解前端和能上手编写一些小demo，找到编程的乐趣   <strong><del>实际上是为了完成招新考核任务</del></strong>，  学长在这里给大家布置了一些小任务，如果大家对加入我们工作室感兴趣，可以尝试完成这些任务，并按照要求把相关成果发至指定邮箱</p>
+<hr>
+<h2 id="Step-1-养成良好习惯"><a href="#Step-1-养成良好习惯" class="headerlink" title="Step 1 养成良好习惯"></a>Step 1 养成良好习惯</h2><h3 id="在这个阶段没有任何实质性的考核，有的只是学长在学习习惯上的一些小建议（当然完成其中的小任务并按要求发到相应邮箱会加分哦）"><a href="#在这个阶段没有任何实质性的考核，有的只是学长在学习习惯上的一些小建议（当然完成其中的小任务并按要求发到相应邮箱会加分哦）" class="headerlink" title="在这个阶段没有任何实质性的考核，有的只是学长在学习习惯上的一些小建议（当然完成其中的小任务并按要求发到相应邮箱会加分哦）"></a>在这个阶段没有任何实质性的考核，有的只是学长在学习习惯上的一些小建议（当然完成其中的小任务并按要求发到相应邮箱会加分哦）</h3><ul>
+<li><strong>学会使用搜索引擎 </strong> &amp;&amp;  <strong>询问学长学姐</strong>  &amp;&amp;  <strong>一些网站</strong><ul>
+<li><a href="https://dramatea.github.io/145%20%E4%BF%A1%E6%81%AF%E5%9B%BE-%E4%BB%8E%E8%B0%B7%E6%AD%8C%E6%90%9C%E8%8E%B7%E6%9B%B4%E5%A4%9A.html" target="_blank" rel="noopener">从谷歌搜获更多</a>   <em>同样都是一台电脑，一个搜索引擎，为什么别人能快速定位问题，并找到解决方案？这个链接会给你解答部分疑惑</em></li>
+<li><a href="https://www.zhihu.com/" target="_blank" rel="noopener">知乎</a>   <em>知乎治校似已成我校传统，在这个网站你可以刷刷一些有趣的贴子，但同样，你也可以获得一些过来人的宝贵经验，不信，搜一搜   <strong>“前端  路线”</strong>？</em></li>
+<li><a href="https://pandownload.com/" target="_blank" rel="noopener">PanDownload</a> <em>这是一个神奇的下载工具，可以让你搜到百度云上一些非常有用的东西   <strong><del>用魔法打败魔法吧，少年</del></strong>   ，当然，在方便的同时，请你也同样尊重创造者的知识产权</em> </li>
+<li><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way" target="_blank" rel="noopener">提问的智慧</a>  <em>遇到问题请先自行搜索引擎！不过当多次搜索无果，或者对搜索到的结果感到困惑时，请大方地询问  <del>学长</del> 学姐 吧</em></li>
+<li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>  <em>全球最大男性同性交友平台，其精妙之处请自行知乎或谷歌</em></li>
+<li><a href="https://segmentfault.com/" target="_blank" rel="noopener">思否</a>  <em>不介绍了，自己点开看吧。。。</em></li>
+<li><a href="https://juejin.im/" target="_blank" rel="noopener">掘金</a>  <em>同上</em></li>
+<li><a href="https://stackoverflow.com/" target="_blank" rel="noopener">stack overflow</a>  <em>中文搜索搜不到自己遇到的问题？ 用英文来这里搜搜！</em></li>
+</ul>
+</li>
+<li><strong>一个神奇的梯子</strong><ul>
+<li><strong>什么是梯子？</strong><ul>
+<li><em>众所周知，由于<a href="https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E" target="_blank" rel="noopener">GFW</a>的存在，广大中国网民在访问许多国外网站时会受到限制，例如你点不开<a href="https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E" target="_blank" rel="noopener">GFW</a>这个链接，例如你用不上比某度搜索引擎好用的多的，Google搜索，例如你也上不了国外的一些官方网站等等。为了翻过这堵高墙，你可以选择购买vpn服务，当然也可以自己动手，租用一个国外的服务器，搭一个属于自己的，翻墙梯子</em></li>
+</ul>
+</li>
+<li><strong>为什么要翻墙？</strong><ul>
+<li>为了更优质的搜索引擎–Google</li>
+<li>为了外网上的一些优质资源</li>
+<li>看到更广阔的世界（<strong>Quora、YouTube等</strong>）</li>
+</ul>
+</li>
+<li><strong>任务（非强制）</strong><ul>
+<li>参考前端资料中的<strong>科学上网之用vultr搭建ss（卓然子出品）</strong>，搭建一个属于自己的梯子</li>
+<li>写一篇<strong>10个字以上</strong>的总结，描述你遇到的问题和解决思路，讲一讲你在墙外看到了些啥有趣的东西，讲一讲学长的建议是否对你有帮助</li>
+<li>总结中需要有<strong>远程终端上的操作截图</strong></li>
+<li>邮箱号为<a href="mailto:**1256925921@qq.com" target="_blank" rel="noopener">**1256925921@qq.com</a><strong>，邮件请命名为  </strong><del>姓名</del>  昵称  +  学号**</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Step2-加入全球最大同性交友网站-——-Github"><a href="#Step2-加入全球最大同性交友网站-——-Github" class="headerlink" title="Step2 加入全球最大同性交友网站 —— Github"></a>Step2 加入全球最大同性交友网站 —— Github</h2><h3 id="从这一步开始，就是每位同学必须完成的任务了哦，想加入工作室的同学，请一定按要求发送相关成果至指定邮箱"><a href="#从这一步开始，就是每位同学必须完成的任务了哦，想加入工作室的同学，请一定按要求发送相关成果至指定邮箱" class="headerlink" title="从这一步开始，就是每位同学必须完成的任务了哦，想加入工作室的同学，请一定按要求发送相关成果至指定邮箱"></a>从这一步开始，就是每位同学必须完成的任务了哦，想加入工作室的同学，请一定按要求发送相关成果至指定邮箱</h3><ul>
+<li><p><strong>尝试食用  主流 分布式版本控制系统——Git</strong></p>
+<ul>
+<li><p><strong>什么是Git？</strong></p>
+<ul>
+<li><p><a href="https://blog.csdn.net/yzzst/article/details/51694812" target="_blank" rel="noopener">git是什么？如何使用git进行团队协作？</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/question/20866683/answer/711725573" target="_blank" rel="noopener">如何优雅地使用 Git</a></p>
+</li>
+<li><p><a href="https://ohshitgit.com/" target="_blank" rel="noopener">Oh Shit，git！</a></p>
+</li>
+<li><p>两个最常见的Git使用场景</p>
+<ul>
+<li><p>一个人开发：</p>
+<ul>
+<li><p><em>大佬这个代码🐮🍺，clone 一手到本地研究下</em></p>
+<p><strong>（更便捷地学习开源代码）</strong></p>
+</li>
+<li><p><em>代码写完了，美滋滋，给自己倒一杯卡布奇洛，打开bash，开始把代码push到自己的git仓库</em>               <strong>（相当于文件备份时把文件备份到了网盘上）</strong></p>
+</li>
+<li><p><em>代码写崩了，一堆bug不会改，反手一个超级时光机，reset一波回到 0 warning 0 error 的时候</em></p>
+<p><strong>（版本控制，随时回到你想回到的时间点）</strong></p>
+</li>
+</ul>
+</li>
+<li><p>多人合作开发：</p>
+<ul>
+<li><em>马飞飞开发模块A，卢伟伟开发模块B，各自先在自己的 branch上开发，马飞飞写好了自己的功能模块，测试确保没有问题了，再 merge到主分支；卢伟伟把系统写崩了，但是一点都不会影响到主分支的内容</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>我该如何学习Git</strong></p>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">Git教程 - 廖雪峰的官方网站</a></li>
+<li><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>加入 Github大家庭</strong></p>
+<ul>
+<li><em>或许有零基础的萌新会问， Github 和 Git 有什么关系，实际上Github只是采用了Git的一种仓库，诸如此类的仓库还有 Gitlab、码云等，但是Github由于其上有着众多的开源资源，和一代一代程序猿的心血传递，它更像是一个程序猿社区，而不是一个简单的代码仓库，你可以在上面提问和浏览别人的心得笔记，当然，你也可以做那个解答别人问题和发布心得，甚至是参与大型开源项目的巨佬。但这一切的起点，你得创建一个账号吧hhh</em></li>
+</ul>
+</li>
+<li><h3 id="任务（注：这一阶段的任务，请全部反映在-“博客”-里面）"><a href="#任务（注：这一阶段的任务，请全部反映在-“博客”-里面）" class="headerlink" title="任务（注：这一阶段的任务，请全部反映在  “博客”  里面）**"></a>任务（注：这一阶段的任务，请全部反映在  “博客”  里面）**</h3><ul>
+<li><strong>任务一：创建一个Github账号，并配置好本机的SSH</strong><ul>
+<li><em>在这个阶段你需要搞清楚</em><ul>
+<li>什么是<strong>协议</strong></li>
+<li><strong>SSH</strong>是怎样一种协议</li>
+<li><strong>Git</strong>采用了哪些协议</li>
+<li>这些内容需要<strong>反映在你之后的博客</strong>里面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>任务二：创建一个仓库，并上传你的代码（任意代码）</strong><ul>
+<li><em>在这个阶段你需要做到</em><ul>
+<li><em>代码至少要能跑对吧。。</em></li>
+<li><strong>截图和 Github仓库</strong>证明你是独立完成的操作*</li>
+</ul>
+</li>
+<li>需要练习以下操作：<ul>
+<li><strong>本地仓库的初始化</strong>与<strong>绑定远端仓库</strong></li>
+<li>将任意代码<strong>push到master分支上</strong></li>
+<li>创建一个新的分支，并将代码<strong>push到新的分支上</strong></li>
+<li>将这个<strong>新的分支与master分支合并</strong></li>
+<li>其他操作如代码回溯请<strong>自行练习</strong>，如<strong>有截图展示则加分</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>任务三：创建一个新的仓库，并把你的第一个博客搭建在这个仓库上</strong><ul>
+<li>为什么采用<strong>Github Page + hexo</strong> 搭建第一个博客<ul>
+<li><em>网上教程丰富</em></li>
+<li><em>无需手动编写代码</em></li>
+</ul>
+</li>
+<li>推荐你的<strong>仓库命名结尾</strong>为<code>.github.io</code>，之后会少一些麻烦</li>
+<li><a href="https://segmentfault.com/a/1190000017986794" target="_blank" rel="noopener">随便搜到的一个教程</a></li>
+<li>在这个阶段你需要做到<ul>
+<li><em>喂，点开你发送的链接不能给个404对吧</em></li>
+<li>撰写你的<strong>第一篇博客</strong><ul>
+<li>博客内容<ul>
+<li>请将<strong>Step1中的邮件内容</strong>转移到博客中</li>
+<li>回答<strong>任务一中的三个问题</strong></li>
+<li>完成<strong>任务二中要求的操作</strong>，并给出相应的<strong>截图和心得</strong></li>
+<li>总结你搭建博客中<strong>遇到的问题</strong>和<strong>如何解决</strong>的，没有遇到问题可给出<strong>大致的过程截图</strong>并附上<strong>简单的文字介绍</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/01/cjzziuj2k000zycpjjto9nh61.html" rel="next" title="支教日记（一）">
+                <i class="fa fa-chevron-left"></i> 支教日记（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/31/cjzziuj2i000vycpjhcxyrh1c.html" rel="prev" title="前端萌新成长计划&考核">
+                前端萌新成长计划&考核 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lance Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端萌新成长计划-amp-考核"><span class="nav-number">1.</span> <span class="nav-text">前端萌新成长计划&amp;考核</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-养成良好习惯"><span class="nav-number">1.1.</span> <span class="nav-text">Step 1 养成良好习惯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在这个阶段没有任何实质性的考核，有的只是学长在学习习惯上的一些小建议（当然完成其中的小任务并按要求发到相应邮箱会加分哦）"><span class="nav-number">1.1.1.</span> <span class="nav-text">在这个阶段没有任何实质性的考核，有的只是学长在学习习惯上的一些小建议（当然完成其中的小任务并按要求发到相应邮箱会加分哦）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-加入全球最大同性交友网站-——-Github"><span class="nav-number">1.2.</span> <span class="nav-text">Step2 加入全球最大同性交友网站 —— Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从这一步开始，就是每位同学必须完成的任务了哦，想加入工作室的同学，请一定按要求发送相关成果至指定邮箱"><span class="nav-number">1.2.1.</span> <span class="nav-text">从这一步开始，就是每位同学必须完成的任务了哦，想加入工作室的同学，请一定按要求发送相关成果至指定邮箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务（注：这一阶段的任务，请全部反映在-“博客”-里面）"><span class="nav-number">1.2.2.</span> <span class="nav-text">任务（注：这一阶段的任务，请全部反映在  “博客”  里面）**</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lance Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by"> <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,128,128" opacity="0.8" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
